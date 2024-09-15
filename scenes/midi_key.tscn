@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://m8ksqi08mp2v"]
+
+[ext_resource type="Script" path="res://scripts/midi_key.gd" id="1_bsymi"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_we6qe"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]
+
+[node name="MIDI Key" type="Node2D"]
+script = ExtResource("1_bsymi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_we6qe")
+animation = &"off"
