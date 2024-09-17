@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cj3vxb0stx7av"
-path="res://.godot/imported/spr_asteroid_medium.png-09bf5fe9fab541a744c5f9df178c2d0a.ctex"
+uid="uid://dbopkhuvs7gww"
+path="res://.godot/imported/game_border_new.png-d70cf9a3721fbadb379f3ff6a9ca1fb8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/spr_asteroid_medium.png"
-dest_files=["res://.godot/imported/spr_asteroid_medium.png-09bf5fe9fab541a744c5f9df178c2d0a.ctex"]
+source_file="res://assets/sprites/game_border_new.png"
+dest_files=["res://.godot/imported/game_border_new.png-d70cf9a3721fbadb379f3ff6a9ca1fb8.ctex"]
 
 [params]
 
