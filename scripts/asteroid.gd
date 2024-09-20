@@ -1,13 +1,10 @@
 class_name Asteroid extends Area2D
 
-@onready var asteroid: Area2D = $"."
+signal asteroid_spawned
+
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var asteroid_sprite_2d: Sprite2D = $AsteroidSprite2D
 @onready var symbol_sprite_2d: Sprite2D = $SymbolSprite2D
-
-
-@export var size: SizeType
-@export var pitch: PitchType
 
 ## METEOR SIZES
 enum SizeType {SMALL, MEDIUM, LARGE}
@@ -44,6 +41,9 @@ var ColorType: Dictionary = {
 	11: Color.DARK_ORANGE
 }
 
+@export var size: SizeType
+@export var pitch: PitchType
+
 var speed: int:
 	get:
 		match size:
@@ -55,7 +55,6 @@ var speed: int:
 				return 15
 			_:
 				return 0
-	
 var points: int:
 	get:
 		match size:
@@ -68,10 +67,11 @@ var points: int:
 			_:
 				return 0
 				
+var pitch_letter: String
 var valid_pitches: Array[int]
-
 var movement_vector := Vector2(0, -1)
 var rotate_value: float
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_size_vars()
@@ -89,7 +89,7 @@ func set_size_vars():
 	## Set speed, hitbox, and asteroid sprite
 	## based on randomly-chosen size enum.
 	
-	size = randi_range(0, SizeType.size() - 1)
+	#size = randi_range(0, SizeType.size() - 1)
 	match size:
 		SizeType.SMALL:
 			asteroid_sprite_2d.texture = preload("res://assets/spr_asteroid_small.png")
@@ -106,7 +106,7 @@ func set_pitch_vars():
 	## Set color, valid pitches, and symbol sprite
 	## based on randomly-chosen pitch enum.
 	
-	pitch = randi_range(0, PitchType.size() - 1)
+	#pitch = randi_range(0, PitchType.size() - 1)
 	var symbol_flip = randi_range(0, 2)
 	match pitch:
 		0:	## Every C Key
@@ -162,6 +162,8 @@ func set_pitch_vars():
 			symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_b.png")
 
 	modulate = ColorType[pitch]
+	pitch_letter = PitchType.keys()[pitch]
+	
 
 func screen_wrap():
 	var shape_radius = collision_shape_2d.shape.radius

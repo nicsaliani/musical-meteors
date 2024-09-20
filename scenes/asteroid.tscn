@@ -6,8 +6,6 @@
 
 [node name="Asteroid" type="Area2D"]
 script = ExtResource("1_qn2i1")
-size = 2
-pitch = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = ExtResource("2_47vrx")
