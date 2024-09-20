@@ -1,4 +1,6 @@
-extends Control
+class_name MidiControl extends Control
+
+signal note_pressed
 
 # NOTE: Set the size of this array to 12 and assign each index a midi_key node
 # containing a midi_key script. Ideally, this array should contain one of every
@@ -10,6 +12,9 @@ extends Control
 func _ready() -> void:
 	OS.open_midi_inputs()
 	print(OS.get_connected_midi_inputs())
+	
+	for piano_key in midi_keys:
+		piano_key.connect("midi_key_pressed", _on_midi_key_pressed)
 
 # Called whenever an input is sensed.
 # If a keyboard key is pressed or released,
@@ -22,10 +27,12 @@ func _input(event):
 				
 			#print("MIDI BUTTON CALLED.")
 			#printt("Channel: ", event.channel)			# MIDI channel (0-15)
-			printt("Pitch: ", event.pitch)				# MIDI note number (0-127)
-			printt("Velocity: ", event.velocity)			# MIDI note velocity (0-127)
-			printt("Message: ", event.message)			# MIDI signal
+			#printt("Pitch: ", event.pitch)				# MIDI note number (0-127)
+			#printt("Velocity: ", event.velocity)			# MIDI note velocity (0-127)
+			#printt("Message: ", event.message)			# MIDI signal
 			#printt("Instrument: ", event.instrument)		# MIDI instrument (0-127)
 			#printt("Pressure: ", event.pressure)			# MIDI signal pressure (0-127)
-			print("-------------------")
+			#print("-------------------")
 			
+func _on_midi_key_pressed(pitch_letter: String):
+	emit_signal("note_pressed", pitch_letter)

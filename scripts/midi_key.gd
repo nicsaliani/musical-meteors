@@ -1,4 +1,8 @@
-extends Node
+class_name MidiKey extends Node
+
+signal midi_key_pressed(pitch)
+
+@onready var animated_sprite = $AnimatedSprite2D
 
 enum PitchType{
 	C,
@@ -19,8 +23,7 @@ enum PitchType{
 # For example, set this to "C" to make it a C key.
 @export var pitch_type: PitchType
 
-@onready var animated_sprite = $AnimatedSprite2D
-
+var pitch_letter: String
 var valid_pitches: Array[int]
 var is_pressed := false
 var keys_held := 0
@@ -55,16 +58,19 @@ func _ready():
 			valid_pitches = [10, 22, 34, 46, 58, 70, 82, 94, 106, 118]
 		11:	# Every B Key
 			valid_pitches = [11, 23, 35, 47, 59, 71, 83, 95, 107, 119]
+			
+	pitch_letter = PitchType.keys()[pitch_type]
 
 func call_key(pitch: int, velocity: int):
 	if valid_pitches.has(pitch):
 		if velocity > 0:
 			if keys_held == 0:
-				print("%s key pressed." % [PitchType.keys()[pitch_type]])
+				print("%s key pressed." % [pitch_letter])
 				animated_sprite.play("on")
+				emit_signal("midi_key_pressed", pitch_letter)
 			keys_held += 1
 		elif velocity == 0:
 			if keys_held == 1:
-				print("%s key released." % [PitchType.keys()[pitch_type]])
+				print("%s key released." % [pitch_letter])
 				animated_sprite.play("off")
 			keys_held -=1
