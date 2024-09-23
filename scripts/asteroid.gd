@@ -72,6 +72,7 @@ var valid_pitches: Array[int]
 var movement_vector := Vector2(0, -1)
 var rotate_value: float
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_size_vars()
@@ -164,7 +165,6 @@ func set_pitch_vars():
 	modulate = ColorType[pitch]
 	pitch_letter = PitchType.keys()[pitch]
 	
-
 func screen_wrap():
 	var shape_radius = collision_shape_2d.shape.radius
 	#var screen_size = get_viewport_rect().size
@@ -179,3 +179,6 @@ func screen_wrap():
 		global_position.y = 256 + shape_radius
 	elif global_position.y - shape_radius > 256:
 		global_position.y = -256 - shape_radius
+
+func explode():
+	queue_free()
