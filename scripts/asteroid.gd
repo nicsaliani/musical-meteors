@@ -1,6 +1,6 @@
 class_name Asteroid extends Area2D
 
-signal asteroid_spawned
+signal split_asteroid(pos, size)
 
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var asteroid_sprite_2d: Sprite2D = $AsteroidSprite2D
@@ -181,4 +181,5 @@ func screen_wrap():
 		global_position.y = -256 - shape_radius
 
 func explode():
+	emit_signal("split_asteroid", global_position, size)
 	queue_free()

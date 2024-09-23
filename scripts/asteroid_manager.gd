@@ -49,6 +49,7 @@ func spawn_asteroid(amount: int, pos: Vector2, size: Asteroid.SizeType) -> Aster
 	asteroid.size = size
 	asteroid.pitch = pitches_available[randi_range(0, pitches_available.size()-1)]
 	add_child(asteroid)
+	asteroid.connect("split_asteroid", split_asteroid)
 	
 	# Position this asteroid so that it spawns just out of sight
 	var asteroid_radius = asteroid.collision_shape_2d.shape.radius
@@ -77,8 +78,6 @@ func _on_timer_timeout():
 			randi_range(0, sizes_available.size() - 1)
 		)
 		update_space_available(false, _asteroid.size)
-	print(space_available)
-	print(check_space_available_for_possible_sizes())
 	
 func _on_note_pressed(played_note: String):
 	if asteroids_on_screen.has(played_note):
@@ -121,4 +120,6 @@ func update_space_available(operation: bool, asteroid_size: Asteroid.SizeType) -
 			space_available += 2 * operation_value
 		Asteroid.SizeType.LARGE:
 			space_available += 4 * operation_value
-	
+
+func split_asteroid(pos: Vector2, size: Asteroid.SizeType):
+	pass
