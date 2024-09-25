@@ -61,16 +61,15 @@ func _ready():
 			
 	pitch_letter = PitchType.keys()[pitch_type]
 
-func call_key(pitch: int, velocity: int):
+func call_key(pitch: int, velocity: int, message: int):
+	
 	if valid_pitches.has(pitch):
 		if velocity > 0:
 			if keys_held == 0:
-				print("%s key pressed." % [pitch_letter])
 				animated_sprite.play("on")
 				emit_signal("midi_key_pressed", pitch_letter)
 			keys_held += 1
-		elif velocity == 0:
+		elif velocity == 0 or message == 8:
 			if keys_held == 1:
-				print("%s key released." % [pitch_letter])
 				animated_sprite.play("off")
 			keys_held -=1

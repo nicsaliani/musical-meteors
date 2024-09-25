@@ -23,7 +23,7 @@ func _input(event):
 	if event is InputEventMIDI:
 		if event.message == 9 or event.message == 8:
 			for piano_key in midi_keys:
-				piano_key.call_key(event.pitch, event.velocity)
+				piano_key.call_key(event.pitch, event.velocity, event.message)
 				
 			#print("MIDI BUTTON CALLED.")
 			#printt("Channel: ", event.channel)			# MIDI channel (0-15)
