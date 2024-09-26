@@ -339,6 +339,7 @@ position = Vector2(210, 0)
 zoom = Vector2(2, 2)
 
 [node name="Asteroid Manager" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_m1o48")
@@ -358,6 +359,7 @@ position = Vector2(210, 0)
 texture = ExtResource("2_72ir7")
 
 [node name="MIDI Control" type="Control" parent="." node_paths=PackedStringArray("midi_keys")]
+unique_name_in_owner = true
 z_index = 2
 layout_mode = 3
 anchors_preset = 0
