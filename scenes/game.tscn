@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://djrahedsf5gjh"]
+[gd_scene load_steps=44 format=3 uid="uid://djrahedsf5gjh"]
 
 [ext_resource type="Script" path="res://scripts/asteroid_manager.gd" id="1_m1o48"]
 [ext_resource type="Texture2D" uid="uid://dbopkhuvs7gww" path="res://assets/sprites/game_border_new.png" id="2_72ir7"]
@@ -332,10 +332,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0ceo3"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 98, 0)
-
 [node name="Game" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -501,6 +497,3 @@ autoplay = "off"
 [node name="SprPlayer" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("6_15trj")
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-process_material = SubResource("ParticleProcessMaterial_0ceo3")
