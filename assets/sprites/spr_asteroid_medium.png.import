@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gfm0y8gvydxv"
-path="res://.godot/imported/blueprint_keyboard_sheet.png-823f46bc3f2636ebeb5f2e4a3a5cfc9b.ctex"
+uid="uid://cpim0lpenjm6b"
+path="res://.godot/imported/spr_asteroid_medium.png-09bf5fe9fab541a744c5f9df178c2d0a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/blueprint_keyboard_sheet.png"
-dest_files=["res://.godot/imported/blueprint_keyboard_sheet.png-823f46bc3f2636ebeb5f2e4a3a5cfc9b.ctex"]
+source_file="res://assets/sprites/spr_asteroid_medium.png"
+dest_files=["res://.godot/imported/spr_asteroid_medium.png-09bf5fe9fab541a744c5f9df178c2d0a.ctex"]
 
 [params]
 
