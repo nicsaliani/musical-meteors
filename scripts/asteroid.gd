@@ -12,8 +12,9 @@ signal split_asteroid(pos, size)
 
 ## EXPORT REFERENCES
 ## -------------------
-@export var size: Asteroid.SizeType
-@export var pitch: Asteroid.PitchType
+@export var size: SizeType
+@export var pitch: PitchType
+
 
 ## ENUMS
 ## -------------------
@@ -33,6 +34,8 @@ enum PitchType {
 	AB,
 	B
 }
+
+enum AccidentalType {NATURAL, FLAT, SHARP}
 
 ## VARIABLES
 ## -------------------
@@ -76,6 +79,8 @@ var points: int:
 				return 200
 			_:
 				return 0
+var accidental: AccidentalType
+
 
 ## FUNCTIONS
 ## -------------------
@@ -98,11 +103,12 @@ func _ready() -> void:
 			collision_shape_2d.shape = preload("res://resources/col_asteroid_large.tres")
 	
 	# Set pitch symbol sprite based on pitch (random flip for accidentals)
-	var _symbol_flip = randi_range(0, 2)
+	var _symbol_flip = 2
 	match pitch:
 		0:	# C
 			symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_c.png")
 		1:	# CD
+			_symbol_flip = randi_range(0, 2)
 			if _symbol_flip:
 				symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_cs.png")
 			else:
@@ -110,6 +116,7 @@ func _ready() -> void:
 		2:	# D
 			symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_d.png")
 		3:	# DE
+			_symbol_flip = randi_range(0, 2)
 			if _symbol_flip:
 				symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_ds.png")
 			else:
@@ -119,6 +126,7 @@ func _ready() -> void:
 		5:	# F
 			symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_f.png")
 		6:	# FG
+			_symbol_flip = randi_range(0, 2)
 			if _symbol_flip:
 				symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_fs.png")
 			else:
@@ -126,6 +134,7 @@ func _ready() -> void:
 		7:	# G
 			symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_g.png")
 		8:	# GA
+			_symbol_flip = randi_range(0, 2)
 			if _symbol_flip:
 				symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_gs.png")
 			else:
@@ -133,13 +142,16 @@ func _ready() -> void:
 		9:	# A
 			symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_a.png")
 		10:	# AB
+			_symbol_flip = randi_range(0, 2)
 			if _symbol_flip:
 				symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_as.png")
 			else:
 				symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_bf.png")
 		11:	# B
 			symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_b.png")
-
+			
+	accidental = AccidentalType.keys()[_symbol_flip]
+	
 func _process(_delta: float) -> void:
 	
 	# X/Y Movement

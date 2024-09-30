@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://djrahedsf5gjh"]
+[gd_scene load_steps=45 format=3 uid="uid://djrahedsf5gjh"]
 
 [ext_resource type="Script" path="res://scripts/asteroid_manager.gd" id="1_m1o48"]
 [ext_resource type="Texture2D" uid="uid://dbopkhuvs7gww" path="res://assets/sprites/game_border_new.png" id="2_72ir7"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://scripts/midi_control.gd" id="5_aemnb"]
 [ext_resource type="Texture2D" uid="uid://dba4iwtcjh5q" path="res://assets/sprites/key_sheet.png" id="6_14sgb"]
 [ext_resource type="Texture2D" uid="uid://bmpdqo61o67qb" path="res://assets/sprites/spr_player.png" id="6_15trj"]
-[ext_resource type="Texture2D" uid="uid://sv40wjxnbcfe" path="res://assets/sprites/particles/particle_sharp.png" id="8_dmnv8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_23i1g"]
 atlas = ExtResource("6_14sgb")
@@ -505,4 +504,3 @@ texture = ExtResource("6_15trj")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 process_material = SubResource("ParticleProcessMaterial_0ceo3")
-texture = ExtResource("8_dmnv8")
