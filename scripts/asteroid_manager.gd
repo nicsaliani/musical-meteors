@@ -67,7 +67,7 @@ func create_asteroid(_size: Asteroid.SizeType) -> Asteroid:
 	
 	return _asteroid
 
-func spawn_asteroid(_asteroid: Asteroid, _pos: Vector2, _do_update_space_available: bool):
+func spawn_asteroid_on_border(_asteroid: Asteroid, _pos: Vector2):
 	
 	# Position this asteroid so that it spawns just out of sight
 	var _asteroid_radius = _asteroid.collision_shape_2d.shape.radius
@@ -76,10 +76,11 @@ func spawn_asteroid(_asteroid: Asteroid, _pos: Vector2, _do_update_space_availab
 		_pos.y + (sign(_pos.y)) * _asteroid_radius
 	)
 	
-	# Update space available if set to true
-	if _do_update_space_available:
-		update_space_available(false, _asteroid.size)
+	update_space_available(false, _asteroid.size)
 
+func spawn_asteroid_from_split(_asteroid: Asteroid, _pos: Vector2):
+	_asteroid.position = _pos
+	
 func _on_timer_timeout():
 	
 	# Get available sizes based on available space
@@ -90,10 +91,9 @@ func _on_timer_timeout():
 		var _asteroid = create_asteroid(
 			randi_range(0, sizes_available.size() - 1)
 		)
-		spawn_asteroid(
+		spawn_asteroid_on_border(
 			_asteroid, 
 			spawn_points[randi_range(0, spawn_points.size() - 1)], 
-			true
 		)
 	
 func _on_note_pressed(_played_pitch_letter: String):
@@ -154,10 +154,10 @@ func split_asteroid(_pos: Vector2, _size: Asteroid.SizeType):
 				var _asteroid = create_asteroid(
 					Asteroid.SizeType.MEDIUM
 				)
-				spawn_asteroid(_asteroid, _pos, false)
+				spawn_asteroid_from_split(_asteroid, _pos)
 		Asteroid.SizeType.MEDIUM:
 			for i in range(2):
 				var _asteroid = create_asteroid(
 					Asteroid.SizeType.SMALL
 				)
-				spawn_asteroid(_asteroid, _pos, false)
+				spawn_asteroid_from_split(_asteroid, _pos)
