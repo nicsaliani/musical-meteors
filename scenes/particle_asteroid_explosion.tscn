@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckeqeq6v5nbr0"]
+[gd_scene load_steps=7 format=3 uid="uid://ckeqeq6v5nbr0"]
 
 [ext_resource type="Texture2D" uid="uid://cotnxsjqmhb13" path="res://assets/sprites/particles/particle_sheet_natural.png" id="1_8aulj"]
 [ext_resource type="Script" path="res://scripts/particle_asteroid_explosion.gd" id="2_hyey4"]
@@ -8,6 +8,12 @@ particles_animation = true
 particles_anim_h_frames = 5
 particles_anim_v_frames = 1
 particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_3edah"]
+offsets = PackedFloat32Array(0, 0.00561798)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_osu52"]
+gradient = SubResource("Gradient_3edah")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rve6a"]
 lifetime_randomness = 0.6
@@ -20,6 +26,7 @@ initial_velocity_max = 172.33
 gravity = Vector3(0, 0, 0)
 linear_accel_min = -64.23
 linear_accel_max = -56.94
+color_ramp = SubResource("GradientTexture1D_osu52")
 anim_offset_max = 1.0
 
 [node name="part_asteroid_explosion" type="GPUParticles2D"]

@@ -5,13 +5,14 @@ class_name ParticleAsteroidExplosion extends GPUParticles2D
 var color: Color
 var accidental: Asteroid.AccidentalType
 
-# Called when the node enters the scene tree for the first time.
+## FUNCTIONS
+## -------------------
 func _ready() -> void:
 	
 	process_material = process_material.duplicate()
 	
 	emitting = true
-	process_material.color = color
+	modulate = color
 
 	match accidental:
 		Asteroid.AccidentalType.FLAT:
