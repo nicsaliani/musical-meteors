@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckeqeq6v5nbr0"]
+[gd_scene load_steps=5 format=3 uid="uid://ckeqeq6v5nbr0"]
 
-[ext_resource type="Texture2D" uid="uid://cotnxsjqmhb13" path="res://assets/sprites/particles/particle_sheet_natural.png" id="1_ekqr3"]
+[ext_resource type="Texture2D" uid="uid://cotnxsjqmhb13" path="res://assets/sprites/particles/particle_sheet_natural.png" id="1_8aulj"]
+[ext_resource type="Script" path="res://scripts/particle_asteroid_explosion.gd" id="2_hyey4"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kkxym"]
 particles_animation = true
@@ -8,7 +9,7 @@ particles_anim_h_frames = 5
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0ceo3"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rve6a"]
 lifetime_randomness = 0.6
 particle_flag_disable_z = true
 angle_min = 1.07288e-05
@@ -25,9 +26,10 @@ anim_offset_max = 1.0
 material = SubResource("CanvasItemMaterial_kkxym")
 emitting = false
 amount = 30
-process_material = SubResource("ParticleProcessMaterial_0ceo3")
-texture = ExtResource("1_ekqr3")
+process_material = SubResource("ParticleProcessMaterial_rve6a")
+texture = ExtResource("1_8aulj")
 lifetime = 1.5
 one_shot = true
 explosiveness = 1.0
 interp_to_end = 0.028
+script = ExtResource("2_hyey4")

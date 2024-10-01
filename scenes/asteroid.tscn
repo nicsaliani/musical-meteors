@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://ca7vbuen0m1pe"]
+[gd_scene load_steps=5 format=3 uid="uid://ca7vbuen0m1pe"]
 
 [ext_resource type="Script" path="res://scripts/asteroid.gd" id="1_qn2i1"]
 [ext_resource type="Shape2D" uid="uid://d0a2h8mjlfsqh" path="res://resources/col_asteroid_medium.tres" id="2_47vrx"]
+[ext_resource type="PackedScene" uid="uid://ckeqeq6v5nbr0" path="res://scenes/particle_asteroid_explosion.tscn" id="2_gcta0"]
 [ext_resource type="Texture2D" uid="uid://cpim0lpenjm6b" path="res://assets/sprites/spr_asteroid_medium.png" id="3_oyvlt"]
 
 [node name="Asteroid" type="Area2D"]
 script = ExtResource("1_qn2i1")
+particle_explode = ExtResource("2_gcta0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = ExtResource("2_47vrx")

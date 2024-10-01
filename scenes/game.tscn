@@ -497,3 +497,5 @@ autoplay = "off"
 [node name="SprPlayer" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("6_15trj")
+
+[node name="Particles" type="Node2D" parent="."]
