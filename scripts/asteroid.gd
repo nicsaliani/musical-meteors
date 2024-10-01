@@ -12,9 +12,9 @@ signal split_asteroid(pos, size)
 
 ## EXPORT REFERENCES
 ## -------------------
+@export var particle_explode: PackedScene
 @export var size: SizeType
 @export var pitch: PitchType
-
 
 ## ENUMS
 ## -------------------
@@ -35,7 +35,7 @@ enum PitchType {
 	B
 }
 
-enum AccidentalType {NATURAL, FLAT, SHARP}
+enum AccidentalType {FLAT, SHARP, NATURAL}
 
 ## VARIABLES
 ## -------------------
@@ -150,7 +150,7 @@ func _ready() -> void:
 		11:	# B
 			symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_b.png")
 			
-	accidental = AccidentalType.keys()[_symbol_flip]
+	accidental = AccidentalType.values()[_symbol_flip]
 	
 func _process(_delta: float) -> void:
 	
@@ -175,4 +175,11 @@ func _process(_delta: float) -> void:
 func explode():
 	
 	split_asteroid.emit(global_position, size)
+	
+	var _explosion = particle_explode.instantiate()
+	_explosion.global_position = global_position
+	_explosion.color = modulate
+	_explosion.accidental = accidental
+	get_node("/root/Game/Particles").add_child(_explosion)
+
 	queue_free()
