@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://djrahedsf5gjh"]
+[gd_scene load_steps=47 format=3 uid="uid://djrahedsf5gjh"]
 
 [ext_resource type="Script" path="res://scripts/asteroid_manager.gd" id="1_m1o48"]
 [ext_resource type="Texture2D" uid="uid://dbopkhuvs7gww" path="res://assets/sprites/game_border_new.png" id="2_72ir7"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://scripts/midi_control.gd" id="5_aemnb"]
 [ext_resource type="Texture2D" uid="uid://dba4iwtcjh5q" path="res://assets/sprites/key_sheet.png" id="6_14sgb"]
 [ext_resource type="Texture2D" uid="uid://bmpdqo61o67qb" path="res://assets/sprites/spr_player.png" id="6_15trj"]
+[ext_resource type="FontFile" uid="uid://dkfllk3hbjb5q" path="res://assets/fonts/m6x11.ttf" id="8_wv8fw"]
+[ext_resource type="Script" path="res://scripts/score.gd" id="9_tpmtw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_23i1g"]
 atlas = ExtResource("6_14sgb")
@@ -332,6 +334,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_o7t8y"]
+font = ExtResource("8_wv8fw")
+font_size = 32
+
 [node name="Game" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -499,3 +505,27 @@ visible = false
 texture = ExtResource("6_15trj")
 
 [node name="Particles" type="Node2D" parent="."]
+
+[node name="Score" type="Label" parent="."]
+z_index = 2
+offset_left = 500.0
+offset_top = -253.0
+offset_right = 623.0
+offset_bottom = -220.0
+text = "0"
+label_settings = SubResource("LabelSettings_o7t8y")
+vertical_alignment = 2
+script = ExtResource("9_tpmtw")
+
+[node name="ScoreText" type="Label" parent="."]
+z_index = 2
+offset_left = 363.0
+offset_top = -253.0
+offset_right = 486.0
+offset_bottom = -220.0
+text = "SCORE:"
+label_settings = SubResource("LabelSettings_o7t8y")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[connection signal="asteroid_destroyed" from="Asteroid Manager" to="Asteroid Manager" method="_on_asteroid_destroyed"]

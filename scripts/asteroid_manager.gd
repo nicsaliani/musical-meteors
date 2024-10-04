@@ -9,6 +9,7 @@ signal asteroid_destroyed(asteroid)
 ## -------------------
 @onready var midi_control: MidiControl = $"../MIDI Control"
 @onready var asteroid_spawn_timer: Timer = $"Asteroid Spawn Timer"
+@onready var score_text: Label = $"../ScoreText"
 @onready var asteroid_scene := preload("res://scenes/asteroid.tscn")
 
 ## VARIABLES
