@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0tmi7li5psis"]
+
+[ext_resource type="FontFile" uid="uid://dkfllk3hbjb5q" path="res://assets/fonts/m6x11.ttf" id="1_imdsn"]
+[ext_resource type="Script" path="res://scripts/score_popup.gd" id="2_gkkga"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1fcrt"]
+font = ExtResource("1_imdsn")
+
+[node name="ScorePopup" type="Label"]
+offset_right = 12.0
+offset_bottom = 26.0
+text = "0"
+label_settings = SubResource("LabelSettings_1fcrt")
+script = ExtResource("2_gkkga")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
