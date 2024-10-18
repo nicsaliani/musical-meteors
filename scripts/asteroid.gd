@@ -39,24 +39,30 @@ enum AccidentalType {FLAT, SHARP, NATURAL}
 
 ## VARIABLES
 ## -------------------
-const color_dict: Dictionary = {
-	0: Color.BLUE,
-	1: Color.AQUAMARINE,
-	2: Color.YELLOW,
-	3: Color.MEDIUM_SPRING_GREEN,
-	4: Color.CYAN,
-	5: Color.PURPLE,
-	6: Color.WEB_PURPLE,
-	7: Color.GREEN,
-	8: Color.INDIAN_RED,
-	9: Color.RED,
-	10: Color.SADDLE_BROWN,
-	11: Color.DARK_ORANGE
+var color_dict: Dictionary = {
+	0: Color.html("#004de6"),
+	1: Color.html("#809fff"),
+	2: Color.html("#e6e617"),
+	3: Color.html("#73e6ac"),
+	4: Color.html("#00e6e6"),
+	5: Color.html("#ff00ff"),
+	6: Color.html("#c880ff"),
+	7: Color.html("#00e600"),
+	8: Color.html("#ff8080"),
+	9: Color.html("#ff0000"),
+	10: Color.html("#ffbf80"),
+	11: Color.html("#ff8c19")
 }
 
 var movement_vector := Vector2(0, -1)
 var pitch_letter: String
 var rotate_value: float
+var rotate_angles: Array[float] = [
+	0,
+	90,
+	180,
+	270
+]
 var speed: int:
 	get:
 		match size:
@@ -72,11 +78,11 @@ var points: int:
 	get:
 		match size:
 			SizeType.SMALL:
-				return 50
+				return 25
 			SizeType.MEDIUM:
-				return 100
+				return 50
 			SizeType.LARGE:
-				return 200
+				return 100
 			_:
 				return 0
 var accidental: AccidentalType
@@ -87,20 +93,20 @@ var accidental: AccidentalType
 func _ready() -> void:
 	
 	pitch_letter = PitchType.keys()[pitch]
-	modulate = color_dict[pitch]
+	asteroid_sprite_2d.modulate = color_dict[pitch]
 	rotate_value = randf_range(0, 2*PI)
 	
 	# Set asteroid sprite and collision shape based on size
 	match size:
 		SizeType.SMALL:
-			asteroid_sprite_2d.texture = preload("res://assets/sprites/spr_asteroid_small.png")
-			collision_shape_2d.shape = preload("res://resources/col_asteroid_small.tres")
+			asteroid_sprite_2d.texture = preload("res://assets/sprites/meteor_small.png")
+			collision_shape_2d.shape = preload("res://resources/col_meteor_small.tres")
 		SizeType.MEDIUM:
-			asteroid_sprite_2d.texture = preload("res://assets/sprites/spr_asteroid_medium.png")
-			collision_shape_2d.shape = preload("res://resources/col_asteroid_medium.tres")
+			asteroid_sprite_2d.texture = preload("res://assets/sprites/meteor_medium.png")
+			collision_shape_2d.shape = preload("res://resources/col_meteor_medium.tres")
 		SizeType.LARGE:
-			asteroid_sprite_2d.texture = preload("res://assets/sprites/spr_asteroid_large.png")
-			collision_shape_2d.shape = preload("res://resources/col_asteroid_large.tres")
+			asteroid_sprite_2d.texture = preload("res://assets/sprites/meteor_large.png")
+			collision_shape_2d.shape = preload("res://resources/col_meteor_large.tres")
 	
 	# Set pitch symbol sprite based on pitch (random flip for accidentals)
 	var _symbol_flip = 2
@@ -108,7 +114,7 @@ func _ready() -> void:
 		0:	# C
 			symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_c.png")
 		1:	# CD
-			_symbol_flip = randi_range(0, 2)
+			_symbol_flip = randi_range(0, 1)
 			if _symbol_flip:
 				symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_cs.png")
 			else:
@@ -116,7 +122,7 @@ func _ready() -> void:
 		2:	# D
 			symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_d.png")
 		3:	# DE
-			_symbol_flip = randi_range(0, 2)
+			_symbol_flip = randi_range(0, 1)
 			if _symbol_flip:
 				symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_ds.png")
 			else:
@@ -126,7 +132,7 @@ func _ready() -> void:
 		5:	# F
 			symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_f.png")
 		6:	# FG
-			_symbol_flip = randi_range(0, 2)
+			_symbol_flip = randi_range(0, 1)
 			if _symbol_flip:
 				symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_fs.png")
 			else:
@@ -134,7 +140,7 @@ func _ready() -> void:
 		7:	# G
 			symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_g.png")
 		8:	# GA
-			_symbol_flip = randi_range(0, 2)
+			_symbol_flip = randi_range(0, 1)
 			if _symbol_flip:
 				symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_gs.png")
 			else:
@@ -142,14 +148,18 @@ func _ready() -> void:
 		9:	# A
 			symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_a.png")
 		10:	# AB
-			_symbol_flip = randi_range(0, 2)
+			_symbol_flip = randi_range(0, 1)
 			if _symbol_flip:
 				symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_as.png")
 			else:
 				symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_bf.png")
 		11:	# B
 			symbol_sprite_2d.texture = preload("res://assets/sprites/symbols/symbol_b.png")
-			
+	
+	# Rotate sprite 0, 90, 180, or 270 degrees
+	asteroid_sprite_2d.rotation_degrees = rotate_angles[randi_range(0, 3)]
+	
+	# Assign accidental type
 	accidental = AccidentalType.values()[_symbol_flip]
 	
 func _process(_delta: float) -> void:
@@ -178,7 +188,7 @@ func explode():
 	
 	var _explosion = particle_explode.instantiate()
 	_explosion.global_position = global_position
-	_explosion.color = modulate
+	_explosion.color = asteroid_sprite_2d.modulate
 	_explosion.accidental = accidental
 	get_node("/root/Game/Particles").add_child(_explosion)
 

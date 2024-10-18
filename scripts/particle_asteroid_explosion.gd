@@ -20,7 +20,6 @@ func _ready() -> void:
 		Asteroid.AccidentalType.SHARP:
 			texture = preload("res://assets/sprites/particles/particle_sheet_sharp.png")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if emitting == false:
 		queue_free()

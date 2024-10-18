@@ -5,12 +5,16 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_1fcrt"]
 font = ExtResource("1_imdsn")
+shadow_size = 0
 
 [node name="ScorePopup" type="Label"]
-offset_right = 12.0
-offset_bottom = 26.0
+offset_right = 7.0
+offset_bottom = 14.0
+size_flags_vertical = 1
 text = "0"
 label_settings = SubResource("LabelSettings_1fcrt")
+horizontal_alignment = 1
+vertical_alignment = 1
 script = ExtResource("2_gkkga")
 
 [node name="Timer" type="Timer" parent="."]

@@ -34,6 +34,12 @@ func _ready() -> void:
 	for _midi_key in midi_keys:
 		_midi_key.connect("midi_key_pressed", _on_midi_key_pressed)
 
+#func _process(delta: float) -> void:
+	#print(OS.get_connected_midi_inputs())
+	#OS.open_midi_inputs()
+	#
+	
+		
 func _input(_event):
 	if _event is InputEventMIDI:
 		if _event.message == 9 or _event.message == 8:

@@ -11,9 +11,9 @@ var points: int
 ## FUNCTIONS
 ## -------------------
 func _ready() -> void:
-	
-	text = str(points)
+	pass
+	#text = str(points)
 	
 func _on_timer_timeout() -> void:
-	print("done")
+
 	queue_free()

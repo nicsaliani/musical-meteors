@@ -29,7 +29,9 @@ func update_score(_asteroid):
 	spawn_score_popup(_points, _pos)
 
 func spawn_score_popup(_points: int, _pos: Vector2):
+	
 	var _popup = score_popup.instantiate()
 	_popup.points = _points
-	_popup.global_position = _pos
+	_popup.text = str(_popup.points)
+	_popup.global_position = _pos - Vector2(_popup.size.x / 2, _popup.size.y / 2,)
 	add_child(_popup)

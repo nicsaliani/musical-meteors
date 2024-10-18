@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpvmhgn8gnh2n"
-path="res://.godot/imported/spr_asteroid_large.png-849a1205ace60dfef33d10766023f745.ctex"
+uid="uid://p2fh8don65lc"
+path="res://.godot/imported/musical_meteors_icon.png-104507dc00fef491d41c02757d9cf454.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/spr_asteroid_large.png"
-dest_files=["res://.godot/imported/spr_asteroid_large.png-849a1205ace60dfef33d10766023f745.ctex"]
+source_file="res://assets/images/musical_meteors_icon.png"
+dest_files=["res://.godot/imported/musical_meteors_icon.png-104507dc00fef491d41c02757d9cf454.ctex"]
 
 [params]
 

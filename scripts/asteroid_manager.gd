@@ -2,7 +2,6 @@ class_name AsteroidManager extends Control
 
 ## SIGNALS
 ## -------------------
-## TODO: Integrate and attach functions to this signal
 signal asteroid_destroyed(asteroid)
 
 ## ON-READY REFERENCES
