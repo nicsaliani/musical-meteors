@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://djrahedsf5gjh"]
+[gd_scene load_steps=50 format=3 uid="uid://djrahedsf5gjh"]
 
 [ext_resource type="Script" path="res://scripts/asteroid_manager.gd" id="1_m1o48"]
 [ext_resource type="Texture2D" uid="uid://dbopkhuvs7gww" path="res://assets/sprites/game_border_new.png" id="2_72ir7"]
@@ -10,6 +10,7 @@
 [ext_resource type="FontFile" uid="uid://dkfllk3hbjb5q" path="res://assets/fonts/m6x11.ttf" id="8_wv8fw"]
 [ext_resource type="PackedScene" uid="uid://b0tmi7li5psis" path="res://scenes/score_popup.tscn" id="9_sa2qg"]
 [ext_resource type="Script" path="res://scripts/score_manager.gd" id="9_tpmtw"]
+[ext_resource type="Script" path="res://scripts/countdown.gd" id="11_ns2qa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_23i1g"]
 atlas = ExtResource("6_14sgb")
@@ -339,6 +340,10 @@ animations = [{
 font = ExtResource("8_wv8fw")
 font_size = 32
 
+[sub_resource type="LabelSettings" id="LabelSettings_n6koc"]
+font = ExtResource("8_wv8fw")
+font_size = 32
+
 [node name="Game" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -508,34 +513,51 @@ texture = ExtResource("6_15trj")
 [node name="Particles" type="Node2D" parent="."]
 
 [node name="Score Manager" type="Control" parent="."]
+z_index = 1
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 537.0
+offset_top = -254.0
+offset_right = 577.0
+offset_bottom = -214.0
 script = ExtResource("9_tpmtw")
 score_popup = ExtResource("9_sa2qg")
 
 [node name="ScoreLabel" type="Label" parent="Score Manager"]
-z_index = 2
 layout_mode = 0
-offset_left = 500.0
-offset_top = -253.0
-offset_right = 623.0
-offset_bottom = -220.0
+offset_right = 123.0
+offset_bottom = 33.0
 text = "0"
 label_settings = SubResource("LabelSettings_o7t8y")
 vertical_alignment = 2
 
 [node name="ScoreText" type="Label" parent="Score Manager"]
-z_index = 2
 layout_mode = 0
-offset_left = 363.0
-offset_top = -253.0
-offset_right = 486.0
-offset_bottom = -220.0
+offset_right = 123.0
+offset_bottom = 33.0
 text = "SCORE:"
 label_settings = SubResource("LabelSettings_o7t8y")
 horizontal_alignment = 2
 vertical_alignment = 2
 
+[node name="Countdown" type="Control" parent="."]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+offset_left = 286.0
+offset_top = -242.0
+offset_right = 326.0
+offset_bottom = -202.0
+script = ExtResource("11_ns2qa")
+
+[node name="Timer" type="Timer" parent="Countdown"]
+
+[node name="CountdownLabel" type="Label" parent="Countdown"]
+layout_mode = 0
+offset_right = 102.0
+offset_bottom = 28.0
+text = "test"
+label_settings = SubResource("LabelSettings_n6koc")
+
 [connection signal="asteroid_destroyed" from="Asteroid Manager" to="Asteroid Manager" method="_on_asteroid_destroyed"]
+[connection signal="timeout" from="Countdown/Timer" to="Countdown" method="_on_timer_timeout"]
