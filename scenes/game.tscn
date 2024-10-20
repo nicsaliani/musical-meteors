@@ -549,8 +549,10 @@ offset_top = -242.0
 offset_right = 326.0
 offset_bottom = -202.0
 script = ExtResource("11_ns2qa")
+start_time = 5
 
 [node name="Timer" type="Timer" parent="Countdown"]
+autostart = true
 
 [node name="CountdownLabel" type="Label" parent="Countdown"]
 layout_mode = 0
