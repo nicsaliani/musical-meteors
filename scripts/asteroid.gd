@@ -67,11 +67,11 @@ var speed: int:
 	get:
 		match size:
 			SizeType.SMALL:
-				return 45
+				return 75
 			SizeType.MEDIUM:
-				return 30
+				return 50
 			SizeType.LARGE:
-				return 15
+				return 25
 			_:
 				return 0
 var points: int:
@@ -171,23 +171,23 @@ func _process(_delta: float) -> void:
 	var _shape_radius = collision_shape_2d.shape.radius
 	
 	# Screen Wrap (X)
-	if global_position.x + _shape_radius < -256:
-		global_position.x = 256 + _shape_radius
-	elif global_position.x - _shape_radius > 256:
-		global_position.x = -256 - _shape_radius
+	if global_position.x + _shape_radius < 14:
+		global_position.x = 526 + _shape_radius
+	elif global_position.x - _shape_radius > 526:
+		global_position.x = 14 - _shape_radius
 		
 	# Screen Wrap (Y)
-	if global_position.y + _shape_radius < -256:
-		global_position.y = 256 + _shape_radius
-	elif global_position.y - _shape_radius > 256:
-		global_position.y = -256 - _shape_radius
+	if global_position.y + _shape_radius < 14:
+		global_position.y = 526 + _shape_radius
+	elif global_position.y - _shape_radius > 526:
+		global_position.y = 14 - _shape_radius
 
 func explode():
 	
-	split_asteroid.emit(global_position, size)
+	split_asteroid.emit(position, size)
 	
 	var _explosion = particle_explode.instantiate()
-	_explosion.global_position = global_position
+	_explosion.position = position
 	_explosion.color = asteroid_sprite_2d.modulate
 	_explosion.accidental = accidental
 	get_node("/root/Game/Particles").add_child(_explosion)

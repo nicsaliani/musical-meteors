@@ -1,16 +1,15 @@
-[gd_scene load_steps=50 format=3 uid="uid://djrahedsf5gjh"]
+[gd_scene load_steps=49 format=3 uid="uid://djrahedsf5gjh"]
 
 [ext_resource type="Script" path="res://scripts/asteroid_manager.gd" id="1_m1o48"]
 [ext_resource type="Texture2D" uid="uid://dbopkhuvs7gww" path="res://assets/sprites/game_border_new.png" id="2_72ir7"]
-[ext_resource type="Texture2D" uid="uid://ts76wag6gdto" path="res://assets/sprites/blueprint.png" id="2_ha25o"]
 [ext_resource type="Script" path="res://scripts/midi_key.gd" id="3_xooqs"]
 [ext_resource type="Script" path="res://scripts/midi_control.gd" id="5_aemnb"]
 [ext_resource type="Texture2D" uid="uid://dba4iwtcjh5q" path="res://assets/sprites/key_sheet.png" id="6_14sgb"]
-[ext_resource type="Texture2D" uid="uid://bmpdqo61o67qb" path="res://assets/sprites/spr_player.png" id="6_15trj"]
 [ext_resource type="FontFile" uid="uid://dkfllk3hbjb5q" path="res://assets/fonts/m6x11.ttf" id="8_wv8fw"]
 [ext_resource type="PackedScene" uid="uid://b0tmi7li5psis" path="res://scenes/score_popup.tscn" id="9_sa2qg"]
 [ext_resource type="Script" path="res://scripts/score_manager.gd" id="9_tpmtw"]
 [ext_resource type="Script" path="res://scripts/countdown.gd" id="11_ns2qa"]
+[ext_resource type="Texture2D" uid="uid://c8ivb2eysk1ci" path="res://assets/sprites/menu_button.png" id="11_wyggh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_23i1g"]
 atlas = ExtResource("6_14sgb")
@@ -346,29 +345,24 @@ font_size = 32
 
 [node name="Game" type="Node2D"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(210, 0)
-zoom = Vector2(2, 2)
-
 [node name="Asteroid Manager" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
+offset_left = 270.0
+offset_top = 270.0
+offset_right = 270.0
+offset_bottom = 270.0
 script = ExtResource("1_m1o48")
+metadata/_edit_use_anchors_ = true
 
 [node name="Asteroid Spawn Timer" type="Timer" parent="Asteroid Manager"]
 wait_time = 3.0
 autostart = true
 
-[node name="Blueprint" type="Sprite2D" parent="."]
-visible = false
-z_index = 2
-position = Vector2(210, 0)
-texture = ExtResource("2_ha25o")
-
 [node name="Border" type="Sprite2D" parent="."]
 z_index = 1
-position = Vector2(210, 0)
+position = Vector2(480, 270)
 texture = ExtResource("2_72ir7")
 
 [node name="MIDI Control" type="Control" parent="." node_paths=PackedStringArray("midi_keys")]
@@ -376,12 +370,13 @@ unique_name_in_owner = true
 z_index = 2
 layout_mode = 3
 anchors_preset = 0
-offset_left = 280.0
-offset_top = 126.0
-offset_right = 320.0
-offset_bottom = 166.0
+offset_left = 550.0
+offset_top = 396.0
+offset_right = 590.0
+offset_bottom = 436.0
 script = ExtResource("5_aemnb")
 midi_keys = [NodePath("C Key"), NodePath("CD Key"), NodePath("D Key"), NodePath("DE Key"), NodePath("E Key"), NodePath("F Key"), NodePath("FG Key"), NodePath("G Key"), NodePath("GA Key"), NodePath("A Key"), NodePath("AB Key"), NodePath("B Key")]
+metadata/_edit_use_anchors_ = true
 
 [node name="C Key" type="Node2D" parent="MIDI Control"]
 position = Vector2(26, 66)
@@ -506,60 +501,137 @@ sprite_frames = SubResource("SpriteFrames_7a3o2")
 animation = &"off"
 autoplay = "off"
 
-[node name="SprPlayer" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("6_15trj")
-
 [node name="Particles" type="Node2D" parent="."]
+position = Vector2(270, 270)
 
-[node name="Score Manager" type="Control" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Score Manager" type="Control" parent="UI"]
 z_index = 1
 layout_mode = 3
 anchors_preset = 0
-offset_left = 537.0
-offset_top = -254.0
-offset_right = 577.0
-offset_bottom = -214.0
+offset_left = 885.0
+offset_top = 23.0
+offset_right = 925.0
+offset_bottom = 63.0
 script = ExtResource("9_tpmtw")
 score_popup = ExtResource("9_sa2qg")
+metadata/_edit_use_anchors_ = true
 
-[node name="ScoreLabel" type="Label" parent="Score Manager"]
+[node name="ScoreLabel" type="Label" parent="UI/Score Manager"]
 layout_mode = 0
 offset_right = 123.0
 offset_bottom = 33.0
 text = "0"
 label_settings = SubResource("LabelSettings_o7t8y")
 vertical_alignment = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="ScoreText" type="Label" parent="Score Manager"]
+[node name="ScoreText" type="Label" parent="UI/Score Manager"]
 layout_mode = 0
-offset_right = 123.0
-offset_bottom = 33.0
+offset_left = -127.0
+offset_top = -1.0
+offset_right = -4.0
+offset_bottom = 32.0
 text = "SCORE:"
 label_settings = SubResource("LabelSettings_o7t8y")
 horizontal_alignment = 2
 vertical_alignment = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="Countdown" type="Control" parent="."]
+[node name="Countdown" type="Control" parent="UI"]
 z_index = 1
 layout_mode = 3
 anchors_preset = 0
-offset_left = 286.0
-offset_top = -242.0
-offset_right = 326.0
-offset_bottom = -202.0
+offset_left = 556.0
+offset_top = 28.0
+offset_right = 596.0
+offset_bottom = 68.0
 script = ExtResource("11_ns2qa")
-start_time = 5
+start_time = 180
+metadata/_edit_use_anchors_ = true
 
-[node name="Timer" type="Timer" parent="Countdown"]
+[node name="Timer" type="Timer" parent="UI/Countdown"]
 autostart = true
 
-[node name="CountdownLabel" type="Label" parent="Countdown"]
+[node name="CountdownLabel" type="Label" parent="UI/Countdown"]
 layout_mode = 0
 offset_right = 102.0
 offset_bottom = 28.0
 text = "test"
 label_settings = SubResource("LabelSettings_n6koc")
+metadata/_edit_use_anchors_ = true
+
+[node name="MainMenu" type="VBoxContainer" parent="UI"]
+offset_left = 170.0
+offset_top = 251.0
+offset_right = 370.0
+offset_bottom = 451.0
+
+[node name="StartButtonTexture" type="NinePatchRect" parent="UI/MainMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("11_wyggh")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="StartButton" type="Button" parent="UI/MainMenu/StartButtonTexture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_wv8fw")
+theme_override_font_sizes/font_size = 32
+text = "START GAME"
+flat = true
+
+[node name="OptionsButtonTexture" type="NinePatchRect" parent="UI/MainMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("11_wyggh")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="OptionsButton" type="Button" parent="UI/MainMenu/OptionsButtonTexture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_wv8fw")
+theme_override_font_sizes/font_size = 32
+text = "OPTIONS
+"
+flat = true
+
+[node name="QuitButtonTexture" type="NinePatchRect" parent="UI/MainMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("11_wyggh")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="QuitButton" type="Button" parent="UI/MainMenu/QuitButtonTexture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_wv8fw")
+theme_override_font_sizes/font_size = 32
+text = "QUIT
+"
+flat = true
 
 [connection signal="asteroid_destroyed" from="Asteroid Manager" to="Asteroid Manager" method="_on_asteroid_destroyed"]
-[connection signal="timeout" from="Countdown/Timer" to="Countdown" method="_on_timer_timeout"]
+[connection signal="timeout" from="UI/Countdown/Timer" to="UI/Countdown" method="_on_timer_timeout"]

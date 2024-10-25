@@ -12,6 +12,10 @@ signal asteroid_destroyed(asteroid)
 
 ## VARIABLES
 ## -------------------
+#var left_boundary: float = position.x - 256
+#var right_boundary: float = position.x + 256
+#var top_boundary: float = position.y - 256
+#var bottom_boundary: float = position.y + 256
 const MIN_BOUNDARY = -256
 const MAX_BOUNDARY = 256
 
@@ -33,14 +37,22 @@ var pitches_available: Array[int] = [
 	11
 ]
 var spawn_points: Array[Vector2] = [
-	Vector2(MIN_BOUNDARY, MIN_BOUNDARY),
-	Vector2(0, MIN_BOUNDARY),
-	Vector2(MAX_BOUNDARY, MIN_BOUNDARY),
-	Vector2(MIN_BOUNDARY, 0),
-	Vector2(MAX_BOUNDARY, 0),
-	Vector2(MIN_BOUNDARY, MAX_BOUNDARY),
-	Vector2(0, MAX_BOUNDARY),
-	Vector2(MAX_BOUNDARY, MAX_BOUNDARY),
+	Vector2(-256, -256),
+	Vector2(0, -256),
+	Vector2(256, -256),
+	Vector2(-256, 0),
+	Vector2(256, 0),
+	Vector2(-256, 256),
+	Vector2(0, 256),
+	Vector2(256, 256)
+	#Vector2(left_boundary, top_boundary), # Top-left corner
+	#Vector2(position.x, top_boundary), # Top edge
+	#Vector2(right_boundary, top_boundary), # Top-right corner
+	#Vector2(left_boundary, position.y), # Left edge
+	#Vector2(right_boundary, position.y), # Right edge
+	#Vector2(left_boundary, bottom_boundary), # Bottom-left corner
+	#Vector2(position.x, bottom_boundary), # Bottom edge
+	#Vector2(right_boundary, bottom_boundary), # Bottom-right corner
 ]
 
 ## FUNCTIONS
@@ -50,6 +62,10 @@ func _ready():
 	# Connect necessary signals
 	midi_control.connect("note_pressed", _on_note_pressed)
 	asteroid_spawn_timer.connect("timeout", _on_timer_timeout)
+	
+	print(position)
+	for point in spawn_points:
+		print(point)
 
 func create_asteroid(_size: Asteroid.SizeType) -> Asteroid:
 	
@@ -74,6 +90,7 @@ func spawn_asteroid_on_border(_asteroid: Asteroid, _pos: Vector2):
 		_pos.x + (sign(_pos.x)) * _asteroid_radius,
 		_pos.y + (sign(_pos.y)) * _asteroid_radius
 	)
+	print(_asteroid.global_position)
 	
 	update_space_available(false, _asteroid.size)
 

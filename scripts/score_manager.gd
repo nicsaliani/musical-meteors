@@ -21,7 +21,7 @@ func _ready() -> void:
 func update_score(_asteroid):
 	
 	var _points = _asteroid.points
-	var _pos = _asteroid.global_position
+	var _pos = _asteroid.position
 	
 	score += _points
 	score_label.text = str(score)
@@ -34,4 +34,4 @@ func spawn_score_popup(_points: int, _pos: Vector2):
 	_popup.points = _points
 	_popup.text = str(_popup.points)
 	_popup.global_position = _pos - Vector2(_popup.size.x / 2, _popup.size.y / 2,)
-	add_child(_popup)
+	get_node("../../Particles").add_child(_popup)

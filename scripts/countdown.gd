@@ -1,6 +1,7 @@
 class_name Countdown extends Control
 
 ## SIGNALS
+signal game_over
 
 ## ON-READY REFERENCES
 @onready var timer: Timer = $Timer
@@ -20,6 +21,7 @@ func _ready() -> void:
 
 func _on_game_start():
 	# TODO: Connect 'game_start' signal to this function
+	#timer.start()
 	pass
 
 func _on_timer_timeout() -> void:
@@ -46,10 +48,9 @@ func update_countdown(seconds: int) -> void:
 		var digit_second_ones: String = str(current_time % 10)
 		
 		countdown_label.text = digit_minute + ":" + digit_second_tens + digit_second_ones
-		
 	else:
-		# TODO: Trigger Game Over
+		# TODO: Send game_over signal
 		countdown_label.text = "TIME!"
 		timer.stop()
 		
-	print(timer.is_stopped())
+	#print(timer.is_stopped())
