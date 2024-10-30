@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://bpx5awpyhikey"]
+
+[ext_resource type="StyleBox" uid="uid://dk1ykghb7cd13" path="res://resources/tex_menu_button.tres" id="1_8ne74"]
+[ext_resource type="StyleBox" uid="uid://bqupxdwu233ve" path="res://resources/ui_panel_border.tres" id="2_krr6x"]
+[ext_resource type="FontFile" uid="uid://dkfllk3hbjb5q" path="res://assets/fonts/m6x11.ttf" id="3_ou4bv"]
+
+[resource]
+default_font = ExtResource("3_ou4bv")
+default_font_size = 32
+Button/styles/normal = ExtResource("1_8ne74")
+Panel/styles/panel = ExtResource("2_krr6x")

@@ -6,8 +6,9 @@ signal asteroid_destroyed(asteroid)
 
 ## ON-READY REFERENCES
 ## -------------------
-@onready var midi_control: MidiControl = $"../MIDI Control"
-@onready var asteroid_spawn_timer: Timer = $"Asteroid Spawn Timer"
+@onready var game_viewport
+@onready var midi_control: MidiControl = %"MIDI Control"
+@onready var asteroid_spawn_timer: Timer = $"AsteroidSpawnTimer"
 @onready var asteroid_scene := preload("res://scenes/asteroid.tscn")
 
 ## VARIABLES
@@ -16,8 +17,10 @@ signal asteroid_destroyed(asteroid)
 #var right_boundary: float = position.x + 256
 #var top_boundary: float = position.y - 256
 #var bottom_boundary: float = position.y + 256
-const MIN_BOUNDARY = -256
-const MAX_BOUNDARY = 256
+var min_bound_x
+var max_bound_x
+var min_bound_y
+var max_bound_y
 
 var asteroids_on_screen: Dictionary = {}
 var space_available: int = 12
@@ -62,10 +65,12 @@ func _ready():
 	# Connect necessary signals
 	midi_control.connect("note_pressed", _on_note_pressed)
 	asteroid_spawn_timer.connect("timeout", _on_timer_timeout)
-	
-	print(position)
-	for point in spawn_points:
-		print(point)
+
+	await get_tree().process_frame
+	min_bound_x = -(get_parent().size.x / 2)
+	max_bound_x = get_parent().size.x / 2
+	min_bound_y = -(get_parent().size.y / 2)
+	max_bound_y = get_parent().size.y / 2
 
 func create_asteroid(_size: Asteroid.SizeType) -> Asteroid:
 	

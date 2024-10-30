@@ -87,6 +87,10 @@ var points: int:
 				return 0
 var accidental: AccidentalType
 
+var min_bound_x: float
+var max_bound_x: float
+var min_bound_y: float
+var max_bound_y: float
 
 ## FUNCTIONS
 ## -------------------
@@ -95,6 +99,11 @@ func _ready() -> void:
 	pitch_letter = PitchType.keys()[pitch]
 	asteroid_sprite_2d.modulate = color_dict[pitch]
 	rotate_value = randf_range(0, 2*PI)
+	
+	min_bound_x = get_parent().min_bound_x
+	max_bound_x = get_parent().max_bound_x
+	min_bound_y = get_parent().min_bound_y
+	max_bound_y = get_parent().max_bound_y
 	
 	# Set asteroid sprite and collision shape based on size
 	match size:
@@ -167,20 +176,20 @@ func _process(_delta: float) -> void:
 	# X/Y Movement
 	global_position += movement_vector.rotated(rotate_value) * speed * _delta
 	
-	# radius of asteroid's collision shape used to calculate screen wrapping
+	# Radius of asteroid's collision shape used to calculate screen wrapping
 	var _shape_radius = collision_shape_2d.shape.radius
 	
 	# Screen Wrap (X)
-	if global_position.x + _shape_radius < 14:
-		global_position.x = 526 + _shape_radius
-	elif global_position.x - _shape_radius > 526:
-		global_position.x = 14 - _shape_radius
+	if position.x + _shape_radius < min_bound_x:
+		position.x = max_bound_x + _shape_radius
+	elif position.x - _shape_radius > max_bound_x:
+		position.x = min_bound_x - _shape_radius
 		
 	# Screen Wrap (Y)
-	if global_position.y + _shape_radius < 14:
-		global_position.y = 526 + _shape_radius
-	elif global_position.y - _shape_radius > 526:
-		global_position.y = 14 - _shape_radius
+	if position.y + _shape_radius < min_bound_y:
+		position.y = max_bound_y + _shape_radius
+	elif position.y - _shape_radius > max_bound_y:
+		position.y = min_bound_y - _shape_radius
 
 func explode():
 	
@@ -190,6 +199,6 @@ func explode():
 	_explosion.position = position
 	_explosion.color = asteroid_sprite_2d.modulate
 	_explosion.accidental = accidental
-	get_node("/root/Game/Particles").add_child(_explosion)
+	get_node("/root/Main/Particles").add_child(_explosion)
 
 	queue_free()

@@ -2,7 +2,7 @@ class_name ScoreManager extends Control
 
 ## ON-READY REFERENCES
 ## -------------------
-@onready var asteroid_manager: AsteroidManager = %"Asteroid Manager"
+@onready var asteroid_manager: AsteroidManager = %"AsteroidManager"
 @onready var score_label: Label = $ScoreLabel
 
 @export var score_popup: PackedScene

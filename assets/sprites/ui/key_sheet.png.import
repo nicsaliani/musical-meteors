@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbai70le1gyi2"
-path="res://.godot/imported/score_border.png-eb5d39cf5d26b1e6ab87713793cab6ff.ctex"
+uid="uid://dba4iwtcjh5q"
+path="res://.godot/imported/key_sheet.png-29252bc55f01487677a0bd072e6c3f06.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/score_border.png"
-dest_files=["res://.godot/imported/score_border.png-eb5d39cf5d26b1e6ab87713793cab6ff.ctex"]
+source_file="res://assets/sprites/ui/key_sheet.png"
+dest_files=["res://.godot/imported/key_sheet.png-29252bc55f01487677a0bd072e6c3f06.ctex"]
 
 [params]
 
