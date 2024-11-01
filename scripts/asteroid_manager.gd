@@ -6,7 +6,7 @@ signal asteroid_destroyed(asteroid)
 
 ## ON-READY REFERENCES
 ## -------------------
-@onready var game_viewport
+@onready var game_viewport: SubViewport
 @onready var midi_control: MidiControl = %"MIDI Control"
 @onready var asteroid_spawn_timer: Timer = $"AsteroidSpawnTimer"
 @onready var asteroid_scene := preload("res://scenes/asteroid.tscn")
@@ -65,12 +65,20 @@ func _ready():
 	# Connect necessary signals
 	midi_control.connect("note_pressed", _on_note_pressed)
 	asteroid_spawn_timer.connect("timeout", _on_timer_timeout)
-
+	
+	# Get bounds of game viewport
 	await get_tree().process_frame
-	min_bound_x = -(get_parent().size.x / 2)
-	max_bound_x = get_parent().size.x / 2
-	min_bound_y = -(get_parent().size.y / 2)
-	max_bound_y = get_parent().size.y / 2
+	game_viewport = get_parent()
+	min_bound_x = -(game_viewport.size.x / 2)
+	max_bound_x = game_viewport.size.x / 2
+	min_bound_y = -(game_viewport.size.y / 2)
+	max_bound_y = game_viewport.size.y / 2
+	
+func stop():
+	asteroid_spawn_timer.stop()
+
+func start():
+	asteroid_spawn_timer.start()
 
 func create_asteroid(_size: Asteroid.SizeType) -> Asteroid:
 	
@@ -95,7 +103,6 @@ func spawn_asteroid_on_border(_asteroid: Asteroid, _pos: Vector2):
 		_pos.x + (sign(_pos.x)) * _asteroid_radius,
 		_pos.y + (sign(_pos.y)) * _asteroid_radius
 	)
-	print(_asteroid.global_position)
 	
 	update_space_available(false, _asteroid.size)
 
@@ -182,3 +189,8 @@ func split_asteroid(_pos: Vector2, _size: Asteroid.SizeType):
 					Asteroid.SizeType.SMALL
 				)
 				spawn_asteroid_from_split(_asteroid, _pos)
+
+func clear_all_asteroids():
+	pass
+	#for _asteroid in asteroids_on_screen:
+		#asteroids_on_screen[_asteroid].explode()

@@ -9,6 +9,8 @@ signal split_asteroid(pos, size)
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var asteroid_sprite_2d: Sprite2D = $AsteroidSprite2D
 @onready var symbol_sprite_2d: Sprite2D = $SymbolSprite2D
+@onready var particle_layer: Control = get_node("../../ParticleLayer")
+
 
 ## EXPORT REFERENCES
 ## -------------------
@@ -199,6 +201,6 @@ func explode():
 	_explosion.position = position
 	_explosion.color = asteroid_sprite_2d.modulate
 	_explosion.accidental = accidental
-	get_node("/root/Main/Particles").add_child(_explosion)
+	particle_layer.add_child(_explosion)
 
 	queue_free()

@@ -16,10 +16,6 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/image="res://assets/images/musical_meteors_splash.png"
 config/icon="res://assets/images/musical_meteors_icon.png"
 
-[autoload]
-
-GameManager="*res://scripts/game_manager.gd"
-
 [debug]
 
 gdscript/warnings/integer_division=0
@@ -31,7 +27,6 @@ window/size/viewport_height=540
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="viewport"
-window/stretch/scale_mode="integer"
 
 [input]
 
