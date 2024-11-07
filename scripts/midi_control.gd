@@ -28,6 +28,7 @@ var pitch_dict: Dictionary = {
 ## FUNCTIONS
 ## -------------------
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	OS.open_midi_inputs()
 	print(OS.get_connected_midi_inputs())
 	
@@ -40,10 +41,12 @@ func _input(_event):
 			var _midi_key = midi_keys[get_key_from_pitch(_event.pitch)]
 			if _midi_key:
 				_midi_key.call_key(_event.velocity, _event.message)
-				print_midi_event_properties(_event)
+				#print_midi_event_properties(_event)
 
 func _on_midi_key_pressed(_pitch_letter: String):
-	note_pressed.emit(_pitch_letter)
+	if GameManager.game_state == GameManager.GameState.PLAYING:
+		note_pressed.emit(_pitch_letter)
+		print("Sensing Notes!")
 
 func get_key_from_pitch(_pitch: int) -> int:
 	for _key in pitch_dict:
