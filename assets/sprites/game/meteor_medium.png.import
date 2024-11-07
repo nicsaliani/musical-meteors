@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ci4by3gnffcut"
-path="res://.godot/imported/meteor_medium.png-6a593c374717cadb384058b9d2677187.ctex"
+path="res://.godot/imported/meteor_medium.png-e3884c82c1116b69847250e71cee9185.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/meteor_medium.png"
-dest_files=["res://.godot/imported/meteor_medium.png-6a593c374717cadb384058b9d2677187.ctex"]
+source_file="res://assets/sprites/game/meteor_medium.png"
+dest_files=["res://.godot/imported/meteor_medium.png-e3884c82c1116b69847250e71cee9185.ctex"]
 
 [params]
 

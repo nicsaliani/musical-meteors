@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ts76wag6gdto"
-path="res://.godot/imported/blueprint.png-9811be8137e1b00d39848dac8e4718ab.ctex"
+uid="uid://qjkbun8k856j"
+path="res://.godot/imported/star_bg.png-2cecf45aaa4a75c9c9d30c4beb95d89c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/blueprint.png"
-dest_files=["res://.godot/imported/blueprint.png-9811be8137e1b00d39848dac8e4718ab.ctex"]
+source_file="res://assets/sprites/game/star_bg.png"
+dest_files=["res://.godot/imported/star_bg.png-2cecf45aaa4a75c9c9d30c4beb95d89c.ctex"]
 
 [params]
 

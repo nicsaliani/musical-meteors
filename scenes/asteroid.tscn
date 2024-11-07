@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/asteroid.gd" id="1_qn2i1"]
 [ext_resource type="PackedScene" uid="uid://ckeqeq6v5nbr0" path="res://scenes/particle_asteroid_explosion.tscn" id="2_gcta0"]
 [ext_resource type="Shape2D" uid="uid://bks8q3377tt0e" path="res://resources/col_meteor_small.tres" id="4_24416"]
-[ext_resource type="Texture2D" uid="uid://p7a4swddpimx" path="res://assets/sprites/meteor_small.png" id="4_podes"]
+[ext_resource type="Texture2D" uid="uid://p7a4swddpimx" path="res://assets/sprites/game/meteor_small.png" id="4_podes"]
 
 [node name="Asteroid" type="Area2D"]
 script = ExtResource("1_qn2i1")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qjkbun8k856j"
-path="res://.godot/imported/star_bg.png-8be6c083b2faf0326ac90835ac649d2d.ctex"
+uid="uid://p7a4swddpimx"
+path="res://.godot/imported/meteor_small.png-405127a046666c952b3b00a3fd1f0818.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/star_bg.png"
-dest_files=["res://.godot/imported/star_bg.png-8be6c083b2faf0326ac90835ac649d2d.ctex"]
+source_file="res://assets/sprites/game/meteor_small.png"
+dest_files=["res://.godot/imported/meteor_small.png-405127a046666c952b3b00a3fd1f0818.ctex"]
 
 [params]
 

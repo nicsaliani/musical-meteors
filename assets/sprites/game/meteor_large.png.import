@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p7a4swddpimx"
-path="res://.godot/imported/meteor_small.png-de0e1776e69ca1513fc8ca0c391020c0.ctex"
+uid="uid://c103viyndbrhp"
+path="res://.godot/imported/meteor_large.png-0d57b9be755af578a908e7fea5b53a1a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/meteor_small.png"
-dest_files=["res://.godot/imported/meteor_small.png-de0e1776e69ca1513fc8ca0c391020c0.ctex"]
+source_file="res://assets/sprites/game/meteor_large.png"
+dest_files=["res://.godot/imported/meteor_large.png-0d57b9be755af578a908e7fea5b53a1a.ctex"]
 
 [params]
 

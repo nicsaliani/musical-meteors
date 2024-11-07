@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/game_state_changer.gd" id="1_8dn71"]
 [ext_resource type="Texture2D" uid="uid://d2dvf1pua2v0i" path="res://assets/sprites/ui/brand_new_main_bg.png" id="1_gfuek"]
 [ext_resource type="Script" path="res://scripts/asteroid_manager.gd" id="3_usteg"]
-[ext_resource type="Texture2D" uid="uid://qjkbun8k856j" path="res://assets/sprites/star_bg.png" id="4_dephi"]
+[ext_resource type="Texture2D" uid="uid://qjkbun8k856j" path="res://assets/sprites/game/star_bg.png" id="4_dephi"]
 [ext_resource type="Script" path="res://scripts/midi_control.gd" id="5_bsmkh"]
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="5_hedoo"]
 [ext_resource type="Script" path="res://scripts/midi_key.gd" id="6_h1jov"]
