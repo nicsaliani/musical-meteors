@@ -1,15 +1,19 @@
-[gd_scene load_steps=50 format=3 uid="uid://djrahedsf5gjh"]
+[gd_scene load_steps=54 format=3 uid="uid://djrahedsf5gjh"]
 
 [ext_resource type="Theme" uid="uid://bpx5awpyhikey" path="res://resources/theme_ui.tres" id="1_7fiqs"]
+[ext_resource type="Script" path="res://scripts/game_state_changer.gd" id="1_8dn71"]
 [ext_resource type="Texture2D" uid="uid://d2dvf1pua2v0i" path="res://assets/sprites/ui/brand_new_main_bg.png" id="1_gfuek"]
-[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_m4nt8"]
 [ext_resource type="Script" path="res://scripts/asteroid_manager.gd" id="3_usteg"]
+[ext_resource type="Texture2D" uid="uid://qjkbun8k856j" path="res://assets/sprites/star_bg.png" id="4_dephi"]
 [ext_resource type="Script" path="res://scripts/midi_control.gd" id="5_bsmkh"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="5_hedoo"]
 [ext_resource type="Script" path="res://scripts/midi_key.gd" id="6_h1jov"]
-[ext_resource type="FontFile" uid="uid://d14k0ktltyngn" path="res://assets/fonts/m5x7.ttf" id="7_7ogj5"]
 [ext_resource type="Texture2D" uid="uid://dba4iwtcjh5q" path="res://assets/sprites/ui/key_sheet.png" id="7_fotnd"]
+[ext_resource type="Script" path="res://scripts/options_menu.gd" id="8_3mtp1"]
 [ext_resource type="Script" path="res://scripts/notif_label.gd" id="8_6ttmo"]
 [ext_resource type="FontFile" uid="uid://dkfllk3hbjb5q" path="res://assets/fonts/m6x11.ttf" id="10_jrjda"]
+[ext_resource type="Script" path="res://scripts/game_timer.gd" id="12_caqtw"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="12_cch8s"]
 [ext_resource type="Texture2D" uid="uid://dddwg3f4e0w84" path="res://assets/sprites/ui/panel_border.png" id="14_sv65g"]
 [ext_resource type="Texture2D" uid="uid://dk61yc3armx2y" path="res://assets/sprites/ui/musical_meteors_logo.png" id="15_5we14"]
 
@@ -342,7 +346,7 @@ font = ExtResource("10_jrjda")
 font_size = 32
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_m4nt8")
+script = ExtResource("1_8dn71")
 
 [node name="MainBG" type="TextureRect" parent="."]
 offset_right = 960.0
@@ -379,6 +383,15 @@ snap_2d_transforms_to_pixel = true
 size = Vector2i(400, 400)
 render_target_update_mode = 4
 
+[node name="TextureRect" type="TextureRect" parent="GamePanel/GameViewportContainer/GameViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_dephi")
+stretch_mode = 1
+
 [node name="AsteroidManager" type="Control" parent="GamePanel/GameViewportContainer/GameViewport"]
 unique_name_in_owner = true
 layout_mode = 3
@@ -404,6 +417,13 @@ offset_top = 200.0
 offset_right = 200.0
 offset_bottom = 200.0
 
+[node name="ScorePopupLayer" type="Control" parent="GamePanel/GameViewportContainer/GameViewport"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="MainMenu" type="Control" parent="GamePanel"]
 layout_mode = 1
 anchors_preset = 15
@@ -415,6 +435,7 @@ offset_right = -7.0
 offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("5_hedoo")
 
 [node name="MusicalMeteorsLogo" type="TextureRect" parent="GamePanel/MainMenu"]
 layout_mode = 1
@@ -442,18 +463,217 @@ alignment = 1
 
 [node name="StartGameButton" type="Button" parent="GamePanel/MainMenu/MenuButtonContainer"]
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_7fiqs")
 text = "START GAME"
 
 [node name="OptionsButton" type="Button" parent="GamePanel/MainMenu/MenuButtonContainer"]
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_7fiqs")
 text = "OPTIONS"
 
 [node name="QuitButton" type="Button" parent="GamePanel/MainMenu/MenuButtonContainer"]
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_7fiqs")
 text = "QUIT"
+
+[node name="OptionsMenu" type="Panel" parent="GamePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.017
+anchor_top = 0.017
+anchor_right = 0.983
+anchor_bottom = 0.983
+offset_left = 35.928
+offset_top = 17.928
+offset_right = -35.928
+offset_bottom = -17.928
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7fiqs")
+script = ExtResource("8_3mtp1")
+
+[node name="OptionsLabel" type="Label" parent="GamePanel/OptionsMenu"]
+layout_mode = 1
+offset_left = 19.0
+offset_top = 20.0
+offset_right = 117.0
+offset_bottom = 48.0
+theme = ExtResource("1_7fiqs")
+text = "OPTIONS"
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="GamePanel/OptionsMenu"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_top = 13.0
+offset_right = -13.0
+offset_bottom = 51.0
+grow_horizontal = 0
+focus_mode = 0
+theme_override_font_sizes/font_size = 16
+text = "BACK"
+
+[node name="DisplayContainer" type="VBoxContainer" parent="GamePanel/OptionsMenu"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = -280.0
+offset_right = -19.0
+offset_bottom = -180.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DisplayLabel" type="Label" parent="GamePanel/OptionsMenu/DisplayContainer"]
+layout_mode = 2
+text = "DISPLAY"
+horizontal_alignment = 1
+
+[node name="ResolutionContainer" type="HBoxContainer" parent="GamePanel/OptionsMenu/DisplayContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 11.85
+
+[node name="ResolutionLabel" type="Label" parent="GamePanel/OptionsMenu/DisplayContainer/ResolutionContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Resolution
+"
+
+[node name="ResolutionOptionButton" type="OptionButton" parent="GamePanel/OptionsMenu/DisplayContainer/ResolutionContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = false
+selected = 0
+fit_to_longest_item = false
+item_count = 2
+popup/item_0/text = "960 x 540"
+popup/item_1/text = "1920 x 1080"
+popup/item_1/id = 1
+
+[node name="ScreenContainer" type="HBoxContainer" parent="GamePanel/OptionsMenu/DisplayContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 11.85
+
+[node name="ScreenLabel" type="Label" parent="GamePanel/OptionsMenu/DisplayContainer/ScreenContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Screen
+"
+
+[node name="ScreenOptionButton" type="OptionButton" parent="GamePanel/OptionsMenu/DisplayContainer/ScreenContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 4
+popup/item_0/text = "Windowed"
+popup/item_1/text = "Window (Maxed)"
+popup/item_1/id = 1
+popup/item_2/text = "Fullscreen"
+popup/item_2/id = 2
+popup/item_3/text = "Fullscreen (Exc.)"
+popup/item_3/id = 3
+
+[node name="AudioContainer" type="VBoxContainer" parent="GamePanel/OptionsMenu"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = -109.0
+offset_right = -19.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="AudioLabel" type="Label" parent="GamePanel/OptionsMenu/AudioContainer"]
+layout_mode = 2
+text = "AUDIO"
+horizontal_alignment = 1
+
+[node name="MasterContainer" type="HBoxContainer" parent="GamePanel/OptionsMenu/AudioContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 11.85
+
+[node name="MasterLabel" type="Label" parent="GamePanel/OptionsMenu/AudioContainer/MasterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Master
+"
+
+[node name="MasterSlider" type="HSlider" parent="GamePanel/OptionsMenu/AudioContainer/MasterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_7fiqs")
+step = 5.0
+rounded = true
+
+[node name="MasterPercentLabel" type="Label" parent="GamePanel/OptionsMenu/AudioContainer/MasterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+theme_override_font_sizes/font_size = 16
+text = "0%"
+horizontal_alignment = 1
+
+[node name="MusicContainer" type="HBoxContainer" parent="GamePanel/OptionsMenu/AudioContainer"]
+layout_mode = 2
+
+[node name="MusicLabel" type="Label" parent="GamePanel/OptionsMenu/AudioContainer/MusicContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Music
+"
+
+[node name="MusicSlider" type="HSlider" parent="GamePanel/OptionsMenu/AudioContainer/MusicContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_7fiqs")
+step = 5.0
+rounded = true
+
+[node name="MusicPercentLabel" type="Label" parent="GamePanel/OptionsMenu/AudioContainer/MusicContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+theme_override_font_sizes/font_size = 16
+text = "0%"
+horizontal_alignment = 1
+
+[node name="SoundContainer" type="HBoxContainer" parent="GamePanel/OptionsMenu/AudioContainer"]
+layout_mode = 2
+
+[node name="SoundLabel" type="Label" parent="GamePanel/OptionsMenu/AudioContainer/SoundContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Sound
+"
+
+[node name="SoundSlider" type="HSlider" parent="GamePanel/OptionsMenu/AudioContainer/SoundContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_7fiqs")
+step = 5.0
+rounded = true
+
+[node name="SoundPercentLabel" type="Label" parent="GamePanel/OptionsMenu/AudioContainer/SoundContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+theme_override_font_sizes/font_size = 16
+text = "0%"
+horizontal_alignment = 1
 
 [node name="NotifLabel" type="Label" parent="GamePanel"]
 layout_mode = 1
@@ -466,11 +686,67 @@ offset_bottom = 14.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_7fiqs")
-theme_override_fonts/font = ExtResource("7_7ogj5")
+theme_override_fonts/font = ExtResource("10_jrjda")
+theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 script = ExtResource("8_6ttmo")
+
+[node name="PauseMenu" type="Panel" parent="GamePanel"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.017
+anchor_top = 0.017
+anchor_right = 0.983
+anchor_bottom = 0.983
+offset_left = 77.928
+offset_top = 60.928
+offset_right = -77.928
+offset_bottom = -60.928
+theme = ExtResource("1_7fiqs")
+script = ExtResource("12_cch8s")
+
+[node name="PauseLabel" type="Label" parent="GamePanel/PauseMenu"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 19.0
+offset_bottom = 47.0
+grow_horizontal = 2
+text = "PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseContainer" type="VBoxContainer" parent="GamePanel/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_top = 57.0
+offset_right = -36.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="GamePanel/PauseMenu/PauseContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "RESUME"
+
+[node name="OptionsButton" type="Button" parent="GamePanel/PauseMenu/PauseContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "OPTIONS"
+
+[node name="MainMenuButton" type="Button" parent="GamePanel/PauseMenu/PauseContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "MAIN MENU
+"
 
 [node name="MIDIControlPanel" type="NinePatchRect" parent="."]
 offset_left = 512.0
@@ -636,10 +912,10 @@ sprite_frames = SubResource("SpriteFrames_7a3o2")
 animation = &"off"
 autoplay = "off"
 
-[node name="CountdownPanel" type="NinePatchRect" parent="."]
+[node name="GameTimerPanel" type="NinePatchRect" parent="."]
 offset_left = 512.0
 offset_top = 62.0
-offset_right = 592.0
+offset_right = 598.0
 offset_bottom = 113.0
 theme = ExtResource("1_7fiqs")
 texture = ExtResource("14_sv65g")
@@ -647,11 +923,11 @@ patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
+script = ExtResource("12_caqtw")
 
-[node name="Timer" type="Timer" parent="CountdownPanel"]
-autostart = true
+[node name="Timer" type="Timer" parent="GameTimerPanel"]
 
-[node name="Control" type="Control" parent="CountdownPanel"]
+[node name="Control" type="Control" parent="GameTimerPanel"]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
@@ -664,7 +940,7 @@ offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CountdownLabel" type="Label" parent="CountdownPanel/Control"]
+[node name="GameTimerLabel" type="Label" parent="GameTimerPanel/Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.103448
@@ -705,7 +981,7 @@ offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CountdownLabel" type="Label" parent="ScorePanel/Control"]
+[node name="ScoreLabel" type="Label" parent="ScorePanel/Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.00250191
@@ -724,6 +1000,22 @@ clip_text = true
 text_overrun_behavior = 1
 metadata/_edit_use_anchors_ = true
 
+[connection signal="open_options_menu" from="GamePanel/MainMenu" to="GamePanel/OptionsMenu" method="_on_main_menu_open_options_menu"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="GamePanel/MainMenu" method="_on_start_game_button_pressed"]
-[connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="GamePanel/NotifLabel" method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="GameTimerPanel" method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/OptionsButton" to="GamePanel/MainMenu" method="_on_options_button_pressed"]
+[connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/QuitButton" to="GamePanel/MainMenu" method="_on_quit_button_pressed"]
+[connection signal="open_main_menu" from="GamePanel/OptionsMenu" to="GamePanel/MainMenu" method="_on_options_menu_open_main_menu"]
+[connection signal="pressed" from="GamePanel/OptionsMenu/BackButton" to="GamePanel/OptionsMenu" method="_on_back_button_pressed"]
+[connection signal="value_changed" from="GamePanel/OptionsMenu/AudioContainer/MasterContainer/MasterSlider" to="GamePanel/OptionsMenu" method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="GamePanel/OptionsMenu/AudioContainer/MusicContainer/MusicSlider" to="GamePanel/OptionsMenu" method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="GamePanel/OptionsMenu/AudioContainer/SoundContainer/SoundSlider" to="GamePanel/OptionsMenu" method="_on_sound_slider_value_changed"]
+[connection signal="start_game" from="GamePanel/NotifLabel" to="." method="_on_notif_label_start_game"]
+[connection signal="start_game" from="GamePanel/NotifLabel" to="GamePanel/GameViewportContainer/GameViewport/AsteroidManager" method="_on_notif_label_start_game"]
+[connection signal="start_game" from="GamePanel/NotifLabel" to="GameTimerPanel" method="_on_notif_label_start_game"]
+[connection signal="pressed" from="GamePanel/PauseMenu/PauseContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="GamePanel/PauseMenu/PauseContainer/ResumeButton" to="GamePanel/PauseMenu" method="_on_resume_button_pressed"]
+[connection signal="game_over" from="GameTimerPanel" to="." method="_on_game_timer_panel_game_over"]
+[connection signal="timeout" from="GameTimerPanel/Timer" to="GameTimerPanel" method="_on_timer_timeout"]

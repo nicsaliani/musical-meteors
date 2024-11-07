@@ -39,12 +39,10 @@ var keys_held := 0
 ## FUNCTIONS
 ## -------------------
 func _ready():
-	
 	pitch_letter = PitchType.keys()[pitch_type]
 
 func call_key(_velocity: int, _message: int):
-	
-	if _velocity > 0:
+	if _velocity > 0 and _message == 9:
 		if keys_held == 0:
 			animated_sprite.play("on")
 			midi_key_pressed.emit(pitch_letter)

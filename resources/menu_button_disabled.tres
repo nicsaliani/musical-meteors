@@ -1,0 +1,10 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://bgtu7qh7utvea"]
+
+[ext_resource type="Texture2D" uid="uid://cxcsjmx1iuoot" path="res://assets/sprites/ui/menu_button_disabled.png" id="1_xtkob"]
+
+[resource]
+texture = ExtResource("1_xtkob")
+texture_margin_left = 11.0
+texture_margin_top = 11.0
+texture_margin_right = 11.0
+texture_margin_bottom = 11.0

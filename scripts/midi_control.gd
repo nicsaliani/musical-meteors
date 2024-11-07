@@ -34,33 +34,24 @@ func _ready() -> void:
 	for _midi_key in midi_keys:
 		_midi_key.connect("midi_key_pressed", _on_midi_key_pressed)
 
-#func _process(delta: float) -> void:
-	#print(OS.get_connected_midi_inputs())
-	#OS.open_midi_inputs()
-	#
-	
-		
 func _input(_event):
 	if _event is InputEventMIDI:
 		if _event.message == 9 or _event.message == 8:
 			var _midi_key = midi_keys[get_key_from_pitch(_event.pitch)]
 			if _midi_key:
 				_midi_key.call_key(_event.velocity, _event.message)
-				#print_midi_event_properties(event)
+				print_midi_event_properties(_event)
 
 func _on_midi_key_pressed(_pitch_letter: String):
-	
 	note_pressed.emit(_pitch_letter)
 
 func get_key_from_pitch(_pitch: int) -> int:
-	
 	for _key in pitch_dict:
 		if pitch_dict[_key].has(_pitch):
 			return _key
 	return -1
 
 func print_midi_event_properties(_event: InputEventMIDI) -> void:
-	
 	printt("Channel: ", _event.channel)
 	printt("Pitch: ", _event.pitch)
 	printt("Velocity: ", _event.velocity)

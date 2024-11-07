@@ -69,11 +69,11 @@ var speed: int:
 	get:
 		match size:
 			SizeType.SMALL:
-				return 75
+				return 100
 			SizeType.MEDIUM:
-				return 50
+				return 75
 			SizeType.LARGE:
-				return 25
+				return 50
 			_:
 				return 0
 var points: int:

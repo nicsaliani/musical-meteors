@@ -13,10 +13,6 @@ signal asteroid_destroyed(asteroid)
 
 ## VARIABLES
 ## -------------------
-#var left_boundary: float = position.x - 256
-#var right_boundary: float = position.x + 256
-#var top_boundary: float = position.y - 256
-#var bottom_boundary: float = position.y + 256
 var min_bound_x
 var max_bound_x
 var min_bound_y
@@ -48,15 +44,8 @@ var spawn_points: Array[Vector2] = [
 	Vector2(-256, 256),
 	Vector2(0, 256),
 	Vector2(256, 256)
-	#Vector2(left_boundary, top_boundary), # Top-left corner
-	#Vector2(position.x, top_boundary), # Top edge
-	#Vector2(right_boundary, top_boundary), # Top-right corner
-	#Vector2(left_boundary, position.y), # Left edge
-	#Vector2(right_boundary, position.y), # Right edge
-	#Vector2(left_boundary, bottom_boundary), # Bottom-left corner
-	#Vector2(position.x, bottom_boundary), # Bottom edge
-	#Vector2(right_boundary, bottom_boundary), # Bottom-right corner
 ]
+var spawn_trajectories: Array
 
 ## FUNCTIONS
 ## -------------------
@@ -73,12 +62,14 @@ func _ready():
 	max_bound_x = game_viewport.size.x / 2
 	min_bound_y = -(game_viewport.size.y / 2)
 	max_bound_y = game_viewport.size.y / 2
-	
+
+func _on_notif_label_start_game() -> void:
+	asteroid_spawn_timer.start()
+
 func stop():
 	asteroid_spawn_timer.stop()
 
-func start():
-	asteroid_spawn_timer.start()
+	
 
 func create_asteroid(_size: Asteroid.SizeType) -> Asteroid:
 	
