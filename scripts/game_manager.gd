@@ -16,12 +16,6 @@ func _ready() -> void:
 	# Process this node even when the game is paused
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
-func _process(delta: float) -> void:
-	pass
-	# Pause if pause action is made
-	#if Input.is_action_just_pressed("pause"):
-		#toggle_pause()
-
 func set_game_state(_game_state: GameState) -> void:
 	game_state = _game_state
 

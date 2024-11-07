@@ -2,7 +2,6 @@ class_name MainMenu extends Control
 
 ## SIGNALS
 signal open_options_menu()
-signal open_statistics_menu()
 
 ## ON-READY
 @onready var options_menu: Panel = $"../OptionsMenu"

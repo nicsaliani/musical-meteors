@@ -46,7 +46,6 @@ func _input(_event):
 func _on_midi_key_pressed(_pitch_letter: String):
 	if GameManager.game_state == GameManager.GameState.PLAYING:
 		note_pressed.emit(_pitch_letter)
-		print("Sensing Notes!")
 
 func get_key_from_pitch(_pitch: int) -> int:
 	for _key in pitch_dict:
