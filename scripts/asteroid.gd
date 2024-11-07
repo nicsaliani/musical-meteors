@@ -206,3 +206,6 @@ func explode():
 	particle_layer.add_child(_explosion)
 
 	queue_free()
+
+func spawn_meteor_explosion_effect():
+	pass
