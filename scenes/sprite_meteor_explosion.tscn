@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cab16urdedcxo"]
+
+[ext_resource type="Texture2D" uid="uid://b026kjjtwfagv" path="res://assets/sprites/game/meteor_explosion.png" id="1_7m3pp"]
+
+[node name="MeteorExplosionEffect" type="Node2D"]
+
+[node name="MeteorExplosionSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_7m3pp")

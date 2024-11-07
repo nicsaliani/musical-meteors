@@ -112,13 +112,13 @@ func _ready() -> void:
 	# Set asteroid sprite and collision shape based on size
 	match size:
 		SizeType.SMALL:
-			asteroid_sprite_2d.texture = preload("res://assets/sprites/meteor_small.png")
+			asteroid_sprite_2d.texture = preload("res://assets/sprites/game/meteor_small.png")
 			collision_shape_2d.shape = preload("res://resources/col_meteor_small.tres")
 		SizeType.MEDIUM:
-			asteroid_sprite_2d.texture = preload("res://assets/sprites/meteor_medium.png")
+			asteroid_sprite_2d.texture = preload("res://assets/sprites/game/meteor_medium.png")
 			collision_shape_2d.shape = preload("res://resources/col_meteor_medium.tres")
 		SizeType.LARGE:
-			asteroid_sprite_2d.texture = preload("res://assets/sprites/meteor_large.png")
+			asteroid_sprite_2d.texture = preload("res://assets/sprites/game/meteor_large.png")
 			collision_shape_2d.shape = preload("res://resources/col_meteor_large.tres")
 	
 	# Set pitch symbol sprite based on pitch (random flip for accidentals)
