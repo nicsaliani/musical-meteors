@@ -14,9 +14,11 @@ signal split_asteroid(pos, size)
 
 ## EXPORT REFERENCES
 ## -------------------
-@export var particle_explode: PackedScene
 @export var size: SizeType
 @export var pitch: PitchType
+@export var particle_explode: PackedScene
+@export var sprite_explode: PackedScene
+@export var score_popup: PackedScene
 
 ## ENUMS
 ## -------------------
