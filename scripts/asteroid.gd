@@ -199,16 +199,17 @@ func explode():
 	
 	split_asteroid.emit(position, size)
 	
+	spawn_meteor_explosion_effect()
 	var _explosion = particle_explode.instantiate()
 	_explosion.position = position
 	_explosion.color = asteroid_sprite_2d.modulate
 	_explosion.accidental = accidental
 	particle_layer.add_child(_explosion)
-
+	
 	queue_free()
 
 func spawn_meteor_explosion_effect():
 	var _explosion_effect = meteor_explosion_effect.instantiate()
 	_explosion_effect.position = position
-	_explosion_effect.rotation_val = rotate_angles[randi_range(0, 3)]
+	_explosion_effect.rotation = asteroid_sprite_2d.rotation_degrees
 	particle_layer.add_child(_explosion_effect)
