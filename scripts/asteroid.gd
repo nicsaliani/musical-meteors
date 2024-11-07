@@ -17,7 +17,7 @@ signal split_asteroid(pos, size)
 @export var size: SizeType
 @export var pitch: PitchType
 @export var particle_explode: PackedScene
-@export var sprite_explode: PackedScene
+@export var meteor_explosion_effect: PackedScene
 @export var score_popup: PackedScene
 
 ## ENUMS
@@ -208,4 +208,7 @@ func explode():
 	queue_free()
 
 func spawn_meteor_explosion_effect():
-	pass
+	var _explosion_effect = meteor_explosion_effect.instantiate()
+	_explosion_effect.position = position
+	_explosion_effect.rotation_val = rotate_angles[randi_range(0, 3)]
+	particle_layer.add_child(_explosion_effect)
