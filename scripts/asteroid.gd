@@ -96,8 +96,7 @@ var max_bound_x: float
 var min_bound_y: float
 var max_bound_y: float
 
-## FUNCTIONS
-## -------------------
+## GENERAL FUNCTIONS
 func _ready() -> void:
 	
 	pitch_letter = PitchType.keys()[pitch]
@@ -174,9 +173,9 @@ func _ready() -> void:
 	
 	# Assign accidental type
 	accidental = AccidentalType.values()[_symbol_flip]
-	
+
+
 func _process(_delta: float) -> void:
-	
 	# X/Y Movement
 	global_position += movement_vector.rotated(rotate_value) * speed * _delta
 	
@@ -195,25 +194,50 @@ func _process(_delta: float) -> void:
 	elif position.y - _shape_radius > max_bound_y:
 		position.y = min_bound_y - _shape_radius
 
-func explode():
-	
+
+## EXPLOSION FUNCTIONS
+func explode() -> void:
+	# Explosion for gameplay.
 	split_asteroid.emit(position, size)
-	
+	spawn_score_popup()
+	clear_with_explosion_effects()
+
+
+func clear_with_explosion_effects() -> void:
+	# Explosion for clearing meteors from screen.
 	spawn_meteor_explosion_effect()
 	spawn_meteor_explosion_particles()
-	
 	queue_free()
 
-func spawn_meteor_explosion_effect():
+
+func spawn_meteor_explosion_effect() -> void:
+	# Spawn an explosion effect sprite.
 	var _explosion_effect = meteor_explosion_effect.instantiate()
 	_explosion_effect.position = position
 	_explosion_effect.rotation = asteroid_sprite_2d.rotation_degrees
-	particle_layer.add_child(_explosion_effect)
 	
-func spawn_meteor_explosion_particles():
+	particle_layer.add_child(_explosion_effect)
+
+
+func spawn_meteor_explosion_particles() -> void:
+	# Spawn a particle explosion effect.
 	var _explosion = particle_explode.instantiate()
 	_explosion.position = position
 	_explosion.color = asteroid_sprite_2d.modulate
 	_explosion.accidental = accidental
-	particle_layer.add_child(_explosion)
 	
+	particle_layer.add_child(_explosion)
+
+
+func spawn_score_popup() -> void:
+	# Spawn a score popup.
+	var _score_popup = score_popup.instantiate()
+	print(_score_popup.size.x, " ", _score_popup.size.y)
+	_score_popup.text = str(points)
+
+	particle_layer.add_child(_score_popup)
+	print(_score_popup.size.x, " ", _score_popup.size.y)
+	_score_popup.position = position - Vector2(
+			_score_popup.size.x / 2,
+			_score_popup.size.y / 2,
+	)

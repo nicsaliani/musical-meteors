@@ -1,20 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0tmi7li5psis"]
+[gd_scene load_steps=5 format=3 uid="uid://b0tmi7li5psis"]
 
+[ext_resource type="Theme" uid="uid://bpx5awpyhikey" path="res://resources/theme_ui.tres" id="1_fuhjk"]
 [ext_resource type="FontFile" uid="uid://dkfllk3hbjb5q" path="res://assets/fonts/m6x11.ttf" id="1_imdsn"]
 [ext_resource type="Script" path="res://scripts/score_popup.gd" id="2_gkkga"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_1fcrt"]
+[sub_resource type="LabelSettings" id="LabelSettings_ykm3q"]
+line_spacing = 0.0
 font = ExtResource("1_imdsn")
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 
 [node name="ScorePopup" type="Label"]
-offset_right = 7.0
+offset_right = 1.0
 offset_bottom = 14.0
-size_flags_vertical = 1
-text = "0"
-label_settings = SubResource("LabelSettings_1fcrt")
+theme = ExtResource("1_fuhjk")
+label_settings = SubResource("LabelSettings_ykm3q")
 horizontal_alignment = 1
-vertical_alignment = 1
 script = ExtResource("2_gkkga")
 
 [node name="Timer" type="Timer" parent="."]

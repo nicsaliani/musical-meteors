@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://ca7vbuen0m1pe"]
+[gd_scene load_steps=7 format=3 uid="uid://ca7vbuen0m1pe"]
 
 [ext_resource type="Script" path="res://scripts/asteroid.gd" id="1_qn2i1"]
 [ext_resource type="PackedScene" uid="uid://ckeqeq6v5nbr0" path="res://scenes/particle_asteroid_explosion.tscn" id="2_gcta0"]
 [ext_resource type="PackedScene" uid="uid://cab16urdedcxo" path="res://scenes/meteor_explosion_effect.tscn" id="3_c5ayk"]
 [ext_resource type="Shape2D" uid="uid://bks8q3377tt0e" path="res://resources/col_meteor_small.tres" id="4_24416"]
 [ext_resource type="Texture2D" uid="uid://p7a4swddpimx" path="res://assets/sprites/game/meteor_small.png" id="4_podes"]
+[ext_resource type="PackedScene" uid="uid://b0tmi7li5psis" path="res://scenes/score_popup.tscn" id="4_v51wg"]
 
 [node name="Asteroid" type="Area2D"]
 script = ExtResource("1_qn2i1")
 particle_explode = ExtResource("2_gcta0")
 meteor_explosion_effect = ExtResource("3_c5ayk")
+score_popup = ExtResource("4_v51wg")
 
 [node name="AsteroidSprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("4_podes")

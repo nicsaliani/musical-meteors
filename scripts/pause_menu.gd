@@ -7,20 +7,11 @@ func _ready() -> void:
 	hide()
 
 func _process(_delta: float) -> void:
-	# Pause if pause action is made
-	if Input.is_action_just_pressed("pause"):
-		toggle_pause()
+	if GameManager.game_state == GameManager.GameState.PAUSED:
+		show()
+	else:
+		hide()
+
 
 func _on_resume_button_pressed() -> void:
-	toggle_pause()
-
-func toggle_pause():
-	# Pause if game is PLAYING; unpause if game is PAUSED
-	if GameManager.game_state == GameManager.GameState.PLAYING:
-		GameManager.game_state = GameManager.GameState.PAUSED
-		get_tree().paused = true
-		show()
-	elif GameManager.game_state == GameManager.GameState.PAUSED:
-		GameManager.game_state = GameManager.GameState.PLAYING
-		get_tree().paused = false
-		hide()
+	GameManager.toggle_pause()

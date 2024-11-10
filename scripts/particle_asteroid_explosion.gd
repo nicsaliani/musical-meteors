@@ -8,7 +8,7 @@ var accidental: Asteroid.AccidentalType
 ## FUNCTIONS
 ## -------------------
 func _ready() -> void:
-	
+	process_mode = PROCESS_MODE_ALWAYS
 	process_material = process_material.duplicate()
 	
 	emitting = true
@@ -20,6 +20,13 @@ func _ready() -> void:
 		Asteroid.AccidentalType.SHARP:
 			texture = preload("res://assets/sprites/particles/particle_sheet_sharp.png")
 
+
 func _process(_delta: float) -> void:
+	if GameManager.game_state == GameManager.GameState.PAUSED:
+		print(GameManager.game_state)
+		speed_scale = 0
+	else:
+		speed_scale = 1
+	
 	if emitting == false:
 		queue_free()

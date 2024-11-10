@@ -37,6 +37,7 @@ process_material = SubResource("ParticleProcessMaterial_rve6a")
 texture = ExtResource("1_8aulj")
 lifetime = 1.5
 one_shot = true
+speed_scale = 0.0
 explosiveness = 1.0
 interp_to_end = 0.028
 script = ExtResource("2_hyey4")
