@@ -30,6 +30,7 @@ color_ramp = SubResource("GradientTexture1D_osu52")
 anim_offset_max = 1.0
 
 [node name="part_asteroid_explosion" type="GPUParticles2D"]
+process_mode = 1
 material = SubResource("CanvasItemMaterial_kkxym")
 emitting = false
 amount = 30
@@ -37,7 +38,6 @@ process_material = SubResource("ParticleProcessMaterial_rve6a")
 texture = ExtResource("1_8aulj")
 lifetime = 1.5
 one_shot = true
-speed_scale = 0.0
 explosiveness = 1.0
-interp_to_end = 0.028
+fixed_fps = 0
 script = ExtResource("2_hyey4")

@@ -1,5 +1,8 @@
 extends Node
 
+signal game_paused()
+signal game_unpaused()
+
 ## ENUMS
 enum GameState { MAIN_MENU, COUNTDOWN, PLAYING, PAUSED, GAME_OVER }
 var game_state: GameState = GameState.MAIN_MENU
@@ -22,9 +25,11 @@ func _process(_delta: float) -> void:
 func toggle_pause():
 	# Pause if game is PLAYING; unpause if game is PAUSED
 	if game_state == GameState.PLAYING:
+		game_paused.emit()
 		set_game_state(GameState.PAUSED)
 		get_tree().paused = true
 	elif game_state == GameState.PAUSED:
+		game_unpaused.emit()
 		set_game_state(GameState.PLAYING)
 		get_tree().paused = false
 	
