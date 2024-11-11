@@ -66,10 +66,11 @@ func _ready():
 func _on_notif_label_start_game() -> void:
 	asteroid_spawn_timer.start()
 
-func stop():
-	asteroid_spawn_timer.stop()
 
-	
+func _on_game_timer_panel_game_over() -> void:
+	asteroid_spawn_timer.stop()
+	clear_all_asteroids()
+
 
 func create_asteroid(_size: Asteroid.SizeType) -> Asteroid:
 	
@@ -181,7 +182,7 @@ func split_asteroid(_pos: Vector2, _size: Asteroid.SizeType):
 				)
 				spawn_asteroid_from_split(_asteroid, _pos)
 
-func clear_all_asteroids():
-	pass
-	#for _asteroid in asteroids_on_screen:
-		#asteroids_on_screen[_asteroid].explode()
+func clear_all_asteroids() -> void:
+	for _asteroid in asteroids_on_screen:
+		await get_tree().create_timer(0.1).timeout
+		asteroids_on_screen[_asteroid].clear_with_explosion_effects()
