@@ -21,12 +21,12 @@ particle_flag_disable_z = true
 angle_min = 1.07288e-05
 angle_max = 1.07288e-05
 spread = 180.0
-initial_velocity_min = 105.02
-initial_velocity_max = 172.33
+initial_velocity_min = 162.52
+initial_velocity_max = 267.33
 gravity = Vector3(0, 0, 0)
-linear_accel_min = -64.23
-linear_accel_max = -56.94
 color_ramp = SubResource("GradientTexture1D_osu52")
+hue_variation_min = -0.05
+hue_variation_max = 0.05
 anim_offset_max = 1.0
 
 [node name="part_asteroid_explosion" type="GPUParticles2D"]
@@ -36,7 +36,7 @@ emitting = false
 amount = 30
 process_material = SubResource("ParticleProcessMaterial_rve6a")
 texture = ExtResource("1_8aulj")
-lifetime = 1.5
+lifetime = 0.75
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 0
