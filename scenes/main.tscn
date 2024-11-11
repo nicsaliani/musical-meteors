@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://djrahedsf5gjh"]
+[gd_scene load_steps=56 format=3 uid="uid://djrahedsf5gjh"]
 
 [ext_resource type="Theme" uid="uid://bpx5awpyhikey" path="res://resources/theme_ui.tres" id="1_7fiqs"]
 [ext_resource type="Script" path="res://scripts/game_state_changer.gd" id="1_8dn71"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://dddwg3f4e0w84" path="res://assets/sprites/ui/panel_border.png" id="14_sv65g"]
 [ext_resource type="Texture2D" uid="uid://dk61yc3armx2y" path="res://assets/sprites/ui/musical_meteors_logo.png" id="15_5we14"]
 [ext_resource type="Script" path="res://scripts/score_panel.gd" id="17_1paut"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wovho"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_23i1g"]
 atlas = ExtResource("7_fotnd")
@@ -689,6 +691,7 @@ grow_vertical = 2
 theme = ExtResource("1_7fiqs")
 theme_override_fonts/font = ExtResource("10_jrjda")
 theme_override_font_sizes/font_size = 16
+label_settings = SubResource("LabelSettings_wovho")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -925,6 +928,7 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 script = ExtResource("12_caqtw")
+start_time = 60
 
 [node name="Timer" type="Timer" parent="GameTimerPanel"]
 
@@ -1020,4 +1024,6 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="GamePanel/PauseMenu/PauseContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="GamePanel/PauseMenu/PauseContainer/ResumeButton" to="GamePanel/PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="game_over" from="GameTimerPanel" to="." method="_on_game_timer_panel_game_over"]
+[connection signal="game_over" from="GameTimerPanel" to="GamePanel/GameViewportContainer/GameViewport/AsteroidManager" method="_on_game_timer_panel_game_over"]
+[connection signal="game_over" from="GameTimerPanel" to="GamePanel/NotifLabel" method="_on_game_timer_panel_game_over"]
 [connection signal="timeout" from="GameTimerPanel/Timer" to="GameTimerPanel" method="_on_timer_timeout"]

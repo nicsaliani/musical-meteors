@@ -5,7 +5,6 @@ class_name ScorePanel extends Control
 @onready var asteroid_manager: AsteroidManager = %"AsteroidManager"
 @onready var score_label: Label = $Control/ScoreLabel
 
-@export var score_popup: PackedScene
 ## VARIABLES
 ## -------------------
 var score: int = 0

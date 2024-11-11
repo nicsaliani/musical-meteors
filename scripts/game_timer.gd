@@ -13,7 +13,7 @@ var current_time: int
 
 ## FUNCTIONS
 func _on_start_game_button_pressed() -> void:
-	update_game_timer(60)
+	update_game_timer(start_time)
 
 func _on_notif_label_start_game() -> void:
 	timer.start()
