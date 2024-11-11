@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://djrahedsf5gjh"]
+[gd_scene load_steps=57 format=3 uid="uid://djrahedsf5gjh"]
 
 [ext_resource type="Theme" uid="uid://bpx5awpyhikey" path="res://resources/theme_ui.tres" id="1_7fiqs"]
 [ext_resource type="Script" path="res://scripts/game_state_changer.gd" id="1_8dn71"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dddwg3f4e0w84" path="res://assets/sprites/ui/panel_border.png" id="14_sv65g"]
 [ext_resource type="Texture2D" uid="uid://dk61yc3armx2y" path="res://assets/sprites/ui/musical_meteors_logo.png" id="15_5we14"]
 [ext_resource type="Script" path="res://scripts/score_panel.gd" id="17_1paut"]
+[ext_resource type="AudioStream" uid="uid://cgmlayxpx3rqw" path="res://assets/sounds/meteor_destroyed.wav" id="18_yjvly"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wovho"]
 
@@ -1005,6 +1006,10 @@ vertical_alignment = 1
 clip_text = true
 text_overrun_behavior = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_yjvly")
+pitch_scale = 2.27
 
 [connection signal="open_options_menu" from="GamePanel/MainMenu" to="GamePanel/OptionsMenu" method="_on_main_menu_open_options_menu"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
