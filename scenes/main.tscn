@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://djrahedsf5gjh"]
+[gd_scene load_steps=55 format=3 uid="uid://djrahedsf5gjh"]
 
 [ext_resource type="Theme" uid="uid://bpx5awpyhikey" path="res://resources/theme_ui.tres" id="1_7fiqs"]
 [ext_resource type="Script" path="res://scripts/game_state_changer.gd" id="1_8dn71"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="12_cch8s"]
 [ext_resource type="Texture2D" uid="uid://dddwg3f4e0w84" path="res://assets/sprites/ui/panel_border.png" id="14_sv65g"]
 [ext_resource type="Texture2D" uid="uid://dk61yc3armx2y" path="res://assets/sprites/ui/musical_meteors_logo.png" id="15_5we14"]
+[ext_resource type="Script" path="res://scripts/score_panel.gd" id="17_1paut"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_23i1g"]
 atlas = ExtResource("7_fotnd")
@@ -967,6 +968,7 @@ patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
+script = ExtResource("17_1paut")
 
 [node name="Control" type="Control" parent="ScorePanel"]
 clip_contents = true

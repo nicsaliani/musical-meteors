@@ -38,3 +38,13 @@ func toggle_pause():
 
 func set_game_state(_game_state: GameState) -> void:
 	game_state = _game_state
+
+## SCORE FUNCTIONS
+func get_score() -> int:
+	return score
+
+func set_score(_score: int) -> void:
+	score = _score
+
+func add_score(_score: int) -> void:
+	score += _score

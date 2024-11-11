@@ -7,7 +7,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_ykm3q"]
 line_spacing = 0.0
 font = ExtResource("1_imdsn")
-outline_size = 8
+outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 

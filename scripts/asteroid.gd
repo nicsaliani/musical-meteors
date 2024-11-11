@@ -3,6 +3,7 @@ class_name Asteroid extends Area2D
 ## SIGNALS
 ## -------------------
 signal split_asteroid(pos, size)
+signal update_score(points)
 
 ## ON-READY REFERENCES
 ## -------------------
@@ -10,6 +11,7 @@ signal split_asteroid(pos, size)
 @onready var asteroid_sprite_2d: Sprite2D = $AsteroidSprite2D
 @onready var symbol_sprite_2d: Sprite2D = $SymbolSprite2D
 @onready var particle_layer: Control = get_node("../../ParticleLayer")
+@onready var score_panel := get_node("../../../../../ScorePanel")
 
 
 ## EXPORT REFERENCES
@@ -199,6 +201,7 @@ func _process(_delta: float) -> void:
 func explode() -> void:
 	# Explosion for gameplay.
 	split_asteroid.emit(position, size)
+	GameManager.add_score(points)
 	spawn_score_popup()
 	clear_with_explosion_effects()
 
