@@ -11,7 +11,8 @@ enum NotifEffect {
 
 ## VARIABLES
 var countdown_texts := ["3", "2", "1", "START!"]
-# Called when the node enters the scene tree for the first time.
+@onready var notif_timer: Timer = $NotifTimer
+
 
 ## FUNCTIONS
 func _ready() -> void:
@@ -23,7 +24,24 @@ func _on_start_game_button_pressed() -> void:
 
 
 func _on_game_timer_panel_game_over() -> void:
-	show_notif("GAME OVER!", 3.0, 32)
+	show_notif(
+		"GAME OVER!", 
+		3.0, 
+		32
+	)
+
+
+func _on_asteroid_manager_wrong_note_played(pitch) -> void:
+	show_notif(
+		"No meteor matching key: " + str(pitch),
+		2.0,
+		16,
+		Color.RED
+	)
+
+
+func _on_notif_timer_timeout() -> void:
+	hide_notif()
 
 
 func show_notif(
@@ -31,23 +49,29 @@ func show_notif(
 		_duration: float = 1.0,
 		_font_size: int = 16,
 		_color: Color = Color.WHITE,
-):
+) -> void:
 	text = _text
 	label_settings.font_size = _font_size
 	label_settings.font_color = _color
 	
+	if !notif_timer.is_stopped():
+		restart_notif_timer(_duration)
+	else:
+		notif_timer.start(_duration)
 	show()
-	await get_tree().create_timer(_duration, false).timeout
+
+
+func hide_notif() -> void:
 	text = ""
 	hide()
 
 
-func hide_notif():
-	text = ""
-	hide()
+func restart_notif_timer(_duration: float) -> void:
+	notif_timer.stop()
+	notif_timer.start(_duration)
 
 
-func start_game_countdown():
+func start_game_countdown() -> void:
 	show()
 	
 	for i in range(4):

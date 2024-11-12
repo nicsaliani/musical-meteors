@@ -705,6 +705,9 @@ vertical_alignment = 1
 autowrap_mode = 2
 script = ExtResource("8_6ttmo")
 
+[node name="NotifTimer" type="Timer" parent="GamePanel/NotifLabel"]
+one_shot = true
+
 [node name="PauseMenu" type="Panel" parent="GamePanel"]
 visible = false
 layout_mode = 1
@@ -1014,6 +1017,7 @@ clip_text = true
 text_overrun_behavior = 1
 metadata/_edit_use_anchors_ = true
 
+[connection signal="wrong_note_played" from="GamePanel/GameViewportContainer/GameViewport/AsteroidManager" to="GamePanel/NotifLabel" method="_on_asteroid_manager_wrong_note_played"]
 [connection signal="open_options_menu" from="GamePanel/MainMenu" to="GamePanel/OptionsMenu" method="_on_main_menu_open_options_menu"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="GamePanel/MainMenu" method="_on_start_game_button_pressed"]
@@ -1029,6 +1033,7 @@ metadata/_edit_use_anchors_ = true
 [connection signal="start_game" from="GamePanel/NotifLabel" to="." method="_on_notif_label_start_game"]
 [connection signal="start_game" from="GamePanel/NotifLabel" to="GamePanel/GameViewportContainer/GameViewport/AsteroidManager" method="_on_notif_label_start_game"]
 [connection signal="start_game" from="GamePanel/NotifLabel" to="GameTimerPanel" method="_on_notif_label_start_game"]
+[connection signal="timeout" from="GamePanel/NotifLabel/NotifTimer" to="GamePanel/NotifLabel" method="_on_notif_timer_timeout"]
 [connection signal="pressed" from="GamePanel/PauseMenu/PauseContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="GamePanel/PauseMenu/PauseContainer/ResumeButton" to="GamePanel/PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="game_over" from="GameTimerPanel" to="." method="_on_game_timer_panel_game_over"]

@@ -3,7 +3,7 @@ class_name AsteroidManager extends Control
 ## SIGNALS
 ## -------------------
 signal asteroid_destroyed(asteroid)
-signal wrong_note_played()
+signal wrong_note_played(pitch)
 
 ## ON-READY REFERENCES
 ## -------------------
@@ -123,7 +123,7 @@ func _on_note_pressed(_played_pitch_letter: String):
 	if asteroids_on_screen.has(_played_pitch_letter):
 		destroy_asteroid(asteroids_on_screen[_played_pitch_letter])
 	else:
-		wrong_note_played.emit()
+		wrong_note_played.emit(_played_pitch_letter)
 
 func destroy_asteroid(_asteroid):
 	
