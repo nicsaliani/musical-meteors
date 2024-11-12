@@ -20,6 +20,8 @@
 [ext_resource type="Script" path="res://scripts/score_panel.gd" id="17_1paut"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wovho"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_23i1g"]
 atlas = ExtResource("7_fotnd")
@@ -1022,6 +1024,7 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="GamePanel/MainMenu" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="GamePanel/NotifLabel" method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="MIDIControlPanel/Control/MIDI Control" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="GameTimerPanel" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/OptionsButton" to="GamePanel/MainMenu" method="_on_options_button_pressed"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/QuitButton" to="GamePanel/MainMenu" method="_on_quit_button_pressed"]

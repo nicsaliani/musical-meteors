@@ -124,6 +124,7 @@ func _on_note_pressed(_played_pitch_letter: String):
 		destroy_asteroid(asteroids_on_screen[_played_pitch_letter])
 	else:
 		wrong_note_played.emit(_played_pitch_letter)
+		GameManager.add_score(-25)
 
 func destroy_asteroid(_asteroid):
 	

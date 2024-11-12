@@ -1,4 +1,4 @@
-class_name MidiKey extends Node
+class_name MidiKey extends Node2D
 
 ## SIGNALS
 ## -------------------
@@ -33,7 +33,8 @@ enum PitchType{
 ## VARIABLES
 ## -------------------
 var pitch_letter: String
-var is_pressed := false
+var pressed := false
+var active := true
 var keys_held := 0
 
 ## FUNCTIONS
@@ -41,13 +42,47 @@ var keys_held := 0
 func _ready():
 	pitch_letter = PitchType.keys()[pitch_type]
 
-func call_key(_velocity: int, _message: int):
+
+func _process(delta: float) -> void:
+	modulate = Color.WHITE if active else Color.DIM_GRAY
+
+
+func call_key(_velocity: int, _message: int) -> void:
 	if _velocity > 0 and _message == 9:
 		if keys_held == 0:
-			animated_sprite.play("on")
-			midi_key_pressed.emit(pitch_letter)
+			press()
 		keys_held += 1
 	elif _velocity == 0 or _message == 8:
 		if keys_held == 1:
-			animated_sprite.play("off")
+			release()
 		keys_held -=1
+
+
+func press() -> void:
+	pressed = true
+	animated_sprite.play("on")
+	midi_key_pressed.emit(pitch_letter)
+
+
+func release() -> void:
+	pressed = false
+	animated_sprite.play("off")
+
+
+func set_active(_active: bool) -> void:
+	#active = true if _active else false
+	if _active:
+		active = true
+	else:
+		active = false
+		if is_pressed():
+			release()
+			keys_held = 0
+
+
+func is_active() -> bool:
+	return true if active else false
+
+
+func is_pressed() -> bool:
+	return true if pressed else false
