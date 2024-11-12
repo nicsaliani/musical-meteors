@@ -11,13 +11,13 @@
 [ext_resource type="Texture2D" uid="uid://dba4iwtcjh5q" path="res://assets/sprites/ui/key_sheet.png" id="7_fotnd"]
 [ext_resource type="Script" path="res://scripts/options_menu.gd" id="8_3mtp1"]
 [ext_resource type="Script" path="res://scripts/notif_label.gd" id="8_6ttmo"]
+[ext_resource type="Script" path="res://scripts/volume_slider.gd" id="10_gf516"]
 [ext_resource type="FontFile" uid="uid://dkfllk3hbjb5q" path="res://assets/fonts/m6x11.ttf" id="10_jrjda"]
 [ext_resource type="Script" path="res://scripts/game_timer.gd" id="12_caqtw"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="12_cch8s"]
 [ext_resource type="Texture2D" uid="uid://dddwg3f4e0w84" path="res://assets/sprites/ui/panel_border.png" id="14_sv65g"]
 [ext_resource type="Texture2D" uid="uid://dk61yc3armx2y" path="res://assets/sprites/ui/musical_meteors_logo.png" id="15_5we14"]
 [ext_resource type="Script" path="res://scripts/score_panel.gd" id="17_1paut"]
-[ext_resource type="AudioStream" uid="uid://cgmlayxpx3rqw" path="res://assets/sounds/meteor_destroyed.wav" id="18_yjvly"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wovho"]
 
@@ -484,6 +484,7 @@ theme = ExtResource("1_7fiqs")
 text = "QUIT"
 
 [node name="OptionsMenu" type="Panel" parent="GamePanel"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.017
@@ -620,6 +621,8 @@ size_flags_vertical = 1
 theme = ExtResource("1_7fiqs")
 step = 5.0
 rounded = true
+script = ExtResource("10_gf516")
+bus_name = "Master"
 
 [node name="MasterPercentLabel" type="Label" parent="GamePanel/OptionsMenu/AudioContainer/MasterContainer"]
 layout_mode = 2
@@ -645,6 +648,8 @@ size_flags_vertical = 1
 theme = ExtResource("1_7fiqs")
 step = 5.0
 rounded = true
+script = ExtResource("10_gf516")
+bus_name = "Music"
 
 [node name="MusicPercentLabel" type="Label" parent="GamePanel/OptionsMenu/AudioContainer/MusicContainer"]
 layout_mode = 2
@@ -670,6 +675,8 @@ size_flags_vertical = 1
 theme = ExtResource("1_7fiqs")
 step = 5.0
 rounded = true
+script = ExtResource("10_gf516")
+bus_name = "Sound"
 
 [node name="SoundPercentLabel" type="Label" parent="GamePanel/OptionsMenu/AudioContainer/SoundContainer"]
 layout_mode = 2
@@ -1006,10 +1013,6 @@ vertical_alignment = 1
 clip_text = true
 text_overrun_behavior = 1
 metadata/_edit_use_anchors_ = true
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("18_yjvly")
-pitch_scale = 2.27
 
 [connection signal="open_options_menu" from="GamePanel/MainMenu" to="GamePanel/OptionsMenu" method="_on_main_menu_open_options_menu"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]

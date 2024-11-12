@@ -3,7 +3,6 @@ class_name Asteroid extends Area2D
 ## SIGNALS
 ## -------------------
 signal split_asteroid(pos, size)
-signal update_score(points)
 
 ## ON-READY REFERENCES
 ## -------------------
