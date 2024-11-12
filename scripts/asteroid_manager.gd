@@ -3,6 +3,7 @@ class_name AsteroidManager extends Control
 ## SIGNALS
 ## -------------------
 signal asteroid_destroyed(asteroid)
+signal wrong_note_played()
 
 ## ON-READY REFERENCES
 ## -------------------
@@ -121,6 +122,8 @@ func _on_note_pressed(_played_pitch_letter: String):
 	# Destroy asteroid with pitch letter matching the played pitch
 	if asteroids_on_screen.has(_played_pitch_letter):
 		destroy_asteroid(asteroids_on_screen[_played_pitch_letter])
+	else:
+		wrong_note_played.emit()
 
 func destroy_asteroid(_asteroid):
 	
