@@ -7,9 +7,6 @@ signal game_unpaused()
 enum GameState { MAIN_MENU, COUNTDOWN, PLAYING, PAUSED, GAME_OVER }
 var game_state: GameState = GameState.MAIN_MENU
 
-## VARIABLES
-var score: int
-
 ## FUNCTIONS
 func _ready() -> void:
 	# Process this node even when the game is paused
@@ -32,19 +29,7 @@ func toggle_pause():
 		game_unpaused.emit()
 		set_game_state(GameState.PLAYING)
 		get_tree().paused = false
-	
-	print(GameManager.game_state)
 
 
 func set_game_state(_game_state: GameState) -> void:
 	game_state = _game_state
-
-## SCORE FUNCTIONS
-func get_score() -> int:
-	return score
-
-func set_score(_score: int) -> void:
-	score = _score
-
-func add_score(_score: int) -> void:
-	score += _score

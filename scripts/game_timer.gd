@@ -15,19 +15,23 @@ var current_time: int
 func _on_start_game_button_pressed() -> void:
 	update_game_timer(start_time)
 
+
 func _on_notif_label_start_game() -> void:
 	timer.start()
+
 
 func _on_timer_timeout() -> void:
 	update_game_timer(-1)
 
-func _on_level_up():
-	# TODO: Connect 'level_up' signal to this function
-	update_game_timer(30)
 
-func _on_bad_key_pressed():
-	# TODO: Connect 'bad_key_pressed' signal to this function
-	update_game_timer(-5)
+func _on_score_panel_level_up(level: Variant) -> void:
+	if level < 5:
+		update_game_timer(15)
+	elif level < 8:
+		update_game_timer(30)
+	else:
+		update_game_timer(45)
+
 
 func update_game_timer(seconds: int) -> void:
 	current_time += seconds

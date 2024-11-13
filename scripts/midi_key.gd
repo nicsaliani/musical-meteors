@@ -46,12 +46,12 @@ func _ready():
 	pitch_letter = PitchType.keys()[pitch_type]
 	audio_stream_player.stream = neutral_sound
 
+
 func _process(_delta: float) -> void:
 	modulate = Color.WHITE if active else Color.DIM_GRAY
 
 
 func call_key(_velocity: int, _message: int) -> void:
-	
 	if _velocity > 0 and _message == 9:
 		if keys_held == 0:
 			press()
@@ -76,7 +76,6 @@ func release() -> void:
 
 
 func set_active(_active: bool) -> void:
-	#active = true if _active else false
 	keys_held = 0
 	if _active:
 		active = true
@@ -85,6 +84,16 @@ func set_active(_active: bool) -> void:
 		
 		if is_pressed():
 			release()
+
+
+func play_sound(_is_neutral: bool) -> void:
+	pass
+	#if is_neutral:
+	#	audio_stream_player.stream = neutral_sound
+	#	audio_stream_player.play()
+	#else:
+	#	audio_stream_player.stream = bad_sound
+	#	audio_stream_player.play()
 
 
 func is_active() -> bool:

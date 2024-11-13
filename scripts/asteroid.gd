@@ -200,7 +200,7 @@ func _process(_delta: float) -> void:
 func explode() -> void:
 	# Explosion for gameplay.
 	split_asteroid.emit(position, size)
-	GameManager.add_score(points)
+	#GameManager.add_score(points)
 	spawn_score_popup()
 	clear_with_explosion_effects()
 

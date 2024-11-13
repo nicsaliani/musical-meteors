@@ -3,6 +3,7 @@ class_name AsteroidManager extends Control
 ## SIGNALS
 ## -------------------
 signal asteroid_destroyed(asteroid)
+signal update_score(points)
 signal wrong_note_played(pitch)
 
 ## ON-READY REFERENCES
@@ -24,17 +25,8 @@ var space_available: int = 12
 var sizes_available: Array
 var pitches_available: Array[int] = [
 	0, 
-	1, 
 	2, 
-	3, 
 	4, 
-	5, 
-	6, 
-	7, 
-	8, 
-	9, 
-	10, 
-	11
 ]
 var spawn_points: Array[Vector2] = [
 	Vector2(-256, -256),
@@ -64,8 +56,11 @@ func _ready():
 	min_bound_y = -(game_viewport.size.y / 2)
 	max_bound_y = game_viewport.size.y / 2
 
+
 func _on_notif_label_start_game() -> void:
 	asteroid_spawn_timer.start()
+	pitches_available = [0, 2, 4]
+	space_available = 3
 
 
 func _on_game_timer_panel_game_over() -> void:
@@ -99,9 +94,11 @@ func spawn_asteroid_on_border(_asteroid: Asteroid, _pos: Vector2):
 	
 	update_space_available(false, _asteroid.size)
 
+
 func spawn_asteroid_from_split(_asteroid: Asteroid, _pos: Vector2):
 	_asteroid.position = _pos
-	
+
+
 func _on_timer_timeout():
 	
 	# Get available sizes based on available space
@@ -116,15 +113,18 @@ func _on_timer_timeout():
 			_asteroid, 
 			spawn_points[randi_range(0, spawn_points.size() - 1)], 
 		)
-	
+
+
 func _on_note_pressed(_played_pitch_letter: String):
-	
 	# Destroy asteroid with pitch letter matching the played pitch
 	if asteroids_on_screen.has(_played_pitch_letter):
-		destroy_asteroid(asteroids_on_screen[_played_pitch_letter])
+		var _asteroid = asteroids_on_screen[_played_pitch_letter]
+		destroy_asteroid(_asteroid)
+		update_score.emit(_asteroid.points)
 	else:
 		wrong_note_played.emit(_played_pitch_letter)
-		GameManager.add_score(-25)
+		update_score.emit(-25)
+
 
 func destroy_asteroid(_asteroid):
 	
@@ -138,6 +138,7 @@ func destroy_asteroid(_asteroid):
 	if _asteroid.size == Asteroid.SizeType.SMALL:
 		update_space_available(true, _asteroid.size)
 
+
 func check_space_available_for_possible_sizes() -> Array[Asteroid.SizeType]:
 	
 	# Return array of asteroid sizes based on how much space is left, empty if none
@@ -150,6 +151,7 @@ func check_space_available_for_possible_sizes() -> Array[Asteroid.SizeType]:
 			return [Asteroid.SizeType.SMALL, Asteroid.SizeType.MEDIUM, Asteroid.SizeType.LARGE]
 	else:
 		return []
+
 
 func update_space_available(_operation: bool, _size: Asteroid.SizeType) -> void:
 	
@@ -169,6 +171,7 @@ func update_space_available(_operation: bool, _size: Asteroid.SizeType) -> void:
 		Asteroid.SizeType.LARGE:
 			space_available += 4 * _operation_value
 
+
 func split_asteroid(_pos: Vector2, _size: Asteroid.SizeType):
 	
 	# Split large asteroids into two medium ones, and medium asteroids into two small ones
@@ -186,7 +189,34 @@ func split_asteroid(_pos: Vector2, _size: Asteroid.SizeType):
 				)
 				spawn_asteroid_from_split(_asteroid, _pos)
 
+
 func clear_all_asteroids() -> void:
 	for _asteroid in asteroids_on_screen:
 		await get_tree().create_timer(0.1).timeout
 		asteroids_on_screen[_asteroid].clear_with_explosion_effects()
+
+
+
+func _on_score_panel_level_up(level: Variant) -> void:
+	
+	match level:
+		2:
+			pitches_available.append(5)
+		3:
+			pitches_available.append(7)
+		4:
+			pitches_available.append(9)
+		5:
+			pitches_available.append(11)
+		6:
+			pitches_available.append(1)
+		7:
+			pitches_available.append(3)
+		8:
+			pitches_available.append(6)
+		9:
+			pitches_available.append(8)
+		10:
+			pitches_available.append(10)
+	
+	space_available += 1

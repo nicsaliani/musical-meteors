@@ -73,6 +73,7 @@ func update_key_state(_midi_key: Node2D, _state: bool) -> void:
 
 func _on_asteroid_manager_wrong_note_played(pitch: Variant) -> void:
 	var _suspended_keys: Array[Node] = []
+	var _wrong_key = get_active_midi_key_from_pitch_letter(pitch)
 	
 	for _midi_key in active_midi_keys:
 		_suspended_keys.append(_midi_key)
@@ -88,6 +89,14 @@ func _on_asteroid_manager_wrong_note_played(pitch: Variant) -> void:
 	_suspended_keys.clear()
 
 
+func get_active_midi_key_from_pitch_letter(_pitch_letter: String) -> MidiKey:
+	for _midi_key in active_midi_keys:
+		if _midi_key.pitch_letter == _pitch_letter:
+			return _midi_key
+	print("Key not found")
+	return null
+
+
 func print_midi_event_properties(_event: InputEventMIDI) -> void:
 	printt("Channel: ", _event.channel)
 	printt("Pitch: ", _event.pitch)
@@ -96,3 +105,25 @@ func print_midi_event_properties(_event: InputEventMIDI) -> void:
 	printt("Instrument: ", _event.instrument)
 	printt("Pressure: ", _event.pressure)
 	print("-------------------")
+
+
+func _on_score_panel_level_up(level: Variant) -> void:
+	match level:
+		2:
+			update_key_state(midi_keys[5], true)
+		3:
+			update_key_state(midi_keys[7], true)
+		4:
+			update_key_state(midi_keys[9], true)
+		5:
+			update_key_state(midi_keys[11], true)
+		6:
+			update_key_state(midi_keys[1], true)
+		7:
+			update_key_state(midi_keys[3], true)
+		8:
+			update_key_state(midi_keys[6], true)
+		9:
+			update_key_state(midi_keys[8], true)
+		10:
+			update_key_state(midi_keys[10], true)
