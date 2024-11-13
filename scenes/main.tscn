@@ -842,6 +842,9 @@ sprite_frames = SubResource("SpriteFrames_dt0n1")
 animation = &"off"
 autoplay = "off"
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MIDIControlPanel/Control/MIDI Control/C Key"]
+bus = &"Sound"
+
 [node name="CD Key" type="Node2D" parent="MIDIControlPanel/Control/MIDI Control"]
 position = Vector2(49, 26)
 script = ExtResource("6_h1jov")
@@ -854,6 +857,9 @@ sprite_frames = SubResource("SpriteFrames_2eofh")
 animation = &"off"
 autoplay = "off"
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MIDIControlPanel/Control/MIDI Control/CD Key"]
+bus = &"Sound"
+
 [node name="D Key" type="Node2D" parent="MIDIControlPanel/Control/MIDI Control"]
 position = Vector2(82, 66)
 script = ExtResource("6_h1jov")
@@ -865,6 +871,9 @@ bad_sound = ExtResource("22_wlyj5")
 sprite_frames = SubResource("SpriteFrames_c7vt4")
 animation = &"off"
 autoplay = "off"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MIDIControlPanel/Control/MIDI Control/D Key"]
+bus = &"Sound"
 
 [node name="DE Key" type="Node2D" parent="MIDIControlPanel/Control/MIDI Control"]
 position = Vector2(115, 32)
@@ -879,6 +888,9 @@ sprite_frames = SubResource("SpriteFrames_aridw")
 animation = &"off"
 autoplay = "off"
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MIDIControlPanel/Control/MIDI Control/DE Key"]
+bus = &"Sound"
+
 [node name="E Key" type="Node2D" parent="MIDIControlPanel/Control/MIDI Control"]
 position = Vector2(138, 66)
 script = ExtResource("6_h1jov")
@@ -891,6 +903,9 @@ sprite_frames = SubResource("SpriteFrames_0ypmk")
 animation = &"off"
 autoplay = "off"
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MIDIControlPanel/Control/MIDI Control/E Key"]
+bus = &"Sound"
+
 [node name="F Key" type="Node2D" parent="MIDIControlPanel/Control/MIDI Control"]
 position = Vector2(194, 66)
 script = ExtResource("6_h1jov")
@@ -902,6 +917,9 @@ bad_sound = ExtResource("28_uaskn")
 sprite_frames = SubResource("SpriteFrames_dmamq")
 animation = &"off"
 autoplay = "off"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MIDIControlPanel/Control/MIDI Control/F Key"]
+bus = &"Sound"
 
 [node name="FG Key" type="Node2D" parent="MIDIControlPanel/Control/MIDI Control"]
 position = Vector2(215, 32)
@@ -916,6 +934,9 @@ sprite_frames = SubResource("SpriteFrames_d5bae")
 animation = &"off"
 autoplay = "off"
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MIDIControlPanel/Control/MIDI Control/FG Key"]
+bus = &"Sound"
+
 [node name="G Key" type="Node2D" parent="MIDIControlPanel/Control/MIDI Control"]
 position = Vector2(250, 66)
 script = ExtResource("6_h1jov")
@@ -927,6 +948,9 @@ bad_sound = ExtResource("32_dsj3h")
 sprite_frames = SubResource("SpriteFrames_ob2nf")
 animation = &"off"
 autoplay = "off"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MIDIControlPanel/Control/MIDI Control/G Key"]
+bus = &"Sound"
 
 [node name="GA Key" type="Node2D" parent="MIDIControlPanel/Control/MIDI Control"]
 position = Vector2(278, 32)
@@ -941,6 +965,9 @@ sprite_frames = SubResource("SpriteFrames_6p0kb")
 animation = &"off"
 autoplay = "off"
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MIDIControlPanel/Control/MIDI Control/GA Key"]
+bus = &"Sound"
+
 [node name="A Key" type="Node2D" parent="MIDIControlPanel/Control/MIDI Control"]
 position = Vector2(306, 66)
 script = ExtResource("6_h1jov")
@@ -952,6 +979,9 @@ bad_sound = ExtResource("36_vexrb")
 sprite_frames = SubResource("SpriteFrames_slbis")
 animation = &"off"
 autoplay = "off"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MIDIControlPanel/Control/MIDI Control/A Key"]
+bus = &"Sound"
 
 [node name="AB Key" type="Node2D" parent="MIDIControlPanel/Control/MIDI Control"]
 position = Vector2(341, 32)
@@ -966,6 +996,9 @@ sprite_frames = SubResource("SpriteFrames_4nyf2")
 animation = &"off"
 autoplay = "off"
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MIDIControlPanel/Control/MIDI Control/AB Key"]
+bus = &"Sound"
+
 [node name="B Key" type="Node2D" parent="MIDIControlPanel/Control/MIDI Control"]
 position = Vector2(362, 66)
 script = ExtResource("6_h1jov")
@@ -977,6 +1010,9 @@ bad_sound = ExtResource("40_esrd1")
 sprite_frames = SubResource("SpriteFrames_7a3o2")
 animation = &"off"
 autoplay = "off"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MIDIControlPanel/Control/MIDI Control/B Key"]
+bus = &"Sound"
 
 [node name="GameTimerPanel" type="NinePatchRect" parent="."]
 offset_left = 512.0

@@ -8,6 +8,7 @@ signal midi_key_pressed(pitch)
 ## -------------------
 @onready var midi_control: MidiControl = %"MIDI Control"
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var audio_stream_player = $AudioStreamPlayer2D
 
 ## EXPORT REFERENCES
 ## -------------------
