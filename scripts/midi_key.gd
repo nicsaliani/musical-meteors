@@ -13,8 +13,8 @@ signal midi_key_pressed(pitch)
 ## EXPORT REFERENCES
 ## -------------------
 @export var pitch_type: PitchType
-@export var neutral_sound: AudioStreamWAV
-@export var bad_sound: AudioStreamWAV
+@export var neutral_sound: AudioStream
+@export var bad_sound: AudioStream
 
 ## ENUMS
 ## -------------------
@@ -44,7 +44,7 @@ var keys_held := 0
 ## -------------------
 func _ready():
 	pitch_letter = PitchType.keys()[pitch_type]
-
+	audio_stream_player.stream = neutral_sound
 
 func _process(_delta: float) -> void:
 	modulate = Color.WHITE if active else Color.DIM_GRAY
@@ -61,13 +61,13 @@ func call_key(_velocity: int, _message: int) -> void:
 			release()
 		if keys_held > 0:
 			keys_held -=1
-	print("Keys held: ", keys_held)
 
 
 func press() -> void:
 	pressed = true
 	animated_sprite.play("on")
 	midi_key_pressed.emit(pitch_letter)
+	audio_stream_player.play()
 
 
 func release() -> void:
