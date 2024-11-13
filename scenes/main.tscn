@@ -689,6 +689,7 @@ text = "0%"
 horizontal_alignment = 1
 
 [node name="NotifLabel" type="Label" parent="GamePanel"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -1020,6 +1021,7 @@ text_overrun_behavior = 1
 metadata/_edit_use_anchors_ = true
 
 [connection signal="wrong_note_played" from="GamePanel/GameViewportContainer/GameViewport/AsteroidManager" to="GamePanel/NotifLabel" method="_on_asteroid_manager_wrong_note_played"]
+[connection signal="wrong_note_played" from="GamePanel/GameViewportContainer/GameViewport/AsteroidManager" to="MIDIControlPanel/Control/MIDI Control" method="_on_asteroid_manager_wrong_note_played"]
 [connection signal="open_options_menu" from="GamePanel/MainMenu" to="GamePanel/OptionsMenu" method="_on_main_menu_open_options_menu"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="GamePanel/MainMenu" method="_on_start_game_button_pressed"]

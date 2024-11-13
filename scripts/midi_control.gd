@@ -3,7 +3,7 @@ class_name MidiControl extends Control
 ## SIGNALS
 signal note_pressed
 
-## EXPORT REFERENCES
+## EXPORT
 @export var midi_keys: Array[Node]
 
 ## VARIABLES
@@ -62,12 +62,30 @@ func get_key_from_pitch(_pitch: int) -> int:
 
 
 func update_key_state(_midi_key: Node2D, _state: bool) -> void:
+	#print(_midi_key, ", ", _state)
 	_midi_key.set_active(_state)
 	if _state:
 		active_midi_keys.append(_midi_key)
 	else:
 		if active_midi_keys.has(_midi_key):
 			active_midi_keys.erase(_midi_key)
+
+
+func _on_asteroid_manager_wrong_note_played(pitch: Variant) -> void:
+	var _suspended_keys: Array[Node] = []
+	
+	for _midi_key in active_midi_keys:
+		_suspended_keys.append(_midi_key)
+	
+	for _midi_key in _suspended_keys:
+		update_key_state(_midi_key, false)
+		
+	await get_tree().create_timer(2.0).timeout
+	
+	for _midi_key in _suspended_keys:
+		update_key_state(_midi_key, true)
+	
+	_suspended_keys.clear()
 
 
 func print_midi_event_properties(_event: InputEventMIDI) -> void:

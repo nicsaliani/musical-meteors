@@ -43,11 +43,12 @@ func _ready():
 	pitch_letter = PitchType.keys()[pitch_type]
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	modulate = Color.WHITE if active else Color.DIM_GRAY
 
 
 func call_key(_velocity: int, _message: int) -> void:
+	
 	if _velocity > 0 and _message == 9:
 		if keys_held == 0:
 			press()
@@ -55,7 +56,9 @@ func call_key(_velocity: int, _message: int) -> void:
 	elif _velocity == 0 or _message == 8:
 		if keys_held == 1:
 			release()
-		keys_held -=1
+		if keys_held > 0:
+			keys_held -=1
+	print("Keys held: ", keys_held)
 
 
 func press() -> void:
@@ -71,13 +74,14 @@ func release() -> void:
 
 func set_active(_active: bool) -> void:
 	#active = true if _active else false
+	keys_held = 0
 	if _active:
 		active = true
 	else:
 		active = false
+		
 		if is_pressed():
 			release()
-			keys_held = 0
 
 
 func is_active() -> bool:
