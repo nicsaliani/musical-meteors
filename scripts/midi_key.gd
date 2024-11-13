@@ -12,6 +12,8 @@ signal midi_key_pressed(pitch)
 ## EXPORT REFERENCES
 ## -------------------
 @export var pitch_type: PitchType
+@export var neutral_sound: AudioStreamWAV
+@export var bad_sound: AudioStreamWAV
 
 ## ENUMS
 ## -------------------

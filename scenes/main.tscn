@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://djrahedsf5gjh"]
+[gd_scene load_steps=81 format=3 uid="uid://djrahedsf5gjh"]
 
 [ext_resource type="Theme" uid="uid://bpx5awpyhikey" path="res://resources/theme_ui.tres" id="1_7fiqs"]
 [ext_resource type="Script" path="res://scripts/game_state_changer.gd" id="1_8dn71"]
@@ -17,7 +17,31 @@
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="12_cch8s"]
 [ext_resource type="Texture2D" uid="uid://dddwg3f4e0w84" path="res://assets/sprites/ui/panel_border.png" id="14_sv65g"]
 [ext_resource type="Texture2D" uid="uid://dk61yc3armx2y" path="res://assets/sprites/ui/musical_meteors_logo.png" id="15_5we14"]
+[ext_resource type="AudioStream" uid="uid://bmrxmvvg0oyg4" path="res://assets/sounds/key/neutral/key_neutral_c.wav" id="16_itvb5"]
 [ext_resource type="Script" path="res://scripts/score_panel.gd" id="17_1paut"]
+[ext_resource type="AudioStream" uid="uid://de5m8hebcr7h5" path="res://assets/sounds/key/bad/key_bad_c.wav" id="17_f5r68"]
+[ext_resource type="AudioStream" uid="uid://c02y845sxvj68" path="res://assets/sounds/key/neutral/key_neutral_cd.wav" id="19_toc4i"]
+[ext_resource type="AudioStream" uid="uid://qjs3qjefbp8n" path="res://assets/sounds/key/bad/key_bad_cd.wav" id="20_au0yv"]
+[ext_resource type="AudioStream" uid="uid://c084kbijdu5w8" path="res://assets/sounds/key/neutral/key_neutral_d.wav" id="21_aqbto"]
+[ext_resource type="AudioStream" uid="uid://hb3o1sy2inyg" path="res://assets/sounds/key/bad/key_bad_d.wav" id="22_wlyj5"]
+[ext_resource type="AudioStream" uid="uid://b7ko1bfpcqi54" path="res://assets/sounds/key/neutral/key_neutral_de.wav" id="23_rv1hj"]
+[ext_resource type="AudioStream" uid="uid://crcse4k34tdla" path="res://assets/sounds/key/bad/key_bad_de.wav" id="24_c4rai"]
+[ext_resource type="AudioStream" uid="uid://bhosk0km4hed0" path="res://assets/sounds/key/neutral/key_neutral_e.wav" id="25_qivs7"]
+[ext_resource type="AudioStream" uid="uid://ps70wetcvyob" path="res://assets/sounds/key/bad/key_bad_e.wav" id="26_06ja4"]
+[ext_resource type="AudioStream" uid="uid://v28t0u4a0evx" path="res://assets/sounds/key/neutral/key_neutral_f.wav" id="27_7w4lm"]
+[ext_resource type="AudioStream" uid="uid://djgfhudy3l1uq" path="res://assets/sounds/key/bad/key_bad_f.wav" id="28_uaskn"]
+[ext_resource type="AudioStream" uid="uid://bsv8futauim21" path="res://assets/sounds/key/neutral/key_neutral_fg.wav" id="29_vhopt"]
+[ext_resource type="AudioStream" uid="uid://dk3jnjcjq22xn" path="res://assets/sounds/key/bad/key_bad_fg.wav" id="30_2jp5e"]
+[ext_resource type="AudioStream" uid="uid://ddk0gwme5y5a" path="res://assets/sounds/key/neutral/key_neutral_g.wav" id="31_3jysw"]
+[ext_resource type="AudioStream" uid="uid://c15q8tqmn30oj" path="res://assets/sounds/key/bad/key_bad_g.wav" id="32_dsj3h"]
+[ext_resource type="AudioStream" uid="uid://byam4htofj5ub" path="res://assets/sounds/key/neutral/key_neutral_ga.wav" id="33_qvxbe"]
+[ext_resource type="AudioStream" uid="uid://bkjloii0au7in" path="res://assets/sounds/key/bad/key_bad_ga.wav" id="34_pljua"]
+[ext_resource type="AudioStream" uid="uid://dl6udhsmlpxp6" path="res://assets/sounds/key/neutral/key_neutral_a.wav" id="35_kpqxn"]
+[ext_resource type="AudioStream" uid="uid://by1jar0a6ef7q" path="res://assets/sounds/key/bad/key_bad_a.wav" id="36_vexrb"]
+[ext_resource type="AudioStream" uid="uid://djn3h2oj2qrfq" path="res://assets/sounds/key/neutral/key_neutral_ab.wav" id="37_voo3c"]
+[ext_resource type="AudioStream" uid="uid://bub3etrnue7wx" path="res://assets/sounds/key/bad/key_bad_ab.wav" id="38_ijvmu"]
+[ext_resource type="AudioStream" uid="uid://dxto0pi3mquia" path="res://assets/sounds/key/neutral/key_neutral_b.wav" id="39_wpl3q"]
+[ext_resource type="AudioStream" uid="uid://3gsip4gftxbr" path="res://assets/sounds/key/bad/key_bad_b.wav" id="40_esrd1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wovho"]
 outline_size = 4
@@ -810,6 +834,8 @@ metadata/_edit_use_anchors_ = true
 [node name="C Key" type="Node2D" parent="MIDIControlPanel/Control/MIDI Control"]
 position = Vector2(26, 66)
 script = ExtResource("6_h1jov")
+neutral_sound = ExtResource("16_itvb5")
+bad_sound = ExtResource("17_f5r68")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MIDIControlPanel/Control/MIDI Control/C Key"]
 sprite_frames = SubResource("SpriteFrames_dt0n1")
@@ -820,6 +846,8 @@ autoplay = "off"
 position = Vector2(49, 26)
 script = ExtResource("6_h1jov")
 pitch_type = 1
+neutral_sound = ExtResource("19_toc4i")
+bad_sound = ExtResource("20_au0yv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MIDIControlPanel/Control/MIDI Control/CD Key"]
 sprite_frames = SubResource("SpriteFrames_2eofh")
@@ -830,6 +858,8 @@ autoplay = "off"
 position = Vector2(82, 66)
 script = ExtResource("6_h1jov")
 pitch_type = 2
+neutral_sound = ExtResource("21_aqbto")
+bad_sound = ExtResource("22_wlyj5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MIDIControlPanel/Control/MIDI Control/D Key"]
 sprite_frames = SubResource("SpriteFrames_c7vt4")
@@ -840,6 +870,8 @@ autoplay = "off"
 position = Vector2(115, 32)
 script = ExtResource("6_h1jov")
 pitch_type = 3
+neutral_sound = ExtResource("23_rv1hj")
+bad_sound = ExtResource("24_c4rai")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MIDIControlPanel/Control/MIDI Control/DE Key"]
 position = Vector2(0, -6)
@@ -851,6 +883,8 @@ autoplay = "off"
 position = Vector2(138, 66)
 script = ExtResource("6_h1jov")
 pitch_type = 4
+neutral_sound = ExtResource("25_qivs7")
+bad_sound = ExtResource("26_06ja4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MIDIControlPanel/Control/MIDI Control/E Key"]
 sprite_frames = SubResource("SpriteFrames_0ypmk")
@@ -861,6 +895,8 @@ autoplay = "off"
 position = Vector2(194, 66)
 script = ExtResource("6_h1jov")
 pitch_type = 5
+neutral_sound = ExtResource("27_7w4lm")
+bad_sound = ExtResource("28_uaskn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MIDIControlPanel/Control/MIDI Control/F Key"]
 sprite_frames = SubResource("SpriteFrames_dmamq")
@@ -871,6 +907,8 @@ autoplay = "off"
 position = Vector2(215, 32)
 script = ExtResource("6_h1jov")
 pitch_type = 6
+neutral_sound = ExtResource("29_vhopt")
+bad_sound = ExtResource("30_2jp5e")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MIDIControlPanel/Control/MIDI Control/FG Key"]
 position = Vector2(0, -6)
@@ -882,6 +920,8 @@ autoplay = "off"
 position = Vector2(250, 66)
 script = ExtResource("6_h1jov")
 pitch_type = 7
+neutral_sound = ExtResource("31_3jysw")
+bad_sound = ExtResource("32_dsj3h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MIDIControlPanel/Control/MIDI Control/G Key"]
 sprite_frames = SubResource("SpriteFrames_ob2nf")
@@ -892,6 +932,8 @@ autoplay = "off"
 position = Vector2(278, 32)
 script = ExtResource("6_h1jov")
 pitch_type = 8
+neutral_sound = ExtResource("33_qvxbe")
+bad_sound = ExtResource("34_pljua")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MIDIControlPanel/Control/MIDI Control/GA Key"]
 position = Vector2(0, -6)
@@ -903,6 +945,8 @@ autoplay = "off"
 position = Vector2(306, 66)
 script = ExtResource("6_h1jov")
 pitch_type = 9
+neutral_sound = ExtResource("35_kpqxn")
+bad_sound = ExtResource("36_vexrb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MIDIControlPanel/Control/MIDI Control/A Key"]
 sprite_frames = SubResource("SpriteFrames_slbis")
@@ -913,6 +957,8 @@ autoplay = "off"
 position = Vector2(341, 32)
 script = ExtResource("6_h1jov")
 pitch_type = 10
+neutral_sound = ExtResource("37_voo3c")
+bad_sound = ExtResource("38_ijvmu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MIDIControlPanel/Control/MIDI Control/AB Key"]
 position = Vector2(0, -6)
@@ -924,6 +970,8 @@ autoplay = "off"
 position = Vector2(362, 66)
 script = ExtResource("6_h1jov")
 pitch_type = 11
+neutral_sound = ExtResource("39_wpl3q")
+bad_sound = ExtResource("40_esrd1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MIDIControlPanel/Control/MIDI Control/B Key"]
 sprite_frames = SubResource("SpriteFrames_7a3o2")
