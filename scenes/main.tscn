@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://djrahedsf5gjh"]
+[gd_scene load_steps=82 format=3 uid="uid://djrahedsf5gjh"]
 
 [ext_resource type="Theme" uid="uid://bpx5awpyhikey" path="res://resources/theme_ui.tres" id="1_7fiqs"]
 [ext_resource type="Script" path="res://scripts/game_state_changer.gd" id="1_8dn71"]
@@ -42,6 +42,7 @@
 [ext_resource type="AudioStream" uid="uid://bub3etrnue7wx" path="res://assets/sounds/key/bad/key_bad_ab.wav" id="38_ijvmu"]
 [ext_resource type="AudioStream" uid="uid://dxto0pi3mquia" path="res://assets/sounds/key/neutral/key_neutral_b.wav" id="39_wpl3q"]
 [ext_resource type="AudioStream" uid="uid://3gsip4gftxbr" path="res://assets/sounds/key/bad/key_bad_b.wav" id="40_esrd1"]
+[ext_resource type="Script" path="res://scripts/level_panel.gd" id="43_1slso"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wovho"]
 outline_size = 4
@@ -384,9 +385,9 @@ offset_bottom = 540.0
 texture = ExtResource("1_gfuek")
 
 [node name="GamePanel" type="NinePatchRect" parent="."]
-offset_left = 32.0
+offset_left = 50.0
 offset_top = 62.0
-offset_right = 448.0
+offset_right = 466.0
 offset_bottom = 478.0
 texture = ExtResource("14_sv65g")
 patch_margin_left = 8
@@ -446,13 +447,6 @@ offset_left = 200.0
 offset_top = 200.0
 offset_right = 200.0
 offset_bottom = 200.0
-
-[node name="ScorePopupLayer" type="Control" parent="GamePanel/GameViewportContainer/GameViewport"]
-unique_name_in_owner = true
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="MainMenu" type="Control" parent="GamePanel"]
 layout_mode = 1
@@ -791,9 +785,9 @@ text = "MAIN MENU
 "
 
 [node name="MIDIControlPanel" type="NinePatchRect" parent="."]
-offset_left = 512.0
+offset_left = 494.0
 offset_top = 302.0
-offset_right = 928.0
+offset_right = 910.0
 offset_bottom = 478.0
 theme = ExtResource("1_7fiqs")
 texture = ExtResource("14_sv65g")
@@ -1015,9 +1009,9 @@ autoplay = "off"
 bus = &"Sound"
 
 [node name="GameTimerPanel" type="NinePatchRect" parent="."]
-offset_left = 512.0
+offset_left = 494.0
 offset_top = 62.0
-offset_right = 598.0
+offset_right = 580.0
 offset_bottom = 113.0
 theme = ExtResource("1_7fiqs")
 texture = ExtResource("14_sv65g")
@@ -1046,9 +1040,10 @@ grow_vertical = 2
 [node name="GameTimerLabel" type="Label" parent="GameTimerPanel/Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.103448
+anchor_top = 0.189189
 anchor_right = 1.0
-anchor_bottom = 1.10345
+anchor_bottom = 1.18919
+offset_bottom = -9.00007
 grow_horizontal = 2
 grow_vertical = 2
 text = "0:00"
@@ -1060,9 +1055,9 @@ text_overrun_behavior = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="ScorePanel" type="NinePatchRect" parent="."]
-offset_left = 728.0
+offset_left = 596.0
 offset_top = 62.0
-offset_right = 928.0
+offset_right = 796.0
 offset_bottom = 113.0
 theme = ExtResource("1_7fiqs")
 texture = ExtResource("14_sv65g")
@@ -1104,6 +1099,72 @@ clip_text = true
 text_overrun_behavior = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="LevelPanel" type="NinePatchRect" parent="."]
+offset_left = 812.0
+offset_top = 62.0
+offset_right = 910.0
+offset_bottom = 113.0
+theme = ExtResource("1_7fiqs")
+texture = ExtResource("14_sv65g")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+script = ExtResource("43_1slso")
+
+[node name="Control" type="Control" parent="LevelPanel"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = -7.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LvLabel" type="Label" parent="LevelPanel/Control"]
+custom_minimum_size = Vector2(34, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0921052
+anchor_top = 0.189189
+anchor_right = 1.09211
+anchor_bottom = 1.18919
+offset_right = -38.0
+offset_bottom = -9.00007
+grow_horizontal = 2
+grow_vertical = 2
+text = "Lv."
+label_settings = SubResource("LabelSettings_n6koc")
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="LevelLabel" type="Label" parent="LevelPanel/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.523697
+anchor_top = 0.167641
+anchor_right = 0.523697
+anchor_bottom = 0.167641
+offset_left = 0.00941086
+offset_top = 0.797287
+offset_right = 40.0094
+offset_bottom = 28.7973
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+label_settings = SubResource("LabelSettings_n6koc")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 2
+metadata/_edit_use_anchors_ = true
+
 [connection signal="update_score" from="GamePanel/GameViewportContainer/GameViewport/AsteroidManager" to="ScorePanel" method="_on_asteroid_manager_update_score"]
 [connection signal="wrong_note_played" from="GamePanel/GameViewportContainer/GameViewport/AsteroidManager" to="GamePanel/NotifLabel" method="_on_asteroid_manager_wrong_note_played"]
 [connection signal="wrong_note_played" from="GamePanel/GameViewportContainer/GameViewport/AsteroidManager" to="MIDIControlPanel/Control/MIDI Control" method="_on_asteroid_manager_wrong_note_played"]
@@ -1113,6 +1174,7 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="GamePanel/NotifLabel" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="MIDIControlPanel/Control/MIDI Control" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="GameTimerPanel" method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="LevelPanel" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/OptionsButton" to="GamePanel/MainMenu" method="_on_options_button_pressed"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/QuitButton" to="GamePanel/MainMenu" method="_on_quit_button_pressed"]
 [connection signal="open_main_menu" from="GamePanel/OptionsMenu" to="GamePanel/MainMenu" method="_on_options_menu_open_main_menu"]
@@ -1133,3 +1195,4 @@ metadata/_edit_use_anchors_ = true
 [connection signal="level_up" from="ScorePanel" to="GamePanel/GameViewportContainer/GameViewport/AsteroidManager" method="_on_score_panel_level_up"]
 [connection signal="level_up" from="ScorePanel" to="MIDIControlPanel/Control/MIDI Control" method="_on_score_panel_level_up"]
 [connection signal="level_up" from="ScorePanel" to="GameTimerPanel" method="_on_score_panel_level_up"]
+[connection signal="level_up" from="ScorePanel" to="LevelPanel" method="_on_score_panel_level_up"]
