@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://djrahedsf5gjh"]
+[gd_scene load_steps=83 format=3 uid="uid://djrahedsf5gjh"]
 
 [ext_resource type="Theme" uid="uid://bpx5awpyhikey" path="res://resources/theme_ui.tres" id="1_7fiqs"]
 [ext_resource type="Script" path="res://scripts/game_state_changer.gd" id="1_8dn71"]
@@ -373,6 +373,10 @@ animations = [{
 }]
 
 [sub_resource type="LabelSettings" id="LabelSettings_n6koc"]
+font = ExtResource("10_jrjda")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_6ladj"]
 font = ExtResource("10_jrjda")
 font_size = 32
 
@@ -1158,7 +1162,7 @@ offset_bottom = 28.7973
 grow_horizontal = 2
 grow_vertical = 2
 text = "1"
-label_settings = SubResource("LabelSettings_n6koc")
+label_settings = SubResource("LabelSettings_6ladj")
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
@@ -1193,6 +1197,7 @@ metadata/_edit_use_anchors_ = true
 [connection signal="game_over" from="GameTimerPanel" to="GamePanel/NotifLabel" method="_on_game_timer_panel_game_over"]
 [connection signal="timeout" from="GameTimerPanel/Timer" to="GameTimerPanel" method="_on_timer_timeout"]
 [connection signal="level_up" from="ScorePanel" to="GamePanel/GameViewportContainer/GameViewport/AsteroidManager" method="_on_score_panel_level_up"]
+[connection signal="level_up" from="ScorePanel" to="GamePanel/NotifLabel" method="_on_score_panel_level_up"]
 [connection signal="level_up" from="ScorePanel" to="MIDIControlPanel/Control/MIDI Control" method="_on_score_panel_level_up"]
 [connection signal="level_up" from="ScorePanel" to="GameTimerPanel" method="_on_score_panel_level_up"]
 [connection signal="level_up" from="ScorePanel" to="LevelPanel" method="_on_score_panel_level_up"]

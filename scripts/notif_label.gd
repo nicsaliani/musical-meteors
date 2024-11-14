@@ -40,6 +40,15 @@ func _on_asteroid_manager_wrong_note_played(pitch) -> void:
 	)
 
 
+func _on_score_panel_level_up(level: Variant) -> void:
+	show_notif(
+		"LEVEL UP!\n New key unlocked.",
+		2.0,
+		16,
+		Color.YELLOW
+	)
+
+
 func _on_notif_timer_timeout() -> void:
 	hide_notif()
 
