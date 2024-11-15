@@ -27,10 +27,8 @@ func _on_timer_timeout() -> void:
 func _on_score_panel_level_up(level: Variant) -> void:
 	if level < 5:
 		update_game_timer(15)
-	elif level < 8:
-		update_game_timer(30)
 	else:
-		update_game_timer(45)
+		update_game_timer(30)
 
 
 func update_game_timer(seconds: int) -> void:

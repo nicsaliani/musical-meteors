@@ -33,14 +33,14 @@ func _on_game_timer_panel_game_over() -> void:
 
 func _on_asteroid_manager_wrong_note_played(pitch) -> void:
 	show_notif(
-		"No meteor matching key: " + str(pitch),
+		"No " + str(pitch) + " meteor.",
 		2.0,
 		16,
 		Color.RED
 	)
 
 
-func _on_score_panel_level_up(level: Variant) -> void:
+func _on_score_panel_level_up(_level: Variant) -> void:
 	show_notif(
 		"LEVEL UP!\n New key unlocked.",
 		2.0,

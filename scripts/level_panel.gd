@@ -5,7 +5,6 @@ class_name LevelPanel extends Control
 
 
 ## FUNCTIONS
-
 func _ready() -> void:
 	level_label.text = "0"
 

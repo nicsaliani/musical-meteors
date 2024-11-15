@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://dkfllk3hbjb5q" path="res://assets/fonts/m6x11.ttf" id="1_imdsn"]
 [ext_resource type="Script" path="res://scripts/score_popup.gd" id="2_gkkga"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_ykm3q"]
+[sub_resource type="LabelSettings" id="LabelSettings_o4voe"]
 line_spacing = 0.0
 font = ExtResource("1_imdsn")
 outline_size = 4
@@ -15,7 +15,7 @@ shadow_size = 0
 offset_right = 1.0
 offset_bottom = 14.0
 theme = ExtResource("1_fuhjk")
-label_settings = SubResource("LabelSettings_ykm3q")
+label_settings = SubResource("LabelSettings_o4voe")
 horizontal_alignment = 1
 script = ExtResource("2_gkkga")
 

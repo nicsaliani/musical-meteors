@@ -388,6 +388,20 @@ offset_right = 960.0
 offset_bottom = 540.0
 texture = ExtResource("1_gfuek")
 
+[node name="EscPauseLabel" type="Label" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 511.0
+offset_right = 137.0
+offset_bottom = 539.0
+grow_vertical = 0
+theme = ExtResource("1_7fiqs")
+theme_override_font_sizes/font_size = 16
+text = "ESC: Pause/Unpause"
+vertical_alignment = 1
+
 [node name="GamePanel" type="NinePatchRect" parent="."]
 offset_left = 50.0
 offset_top = 62.0

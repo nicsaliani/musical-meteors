@@ -234,11 +234,9 @@ func spawn_meteor_explosion_particles() -> void:
 func spawn_score_popup() -> void:
 	# Spawn a score popup.
 	var _score_popup = score_popup.instantiate()
-	print(_score_popup.size.x, " ", _score_popup.size.y)
 	_score_popup.text = str(points)
 
 	particle_layer.add_child(_score_popup)
-	print(_score_popup.size.x, " ", _score_popup.size.y)
 	_score_popup.position = position - Vector2(
 			_score_popup.size.x / 2,
 			_score_popup.size.y / 2,
