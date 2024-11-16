@@ -3,9 +3,12 @@ class_name ScorePanel extends Control
 ## SIGNALS
 signal level_up(level)
 
+@export var level_up_sounds: Dictionary = {}
+
 ## ON-READY REFERENCES
 @onready var asteroid_manager: AsteroidManager = %"AsteroidManager"
 @onready var score_label: Label = $Control/ScoreLabel
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 ## VARIABLES
 var score: int = 0
@@ -22,6 +25,7 @@ var level_thresholds: Array[int] = [
 	9000,
 	10000
 ]
+
 
 ## FUNCTIONS
 func _process(_delta: float) -> void:
@@ -60,8 +64,13 @@ func check_for_level_up(_score) -> void:
 		set_level(10)
 
 
+func play_level_up_sound(_sound: int) -> void:
+	audio_stream_player.stream = preload("res://assets/sounds/level_up/level_up_f.wav")
+	audio_stream_player.play()
+
+
 func set_level(_new_level: int) -> void:
 	if level < _new_level:
 		level = _new_level
 		level_up.emit(level)
-		print("Level Up! " + str(level))
+		play_level_up_sound(_new_level - 2)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://djrahedsf5gjh"]
+[gd_scene load_steps=86 format=3 uid="uid://djrahedsf5gjh"]
 
 [ext_resource type="Theme" uid="uid://bpx5awpyhikey" path="res://resources/theme_ui.tres" id="1_7fiqs"]
 [ext_resource type="Script" path="res://scripts/game_state_changer.gd" id="1_8dn71"]
@@ -42,6 +42,8 @@
 [ext_resource type="AudioStream" uid="uid://bub3etrnue7wx" path="res://assets/sounds/key/bad/key_bad_ab.wav" id="38_ijvmu"]
 [ext_resource type="AudioStream" uid="uid://dxto0pi3mquia" path="res://assets/sounds/key/neutral/key_neutral_b.wav" id="39_wpl3q"]
 [ext_resource type="AudioStream" uid="uid://3gsip4gftxbr" path="res://assets/sounds/key/bad/key_bad_b.wav" id="40_esrd1"]
+[ext_resource type="AudioStream" uid="uid://bagvq8ctx43fn" path="res://assets/music/game_over.ogg" id="42_s0wqr"]
+[ext_resource type="AudioStream" uid="uid://dqqsgyqwmoeni" path="res://assets/sounds/level_up/level_up_f.wav" id="43_1ecr7"]
 [ext_resource type="Script" path="res://scripts/level_panel.gd" id="43_1slso"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wovho"]
@@ -375,6 +377,8 @@ animations = [{
 [sub_resource type="LabelSettings" id="LabelSettings_n6koc"]
 font = ExtResource("10_jrjda")
 font_size = 32
+
+[sub_resource type="AudioStream" id="AudioStream_3t51l"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6ladj"]
 font = ExtResource("10_jrjda")
@@ -854,7 +858,8 @@ sprite_frames = SubResource("SpriteFrames_dt0n1")
 animation = &"off"
 autoplay = "off"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MIDIControlPanel/Control/MIDI Control/C Key"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MIDIControlPanel/Control/MIDI Control/C Key"]
+stream = ExtResource("16_itvb5")
 bus = &"Sound"
 
 [node name="CD Key" type="Node2D" parent="MIDIControlPanel/Control/MIDI Control"]
@@ -869,7 +874,8 @@ sprite_frames = SubResource("SpriteFrames_2eofh")
 animation = &"off"
 autoplay = "off"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MIDIControlPanel/Control/MIDI Control/CD Key"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MIDIControlPanel/Control/MIDI Control/CD Key"]
+stream = ExtResource("19_toc4i")
 bus = &"Sound"
 
 [node name="D Key" type="Node2D" parent="MIDIControlPanel/Control/MIDI Control"]
@@ -884,7 +890,8 @@ sprite_frames = SubResource("SpriteFrames_c7vt4")
 animation = &"off"
 autoplay = "off"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MIDIControlPanel/Control/MIDI Control/D Key"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MIDIControlPanel/Control/MIDI Control/D Key"]
+stream = ExtResource("21_aqbto")
 bus = &"Sound"
 
 [node name="DE Key" type="Node2D" parent="MIDIControlPanel/Control/MIDI Control"]
@@ -900,7 +907,8 @@ sprite_frames = SubResource("SpriteFrames_aridw")
 animation = &"off"
 autoplay = "off"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MIDIControlPanel/Control/MIDI Control/DE Key"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MIDIControlPanel/Control/MIDI Control/DE Key"]
+stream = ExtResource("23_rv1hj")
 bus = &"Sound"
 
 [node name="E Key" type="Node2D" parent="MIDIControlPanel/Control/MIDI Control"]
@@ -915,7 +923,8 @@ sprite_frames = SubResource("SpriteFrames_0ypmk")
 animation = &"off"
 autoplay = "off"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MIDIControlPanel/Control/MIDI Control/E Key"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MIDIControlPanel/Control/MIDI Control/E Key"]
+stream = ExtResource("25_qivs7")
 bus = &"Sound"
 
 [node name="F Key" type="Node2D" parent="MIDIControlPanel/Control/MIDI Control"]
@@ -930,7 +939,8 @@ sprite_frames = SubResource("SpriteFrames_dmamq")
 animation = &"off"
 autoplay = "off"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MIDIControlPanel/Control/MIDI Control/F Key"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MIDIControlPanel/Control/MIDI Control/F Key"]
+stream = ExtResource("27_7w4lm")
 bus = &"Sound"
 
 [node name="FG Key" type="Node2D" parent="MIDIControlPanel/Control/MIDI Control"]
@@ -946,7 +956,8 @@ sprite_frames = SubResource("SpriteFrames_d5bae")
 animation = &"off"
 autoplay = "off"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MIDIControlPanel/Control/MIDI Control/FG Key"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MIDIControlPanel/Control/MIDI Control/FG Key"]
+stream = ExtResource("29_vhopt")
 bus = &"Sound"
 
 [node name="G Key" type="Node2D" parent="MIDIControlPanel/Control/MIDI Control"]
@@ -961,7 +972,8 @@ sprite_frames = SubResource("SpriteFrames_ob2nf")
 animation = &"off"
 autoplay = "off"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MIDIControlPanel/Control/MIDI Control/G Key"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MIDIControlPanel/Control/MIDI Control/G Key"]
+stream = ExtResource("31_3jysw")
 bus = &"Sound"
 
 [node name="GA Key" type="Node2D" parent="MIDIControlPanel/Control/MIDI Control"]
@@ -977,7 +989,8 @@ sprite_frames = SubResource("SpriteFrames_6p0kb")
 animation = &"off"
 autoplay = "off"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MIDIControlPanel/Control/MIDI Control/GA Key"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MIDIControlPanel/Control/MIDI Control/GA Key"]
+stream = ExtResource("33_qvxbe")
 bus = &"Sound"
 
 [node name="A Key" type="Node2D" parent="MIDIControlPanel/Control/MIDI Control"]
@@ -992,7 +1005,8 @@ sprite_frames = SubResource("SpriteFrames_slbis")
 animation = &"off"
 autoplay = "off"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MIDIControlPanel/Control/MIDI Control/A Key"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MIDIControlPanel/Control/MIDI Control/A Key"]
+stream = ExtResource("35_kpqxn")
 bus = &"Sound"
 
 [node name="AB Key" type="Node2D" parent="MIDIControlPanel/Control/MIDI Control"]
@@ -1008,7 +1022,8 @@ sprite_frames = SubResource("SpriteFrames_4nyf2")
 animation = &"off"
 autoplay = "off"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MIDIControlPanel/Control/MIDI Control/AB Key"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MIDIControlPanel/Control/MIDI Control/AB Key"]
+stream = ExtResource("37_voo3c")
 bus = &"Sound"
 
 [node name="B Key" type="Node2D" parent="MIDIControlPanel/Control/MIDI Control"]
@@ -1023,7 +1038,8 @@ sprite_frames = SubResource("SpriteFrames_7a3o2")
 animation = &"off"
 autoplay = "off"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MIDIControlPanel/Control/MIDI Control/B Key"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MIDIControlPanel/Control/MIDI Control/B Key"]
+stream = ExtResource("39_wpl3q")
 bus = &"Sound"
 
 [node name="GameTimerPanel" type="NinePatchRect" parent="."]
@@ -1072,6 +1088,10 @@ clip_text = true
 text_overrun_behavior = 2
 metadata/_edit_use_anchors_ = true
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameTimerPanel"]
+stream = ExtResource("42_s0wqr")
+bus = &"Music"
+
 [node name="ScorePanel" type="NinePatchRect" parent="."]
 offset_left = 596.0
 offset_top = 62.0
@@ -1084,6 +1104,13 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 script = ExtResource("17_1paut")
+level_up_sounds = {
+0: SubResource("AudioStream_3t51l")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ScorePanel"]
+stream = ExtResource("43_1ecr7")
+bus = &"Sound"
 
 [node name="Control" type="Control" parent="ScorePanel"]
 clip_contents = true

@@ -6,6 +6,8 @@ signal game_over
 ## ON-READY REFERENCES
 @onready var timer: Timer = $Timer
 @onready var game_timer_label: Label = $Control/GameTimerLabel
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+
 
 ## VARIABLES
 @export var start_time := 0
@@ -42,5 +44,6 @@ func update_game_timer(seconds: int) -> void:
 	else:
 		# TODO: Send game_over signal
 		game_timer_label.text = "TIME!"
+		audio_stream_player.play()
 		timer.stop()
 		game_over.emit()
