@@ -396,15 +396,33 @@ texture = ExtResource("1_gfuek")
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 9.0
-offset_top = 511.0
-offset_right = 137.0
-offset_bottom = 539.0
+offset_left = 633.0
+offset_top = 139.0
+offset_right = 761.0
+offset_bottom = 167.0
 grow_vertical = 0
 theme = ExtResource("1_7fiqs")
 theme_override_font_sizes/font_size = 16
 text = "ESC: Pause/Unpause"
 vertical_alignment = 1
+
+[node name="MIDIWarningLabel" type="Label" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 539.0
+offset_top = 180.0
+offset_right = 867.0
+offset_bottom = 279.0
+grow_vertical = 0
+theme = ExtResource("1_7fiqs")
+theme_override_font_sizes/font_size = 16
+text = "WARNING: If you disconnect your MIDI device while the game is running, it cannot be reconnected until you restart the game. 
+
+Make sure your MIDI device is connected before you start the game."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="GamePanel" type="NinePatchRect" parent="."]
 offset_left = 50.0
@@ -526,7 +544,6 @@ theme = ExtResource("1_7fiqs")
 text = "QUIT"
 
 [node name="OptionsMenu" type="Panel" parent="GamePanel"]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.017
@@ -584,38 +601,17 @@ layout_mode = 2
 text = "DISPLAY"
 horizontal_alignment = 1
 
-[node name="ResolutionContainer" type="HBoxContainer" parent="GamePanel/OptionsMenu/DisplayContainer"]
+[node name="ScreenModeContainer" type="HBoxContainer" parent="GamePanel/OptionsMenu/DisplayContainer"]
 layout_mode = 2
 size_flags_stretch_ratio = 11.85
 
-[node name="ResolutionLabel" type="Label" parent="GamePanel/OptionsMenu/DisplayContainer/ResolutionContainer"]
+[node name="ScreenModeLabel" type="Label" parent="GamePanel/OptionsMenu/DisplayContainer/ScreenModeContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Resolution
+text = "Screen Mode
 "
 
-[node name="ResolutionOptionButton" type="OptionButton" parent="GamePanel/OptionsMenu/DisplayContainer/ResolutionContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-toggle_mode = false
-selected = 0
-fit_to_longest_item = false
-item_count = 2
-popup/item_0/text = "960 x 540"
-popup/item_1/text = "1920 x 1080"
-popup/item_1/id = 1
-
-[node name="ScreenContainer" type="HBoxContainer" parent="GamePanel/OptionsMenu/DisplayContainer"]
-layout_mode = 2
-size_flags_stretch_ratio = 11.85
-
-[node name="ScreenLabel" type="Label" parent="GamePanel/OptionsMenu/DisplayContainer/ScreenContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Screen
-"
-
-[node name="ScreenOptionButton" type="OptionButton" parent="GamePanel/OptionsMenu/DisplayContainer/ScreenContainer"]
+[node name="ScreenModeOptionButton" type="OptionButton" parent="GamePanel/OptionsMenu/DisplayContainer/ScreenModeContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 selected = 0
@@ -627,6 +623,28 @@ popup/item_2/text = "Fullscreen"
 popup/item_2/id = 2
 popup/item_3/text = "Fullscreen (Exc.)"
 popup/item_3/id = 3
+
+[node name="WindowSizeContainer" type="HBoxContainer" parent="GamePanel/OptionsMenu/DisplayContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 11.85
+
+[node name="WindowSizeLabel" type="Label" parent="GamePanel/OptionsMenu/DisplayContainer/WindowSizeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Window Size"
+
+[node name="WindowSizeOptionButton" type="OptionButton" parent="GamePanel/OptionsMenu/DisplayContainer/WindowSizeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = false
+selected = 0
+fit_to_longest_item = false
+item_count = 3
+popup/item_0/text = "960 x 540"
+popup/item_1/text = "1920 x 1080"
+popup/item_1/id = 1
+popup/item_2/text = "Fit to Screen"
+popup/item_2/id = 2
 
 [node name="AudioContainer" type="VBoxContainer" parent="GamePanel/OptionsMenu"]
 layout_mode = 1
@@ -1224,6 +1242,7 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/QuitButton" to="GamePanel/MainMenu" method="_on_quit_button_pressed"]
 [connection signal="open_main_menu" from="GamePanel/OptionsMenu" to="GamePanel/MainMenu" method="_on_options_menu_open_main_menu"]
 [connection signal="pressed" from="GamePanel/OptionsMenu/BackButton" to="GamePanel/OptionsMenu" method="_on_back_button_pressed"]
+[connection signal="item_selected" from="GamePanel/OptionsMenu/DisplayContainer/WindowSizeContainer/WindowSizeOptionButton" to="GamePanel/OptionsMenu/DisplayContainer/WindowSizeContainer/WindowSizeOptionButton" method="_on_item_selected"]
 [connection signal="value_changed" from="GamePanel/OptionsMenu/AudioContainer/MasterContainer/MasterSlider" to="GamePanel/OptionsMenu" method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="GamePanel/OptionsMenu/AudioContainer/MusicContainer/MusicSlider" to="GamePanel/OptionsMenu" method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="GamePanel/OptionsMenu/AudioContainer/SoundContainer/SoundSlider" to="GamePanel/OptionsMenu" method="_on_sound_slider_value_changed"]
