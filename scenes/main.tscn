@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://djrahedsf5gjh"]
+[gd_scene load_steps=88 format=3 uid="uid://djrahedsf5gjh"]
 
 [ext_resource type="Theme" uid="uid://bpx5awpyhikey" path="res://resources/theme_ui.tres" id="1_7fiqs"]
 [ext_resource type="Script" path="res://scripts/game_state_changer.gd" id="1_8dn71"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://scripts/window_size_option_button.gd" id="10_52ck8"]
 [ext_resource type="Script" path="res://scripts/volume_slider.gd" id="10_gf516"]
 [ext_resource type="FontFile" uid="uid://dkfllk3hbjb5q" path="res://assets/fonts/m6x11.ttf" id="10_jrjda"]
+[ext_resource type="Script" path="res://scripts/screen_mode_option_button.gd" id="10_mrgy5"]
 [ext_resource type="Script" path="res://scripts/game_timer.gd" id="12_caqtw"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="12_cch8s"]
 [ext_resource type="Texture2D" uid="uid://dddwg3f4e0w84" path="res://assets/sprites/ui/panel_border.png" id="14_sv65g"]
@@ -624,6 +625,7 @@ popup/item_2/text = "Fullscreen"
 popup/item_2/id = 2
 popup/item_3/text = "Fullscreen (Exc.)"
 popup/item_3/id = 3
+script = ExtResource("10_mrgy5")
 
 [node name="WindowSizeContainer" type="HBoxContainer" parent="GamePanel/OptionsMenu/DisplayContainer"]
 layout_mode = 2
@@ -1244,6 +1246,7 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/QuitButton" to="GamePanel/MainMenu" method="_on_quit_button_pressed"]
 [connection signal="open_main_menu" from="GamePanel/OptionsMenu" to="GamePanel/MainMenu" method="_on_options_menu_open_main_menu"]
 [connection signal="pressed" from="GamePanel/OptionsMenu/BackButton" to="GamePanel/OptionsMenu" method="_on_back_button_pressed"]
+[connection signal="item_selected" from="GamePanel/OptionsMenu/DisplayContainer/ScreenModeContainer/ScreenModeOptionButton" to="GamePanel/OptionsMenu/DisplayContainer/ScreenModeContainer/ScreenModeOptionButton" method="_on_item_selected"]
 [connection signal="item_selected" from="GamePanel/OptionsMenu/DisplayContainer/WindowSizeContainer/WindowSizeOptionButton" to="GamePanel/OptionsMenu/DisplayContainer/WindowSizeContainer/WindowSizeOptionButton" method="_on_item_selected"]
 [connection signal="value_changed" from="GamePanel/OptionsMenu/AudioContainer/MasterContainer/MasterSlider" to="GamePanel/OptionsMenu" method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="GamePanel/OptionsMenu/AudioContainer/MusicContainer/MusicSlider" to="GamePanel/OptionsMenu" method="_on_music_slider_value_changed"]
