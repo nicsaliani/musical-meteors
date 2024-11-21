@@ -30,12 +30,12 @@ func _on_back_button_pressed() -> void:
 
 # SIGNAL: On Slider Value Changed
 func _on_master_slider_value_changed(value: float) -> void:
-	master_percent_label.text = str(value) + "%"
+	master_percent_label.text = str(value * 100) + "%"
 
 
 func _on_music_slider_value_changed(value: float) -> void:
-	music_percent_label.text = str(value) + "%"
+	music_percent_label.text = str(value * 100) + "%"
 
 
 func _on_sound_slider_value_changed(value: float) -> void:
-	sound_percent_label.text = str(value) + "%"
+	sound_percent_label.text = str(value * 100) + "%"
