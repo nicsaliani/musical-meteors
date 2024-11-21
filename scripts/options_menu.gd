@@ -9,12 +9,14 @@ signal open_main_menu()
 @onready var music_percent_label: Label = $AudioContainer/MusicContainer/MusicPercentLabel
 @onready var sound_percent_label: Label = $AudioContainer/SoundContainer/SoundPercentLabel
 
+
 ## VARIABLES
 
 
 ## FUNCTIONS
 func _ready() -> void:
 	hide()
+	
 
 
 # SIGNAL: On Options Menu Opened

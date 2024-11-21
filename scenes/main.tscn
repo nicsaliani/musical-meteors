@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://djrahedsf5gjh"]
+[gd_scene load_steps=89 format=3 uid="uid://djrahedsf5gjh"]
 
 [ext_resource type="Theme" uid="uid://bpx5awpyhikey" path="res://resources/theme_ui.tres" id="1_7fiqs"]
 [ext_resource type="Script" path="res://scripts/game_state_changer.gd" id="1_8dn71"]
@@ -47,6 +47,7 @@
 [ext_resource type="AudioStream" uid="uid://bagvq8ctx43fn" path="res://assets/music/game_over.ogg" id="42_s0wqr"]
 [ext_resource type="AudioStream" uid="uid://dqqsgyqwmoeni" path="res://assets/sounds/level_up/level_up_f.wav" id="43_1ecr7"]
 [ext_resource type="Script" path="res://scripts/level_panel.gd" id="43_1slso"]
+[ext_resource type="AudioStream" uid="uid://cqim27bn1njph" path="res://assets/music/main_menu.mp3" id="48_qi1x3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wovho"]
 outline_size = 4
@@ -683,7 +684,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme = ExtResource("1_7fiqs")
-step = 5.0
+value = 50.0
 rounded = true
 script = ExtResource("10_gf516")
 bus_name = "Master"
@@ -710,7 +711,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme = ExtResource("1_7fiqs")
-step = 5.0
+value = 50.0
 rounded = true
 script = ExtResource("10_gf516")
 bus_name = "Music"
@@ -737,7 +738,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme = ExtResource("1_7fiqs")
-step = 5.0
+value = 50.0
 rounded = true
 script = ExtResource("10_gf516")
 bus_name = "Sound"
@@ -1231,6 +1232,10 @@ vertical_alignment = 1
 clip_text = true
 text_overrun_behavior = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("48_qi1x3")
+autoplay = true
 
 [connection signal="update_score" from="GamePanel/GameViewportContainer/GameViewport/AsteroidManager" to="ScorePanel" method="_on_asteroid_manager_update_score"]
 [connection signal="wrong_note_played" from="GamePanel/GameViewportContainer/GameViewport/AsteroidManager" to="GamePanel/NotifLabel" method="_on_asteroid_manager_wrong_note_played"]
