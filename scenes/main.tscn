@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://djrahedsf5gjh"]
+[gd_scene load_steps=93 format=3 uid="uid://djrahedsf5gjh"]
 
 [ext_resource type="Theme" uid="uid://bpx5awpyhikey" path="res://resources/theme_ui.tres" id="1_7fiqs"]
 [ext_resource type="Script" path="res://scripts/game_state_changer.gd" id="1_8dn71"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://dba4iwtcjh5q" path="res://assets/sprites/ui/key_sheet.png" id="7_fotnd"]
 [ext_resource type="Script" path="res://scripts/options_menu.gd" id="8_3mtp1"]
 [ext_resource type="Script" path="res://scripts/notif_label.gd" id="8_6ttmo"]
+[ext_resource type="Script" path="res://scripts/ui_button.gd" id="9_55opb"]
+[ext_resource type="AudioStream" uid="uid://dg0tx7iq6s0w0" path="res://assets/sounds/ui/ui_button_select.wav" id="10_4hcjt"]
 [ext_resource type="Script" path="res://scripts/window_size_option_button.gd" id="10_52ck8"]
 [ext_resource type="Script" path="res://scripts/volume_slider.gd" id="10_gf516"]
 [ext_resource type="FontFile" uid="uid://dkfllk3hbjb5q" path="res://assets/fonts/m6x11.ttf" id="10_jrjda"]
@@ -535,18 +537,33 @@ layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_7fiqs")
 text = "START GAME"
+script = ExtResource("9_55opb")
+sound_on_click = ExtResource("10_4hcjt")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GamePanel/MainMenu/MenuButtonContainer/StartGameButton"]
+bus = &"Sound"
 
 [node name="OptionsButton" type="Button" parent="GamePanel/MainMenu/MenuButtonContainer"]
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_7fiqs")
 text = "OPTIONS"
+script = ExtResource("9_55opb")
+sound_on_click = ExtResource("10_4hcjt")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GamePanel/MainMenu/MenuButtonContainer/OptionsButton"]
+bus = &"Sound"
 
 [node name="QuitButton" type="Button" parent="GamePanel/MainMenu/MenuButtonContainer"]
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_7fiqs")
 text = "QUIT"
+script = ExtResource("9_55opb")
+sound_on_click = ExtResource("10_4hcjt")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GamePanel/MainMenu/MenuButtonContainer/QuitButton"]
+bus = &"Sound"
 
 [node name="OptionsMenu" type="Panel" parent="GamePanel"]
 layout_mode = 1
@@ -1079,7 +1096,7 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 script = ExtResource("12_caqtw")
-start_time = 5
+start_time = 60
 
 [node name="Timer" type="Timer" parent="GameTimerPanel"]
 
@@ -1248,13 +1265,16 @@ game_music = ExtResource("50_cdmja")
 [connection signal="open_options_menu" from="GamePanel/MainMenu" to="GamePanel/OptionsMenu" method="_on_main_menu_open_options_menu"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="GamePanel/MainMenu" method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" method="_on_pressed"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="GamePanel/NotifLabel" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="MIDIControlPanel/Control/MIDI Control" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="GameTimerPanel" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="LevelPanel" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="MusicPlayer" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/OptionsButton" to="GamePanel/MainMenu" method="_on_options_button_pressed"]
+[connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/OptionsButton" to="GamePanel/MainMenu/MenuButtonContainer/OptionsButton" method="_on_pressed"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/QuitButton" to="GamePanel/MainMenu" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/QuitButton" to="GamePanel/MainMenu/MenuButtonContainer/QuitButton" method="_on_pressed"]
 [connection signal="open_main_menu" from="GamePanel/OptionsMenu" to="GamePanel/MainMenu" method="_on_options_menu_open_main_menu"]
 [connection signal="pressed" from="GamePanel/OptionsMenu/BackButton" to="GamePanel/OptionsMenu" method="_on_back_button_pressed"]
 [connection signal="item_selected" from="GamePanel/OptionsMenu/DisplayContainer/ScreenModeContainer/ScreenModeOptionButton" to="GamePanel/OptionsMenu/DisplayContainer/ScreenModeContainer/ScreenModeOptionButton" method="_on_item_selected"]

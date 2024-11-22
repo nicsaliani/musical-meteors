@@ -41,3 +41,7 @@ one_shot = true
 explosiveness = 1.0
 fixed_fps = 0
 script = ExtResource("2_hyey4")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -3.044
+bus = &"Sound"
