@@ -2,6 +2,7 @@ class_name NotifLabel extends Label
 
 ## SIGNALS
 signal start_game
+signal game_ended
 
 ## ENUMS
 enum NotifEffect {
@@ -29,6 +30,8 @@ func _on_game_timer_panel_game_over() -> void:
 		3.0, 
 		32
 	)
+	await get_tree().create_timer(3.0).timeout
+	game_ended.emit()
 
 
 func _on_asteroid_manager_wrong_note_played(pitch) -> void:
