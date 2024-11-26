@@ -32,6 +32,11 @@ func _process(_delta: float) -> void:
 	score_label.text = "SCORE: " + str(score)
 
 
+func _on_start_game_button_pressed() -> void:
+	score = 0
+	level = 1
+
+
 func _on_asteroid_manager_update_score(points: Variant) -> void:
 	update_score(points)
 

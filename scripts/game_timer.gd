@@ -43,6 +43,7 @@ func update_game_timer(seconds: int) -> void:
 		game_timer_label.text = digit_minute + ":" + digit_second_tens + digit_second_ones
 	else:
 		# TODO: Send game_over signal
+		current_time = 0
 		game_timer_label.text = "TIME!"
 		audio_stream_player.play()
 		timer.stop()

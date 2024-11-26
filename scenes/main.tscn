@@ -487,7 +487,7 @@ script = ExtResource("3_usteg")
 metadata/_edit_use_anchors_ = true
 
 [node name="AsteroidSpawnTimer" type="Timer" parent="GamePanel/GameViewportContainer/GameViewport/AsteroidManager"]
-wait_time = 3.0
+wait_time = 2.5
 
 [node name="ParticleLayer" type="Control" parent="GamePanel/GameViewportContainer/GameViewport"]
 unique_name_in_owner = true
@@ -1224,7 +1224,7 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 script = ExtResource("12_caqtw")
-start_time = 5
+start_time = 60
 
 [node name="Timer" type="Timer" parent="GameTimerPanel"]
 
@@ -1422,8 +1422,10 @@ game_music = ExtResource("50_cdmja")
 [connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/StartGameButton" to="GamePanel/NotifLabel" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/StartGameButton" to="MIDIControlPanel/Control/MIDI Control" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/StartGameButton" to="GameTimerPanel" method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/StartGameButton" to="ScorePanel" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/StartGameButton" to="LevelPanel" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/StartGameButton" to="MusicPlayer" method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/StartGameButton" to="GamePanel/GameOverMenu" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/StartGameButton" to="GamePanel/GameOverMenu/GameOverMenuButtonContainer/StartGameButton" method="_on_pressed"]
 [connection signal="game_over" from="GameTimerPanel" to="." method="_on_game_timer_panel_game_over"]
 [connection signal="game_over" from="GameTimerPanel" to="GamePanel/GameViewportContainer/GameViewport/AsteroidManager" method="_on_game_timer_panel_game_over"]

@@ -192,9 +192,9 @@ func split_asteroid(_pos: Vector2, _size: Asteroid.SizeType):
 
 func clear_all_asteroids() -> void:
 	for _asteroid in asteroids_on_screen:
-		await get_tree().create_timer(0.1).timeout
 		asteroids_on_screen[_asteroid].clear_with_explosion_effects()
-
+		await get_tree().create_timer(0.1).timeout
+	asteroids_on_screen.clear()
 
 
 func _on_score_panel_level_up(level: Variant) -> void:

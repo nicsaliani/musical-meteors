@@ -84,6 +84,7 @@ func restart_notif_timer(_duration: float) -> void:
 
 
 func start_game_countdown() -> void:
+	label_settings.font_size = 16
 	show()
 	
 	for i in range(4):
