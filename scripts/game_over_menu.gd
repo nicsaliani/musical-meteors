@@ -8,7 +8,7 @@ class_name GameOverMenu extends Control
 
 ## VARIABLES
 var total_time: String
-var meteors_destroyed: String
+var meteors_destroyed: int
 var missed_keys: String
 var longest_streak: String
 
@@ -18,7 +18,8 @@ func _ready() -> void:
 
 
 func _on_game_ended() -> void:
-	total_time_value.text = str(total_time)
+	total_time_value.text = total_time
+	meteors_destroyed_value.text = str(meteors_destroyed)
 	show()
 
 
@@ -26,5 +27,9 @@ func _on_start_game_button_pressed() -> void:
 	hide()
 
 
-func _on_total_time_updated(time: String) -> void:
-	total_time = time
+func _on_total_time_updated(_time: String) -> void:
+	total_time = _time
+
+
+func _on_asteroid_destroyed(_meteors_destroyed: Variant) -> void:
+	meteors_destroyed = _meteors_destroyed

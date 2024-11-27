@@ -2,7 +2,7 @@ class_name AsteroidManager extends Control
 
 ## SIGNALS
 ## -------------------
-signal asteroid_destroyed(asteroid)
+signal asteroid_destroyed(asteroids_destroyed)
 signal update_score(points)
 signal wrong_note_played(pitch)
 
@@ -20,6 +20,7 @@ var max_bound_x
 var min_bound_y
 var max_bound_y
 
+var asteroids_destroyed: int = 0
 var asteroids_on_screen: Dictionary = {}
 var space_available: int = 12
 var sizes_available: Array
@@ -59,6 +60,7 @@ func _ready():
 
 func _on_notif_label_start_game() -> void:
 	asteroid_spawn_timer.start()
+	asteroids_destroyed = 0
 	pitches_available = [0, 2, 4]
 	space_available = 3
 
@@ -128,11 +130,16 @@ func _on_note_pressed(_played_pitch_letter: String):
 
 func destroy_asteroid(_asteroid):
 	
-	# Signal or call other functions and update asteroid-related lists
-	asteroid_destroyed.emit(_asteroid)
+	# Update number of asteroids destroyed and emit signal
+	asteroids_destroyed += 1
+	asteroid_destroyed.emit(asteroids_destroyed)
+	
+	# Update asteroid lists
 	pitches_available.append(_asteroid.pitch)
 	asteroids_on_screen.erase(_asteroid.pitch_letter)
-	_asteroid.explode()
+	
+	# Kill asteroid
+	_asteroid.explode() 
 	
 	# Free one point of space if a small asteroid is destroyed
 	if _asteroid.size == Asteroid.SizeType.SMALL:
