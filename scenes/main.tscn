@@ -406,10 +406,10 @@ texture = ExtResource("1_gfuek")
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 633.0
-offset_top = 139.0
-offset_right = 761.0
-offset_bottom = 167.0
+offset_left = 50.0
+offset_top = 31.0
+offset_right = 178.0
+offset_bottom = 59.0
 grow_vertical = 0
 theme = ExtResource("1_7fiqs")
 theme_override_font_sizes/font_size = 16
@@ -1224,7 +1224,7 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 script = ExtResource("12_caqtw")
-start_time = 3
+start_time = 15
 
 [node name="Timer" type="Timer" parent="GameTimerPanel"]
 
@@ -1420,17 +1420,18 @@ game_music = ExtResource("50_cdmja")
 [connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/RestartButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/RestartButton" to="GamePanel/MainMenu" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/RestartButton" to="GamePanel/NotifLabel" method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/RestartButton" to="GamePanel/GameOverMenu" method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/RestartButton" to="GamePanel/GameOverMenu/GameOverMenuButtonContainer/RestartButton" method="_on_pressed"]
 [connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/RestartButton" to="MIDIControlPanel/Control/MIDI Control" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/RestartButton" to="GameTimerPanel" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/RestartButton" to="ScorePanel" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/RestartButton" to="LevelPanel" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/RestartButton" to="MusicPlayer" method="_on_start_game_button_pressed"]
-[connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/RestartButton" to="GamePanel/GameOverMenu" method="_on_start_game_button_pressed"]
-[connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/RestartButton" to="GamePanel/GameOverMenu/GameOverMenuButtonContainer/RestartButton" method="_on_pressed"]
 [connection signal="game_over" from="GameTimerPanel" to="." method="_on_game_timer_panel_game_over"]
 [connection signal="game_over" from="GameTimerPanel" to="GamePanel/GameViewportContainer/GameViewport/AsteroidManager" method="_on_game_timer_panel_game_over"]
 [connection signal="game_over" from="GameTimerPanel" to="GamePanel/NotifLabel" method="_on_game_timer_panel_game_over"]
 [connection signal="game_over" from="GameTimerPanel" to="MusicPlayer" method="_on_game_timer_panel_game_over"]
+[connection signal="total_time_updated" from="GameTimerPanel" to="GamePanel/GameOverMenu" method="_on_total_time_updated"]
 [connection signal="timeout" from="GameTimerPanel/Timer" to="GameTimerPanel" method="_on_timer_timeout"]
 [connection signal="level_up" from="ScorePanel" to="GamePanel/GameViewportContainer/GameViewport/AsteroidManager" method="_on_score_panel_level_up"]
 [connection signal="level_up" from="ScorePanel" to="GamePanel/NotifLabel" method="_on_score_panel_level_up"]

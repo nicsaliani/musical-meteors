@@ -7,6 +7,7 @@ signal game_unpaused()
 enum GameState { MAIN_MENU, COUNTDOWN, PLAYING, PAUSED, GAME_OVER }
 var game_state: GameState = GameState.MAIN_MENU
 
+
 ## FUNCTIONS
 func _ready() -> void:
 	# Process this node even when the game is paused
