@@ -1390,6 +1390,7 @@ game_music = ExtResource("50_cdmja")
 [connection signal="asteroid_destroyed" from="GamePanel/GameViewportContainer/GameViewport/AsteroidManager" to="GamePanel/GameOverMenu" method="_on_asteroid_destroyed"]
 [connection signal="update_score" from="GamePanel/GameViewportContainer/GameViewport/AsteroidManager" to="ScorePanel" method="_on_asteroid_manager_update_score"]
 [connection signal="wrong_note_played" from="GamePanel/GameViewportContainer/GameViewport/AsteroidManager" to="GamePanel/NotifLabel" method="_on_asteroid_manager_wrong_note_played"]
+[connection signal="wrong_note_played" from="GamePanel/GameViewportContainer/GameViewport/AsteroidManager" to="GamePanel/GameOverMenu" method="_on_wrong_note_played"]
 [connection signal="wrong_note_played" from="GamePanel/GameViewportContainer/GameViewport/AsteroidManager" to="MIDIControlPanel/Control/MIDI Control" method="_on_asteroid_manager_wrong_note_played"]
 [connection signal="open_options_menu" from="GamePanel/MainMenu" to="GamePanel/OptionsMenu" method="_on_main_menu_open_options_menu"]
 [connection signal="pressed" from="GamePanel/MainMenu/MenuButtonContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]

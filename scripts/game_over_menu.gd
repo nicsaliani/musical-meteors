@@ -9,7 +9,7 @@ class_name GameOverMenu extends Control
 ## VARIABLES
 var total_time: String
 var meteors_destroyed: int
-var missed_keys: String
+var missed_keys: int
 var longest_streak: String
 
 # Called when the node enters the scene tree for the first time.
@@ -20,10 +20,14 @@ func _ready() -> void:
 func _on_game_ended() -> void:
 	total_time_value.text = total_time
 	meteors_destroyed_value.text = str(meteors_destroyed)
+	missed_keys_value.text = str(missed_keys)
 	show()
 
 
 func _on_start_game_button_pressed() -> void:
+	total_time = ""
+	meteors_destroyed = 0
+	missed_keys = 0
 	hide()
 
 
@@ -33,3 +37,7 @@ func _on_total_time_updated(_time: String) -> void:
 
 func _on_asteroid_destroyed(_meteors_destroyed: Variant) -> void:
 	meteors_destroyed = _meteors_destroyed
+
+
+func _on_wrong_note_played(pitch: Variant) -> void:
+	missed_keys += 1
