@@ -32,3 +32,8 @@ func open_menu(_menu_state: Menu) -> void:
 		# TODO: Implement Statistics Menu State
 	
 	menu_state = _menu_state
+
+
+func _on_main_menu_button_pressed() -> void:
+	show()
+	

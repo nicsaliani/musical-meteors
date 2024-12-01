@@ -227,3 +227,18 @@ func _on_score_panel_level_up(level: Variant) -> void:
 			pitches_available.append(10)
 	
 	space_available += 1
+
+
+func _on_main_menu_button_pressed() -> void:
+	reset_asteroid_manager()
+
+
+func reset_asteroid_manager() -> void:
+	for child in get_children():
+		if child.get_class() == "Area2D":
+			remove_child(child)
+			child.queue_free()
+	asteroids_on_screen.clear()
+	
+	asteroid_spawn_timer.stop()
+	asteroid_spawn_timer.time_left

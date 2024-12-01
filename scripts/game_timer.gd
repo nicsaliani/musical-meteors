@@ -56,3 +56,13 @@ func seconds_to_clock_time(seconds: int) -> String:
 	var digit_second_tens: String = str((seconds / 10) % 6)
 	var digit_second_ones: String = str(seconds % 10)
 	return digit_minute + ":" + digit_second_tens + digit_second_ones
+
+
+func _on_main_menu_button_pressed() -> void:
+	reset_game_timer()
+
+
+func reset_game_timer() -> void:
+	current_time = 0
+	timer.stop()
+	game_timer_label.text = seconds_to_clock_time(current_time)

@@ -5,7 +5,7 @@ class_name UIButton extends Button
 
 func _ready() -> void:
 	audio_stream_player.stream = sound_on_click
-
+	
 
 func _on_pressed() -> void:
 	audio_stream_player.play()

@@ -30,3 +30,9 @@ func fade_in(fade_time: float) -> void:
 
 func _on_game_timer_panel_game_over() -> void:
 	stop()
+
+
+func _on_main_menu_button_pressed() -> void:
+	volume_db = 0
+	stream = main_menu_music
+	play()

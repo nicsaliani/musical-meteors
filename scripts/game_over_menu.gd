@@ -27,11 +27,7 @@ func _on_game_ended() -> void:
 
 
 func _on_start_game_button_pressed() -> void:
-	total_time = ""
-	meteors_destroyed = 0
-	missed_keys = 0
-	longest_streak = 0
-	current_streak = 0
+	reset_game_over_stats()
 	hide()
 
 
@@ -43,13 +39,23 @@ func _on_asteroid_destroyed(_meteors_destroyed: Variant) -> void:
 	meteors_destroyed = _meteors_destroyed
 	
 	current_streak += 1
+	
 	if current_streak > longest_streak:
 		longest_streak = current_streak
-	
-	print(current_streak, ", ", longest_streak)
 
 
-func _on_wrong_note_played(pitch: Variant) -> void:
+func _on_wrong_note_played(_pitch: Variant) -> void:
 	missed_keys += 1
 	current_streak = 0
-	
+
+
+func _on_main_menu_button_pressed() -> void:
+	hide()
+
+
+func reset_game_over_stats() -> void:
+	total_time = ""
+	meteors_destroyed = 0
+	missed_keys = 0
+	longest_streak = 0
+	current_streak = 0

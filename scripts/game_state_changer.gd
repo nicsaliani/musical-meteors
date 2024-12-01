@@ -12,3 +12,7 @@ func _on_notif_label_start_game() -> void:
 
 func _on_game_timer_panel_game_over() -> void:
 	GameManager.set_game_state(GameManager.GameState.GAME_OVER)
+
+func _on_main_menu_button_pressed() -> void:
+	GameManager.set_game_state(GameManager.GameState.MAIN_MENU)
+	get_tree().paused = false

@@ -127,3 +127,12 @@ func _on_score_panel_level_up(level: Variant) -> void:
 			update_key_state(midi_keys[8], true)
 		10:
 			update_key_state(midi_keys[10], true)
+
+
+func _on_main_menu_button_pressed() -> void:
+	enable_all_midi_keys()
+
+
+func enable_all_midi_keys() -> void:
+	for midi_key in midi_keys:
+		update_key_state(midi_key, true)

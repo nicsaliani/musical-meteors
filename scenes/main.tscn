@@ -539,6 +539,7 @@ alignment = 1
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_7fiqs")
+action_mode = 0
 text = "START GAME"
 script = ExtResource("9_55opb")
 sound_on_click = ExtResource("10_4hcjt")
@@ -687,7 +688,7 @@ text = "Window Size"
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = false
-selected = 0
+selected = 1
 fit_to_longest_item = false
 item_count = 3
 popup/item_0/text = "960 x 540"
@@ -839,6 +840,7 @@ alignment = 1
 [node name="ResumeButton" type="Button" parent="GamePanel/PauseMenu/PauseContainer"]
 layout_mode = 2
 focus_mode = 0
+action_mode = 0
 text = "RESUME"
 
 [node name="OptionsButton" type="Button" parent="GamePanel/PauseMenu/PauseContainer"]
@@ -853,6 +855,7 @@ text = "MAIN MENU
 "
 
 [node name="GameOverMenu" type="Panel" parent="GamePanel"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.017
@@ -973,8 +976,9 @@ bus = &"Sound"
 
 [node name="MainMenuButton" type="Button" parent="GamePanel/GameOverMenu/GameOverMenuButtonContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-text = "MAIN MENU"
+focus_mode = 0
+text = "MAIN MENU
+"
 
 [node name="MIDIControlPanel" type="NinePatchRect" parent="."]
 offset_left = 494.0
@@ -1224,7 +1228,7 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 script = ExtResource("12_caqtw")
-start_time = 15
+start_time = 5
 
 [node name="Timer" type="Timer" parent="GameTimerPanel"]
 
@@ -1419,6 +1423,14 @@ game_music = ExtResource("50_cdmja")
 [connection signal="value_changed" from="GamePanel/OptionsMenu/AudioContainer/SoundContainer/SoundSlider" to="GamePanel/OptionsMenu" method="_on_sound_slider_value_changed"]
 [connection signal="pressed" from="GamePanel/PauseMenu/PauseContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="GamePanel/PauseMenu/PauseContainer/ResumeButton" to="GamePanel/PauseMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="GamePanel/PauseMenu/PauseContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="GamePanel/PauseMenu/PauseContainer/MainMenuButton" to="GamePanel/GameViewportContainer/GameViewport/AsteroidManager" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="GamePanel/PauseMenu/PauseContainer/MainMenuButton" to="GamePanel/MainMenu" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="GamePanel/PauseMenu/PauseContainer/MainMenuButton" to="GamePanel/PauseMenu" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="GamePanel/PauseMenu/PauseContainer/MainMenuButton" to="GamePanel/GameOverMenu" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="GamePanel/PauseMenu/PauseContainer/MainMenuButton" to="MIDIControlPanel/Control/MIDI Control" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="GamePanel/PauseMenu/PauseContainer/MainMenuButton" to="GameTimerPanel" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="GamePanel/PauseMenu/PauseContainer/MainMenuButton" to="MusicPlayer" method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/RestartButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/RestartButton" to="GamePanel/MainMenu" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/RestartButton" to="GamePanel/NotifLabel" method="_on_start_game_button_pressed"]
@@ -1429,6 +1441,14 @@ game_music = ExtResource("50_cdmja")
 [connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/RestartButton" to="ScorePanel" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/RestartButton" to="LevelPanel" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/RestartButton" to="MusicPlayer" method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/MainMenuButton" to="GamePanel/GameViewportContainer/GameViewport/AsteroidManager" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/MainMenuButton" to="GamePanel/MainMenu" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/MainMenuButton" to="GamePanel/PauseMenu" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/MainMenuButton" to="GamePanel/GameOverMenu" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/MainMenuButton" to="MIDIControlPanel/Control/MIDI Control" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/MainMenuButton" to="GameTimerPanel" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="GamePanel/GameOverMenu/GameOverMenuButtonContainer/MainMenuButton" to="MusicPlayer" method="_on_main_menu_button_pressed"]
 [connection signal="game_over" from="GameTimerPanel" to="." method="_on_game_timer_panel_game_over"]
 [connection signal="game_over" from="GameTimerPanel" to="GamePanel/GameViewportContainer/GameViewport/AsteroidManager" method="_on_game_timer_panel_game_over"]
 [connection signal="game_over" from="GameTimerPanel" to="GamePanel/NotifLabel" method="_on_game_timer_panel_game_over"]
