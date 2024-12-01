@@ -239,6 +239,4 @@ func reset_asteroid_manager() -> void:
 			remove_child(child)
 			child.queue_free()
 	asteroids_on_screen.clear()
-	
 	asteroid_spawn_timer.stop()
-	asteroid_spawn_timer.time_left

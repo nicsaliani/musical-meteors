@@ -799,17 +799,16 @@ text = "0%"
 horizontal_alignment = 1
 
 [node name="PauseMenu" type="Panel" parent="GamePanel"]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.017
 anchor_top = 0.017
 anchor_right = 0.983
 anchor_bottom = 0.983
-offset_left = 77.928
-offset_top = 60.928
-offset_right = -77.928
-offset_bottom = -60.928
+offset_left = 80.928
+offset_top = 104.928
+offset_right = -80.928
+offset_bottom = -104.928
 theme = ExtResource("1_7fiqs")
 script = ExtResource("12_cch8s")
 
@@ -842,11 +841,6 @@ layout_mode = 2
 focus_mode = 0
 action_mode = 0
 text = "RESUME"
-
-[node name="OptionsButton" type="Button" parent="GamePanel/PauseMenu/PauseContainer"]
-layout_mode = 2
-focus_mode = 0
-text = "OPTIONS"
 
 [node name="MainMenuButton" type="Button" parent="GamePanel/PauseMenu/PauseContainer"]
 layout_mode = 2
@@ -976,6 +970,7 @@ bus = &"Sound"
 
 [node name="MainMenuButton" type="Button" parent="GamePanel/GameOverMenu/GameOverMenuButtonContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 focus_mode = 0
 text = "MAIN MENU
 "
