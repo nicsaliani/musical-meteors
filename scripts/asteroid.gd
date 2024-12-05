@@ -1,49 +1,110 @@
-class_name Asteroid extends Area2D
+class_name Asteroid 
+extends Area2D
+## An asteroid object that floats around 2D space.
 
-## SIGNALS
-## -------------------
+## Asteroids are periodically spawned by the AsteroidManager when the game is
+## in the PLAYING state. Before being put on screen, Asteroids are given a 
+## size, a pitch, and a color, which is chosen based on the pitch. Upon
+## reaching the edge of their parent viewport, they will loop to the opposite
+## edge. Pressing the note on a MIDI controller that matches an Asteroid's
+## pitch will destroy it, and the Asteroid will then spawn some particles.
+
+
+## ---SIGNALS---
+## Emitted when the Asteroid should be split into more Asteroids.
 signal split_asteroid(pos, size)
 
-## ON-READY REFERENCES
-## -------------------
+## ---NODES AND CHILDREN---
+## Reference to CollisionShape2D child node.
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+
+## Reference to Sprite2D child node -- the asteroid's main sprite.
 @onready var asteroid_sprite_2d: Sprite2D = $AsteroidSprite2D
+
+## Reference to SymbolSprite2D child node -- the asteroid's symbol sprite.
 @onready var symbol_sprite_2d: Sprite2D = $SymbolSprite2D
+
+## Reference to ParticleLayer node.
 @onready var particle_layer: Control = get_node("../../ParticleLayer")
+
+## reference to ScorePanel node.
 @onready var score_panel := get_node("../../../../../ScorePanel")
 
-
-## EXPORT REFERENCES
-## -------------------
+## ---ENUMS---
+## Enum for the Asteroid's size.
+enum SizeType { SMALL, MEDIUM, LARGE }
 @export var size: SizeType
+
+## Enum for the Asteroid's pitch.
+enum PitchType { C, CD, D, DE, E, F, FG, G, GA, A, AB, B }
 @export var pitch: PitchType
+
+## Enum for the Asteroid's accidental, displayed as a symbol.
+enum AccidentalType { FLAT, SHARP, NATURAL }
+@export var accidental: AccidentalType
+
+## ---OTHER SCENES---
+## Particle explosion scene. Spawned on destruction of Asteroid.
 @export var particle_explode: PackedScene
+
+## Explosion sprite scene. Spawned on destruction of Asteroid.
 @export var meteor_explosion_effect: PackedScene
+
+## Score popup scene. Spawned on destruction of Asteroid.
 @export var score_popup: PackedScene
 
-## ENUMS
-## -------------------
-enum SizeType {SMALL, MEDIUM, LARGE}
+## ---GENERAL VARIABLES---
+## The Asteroid's movement speed. Determined by its size.
+var speed: int:
+	get:
+		match size:
+			SizeType.SMALL:
+				return 100
+			SizeType.MEDIUM:
+				return 75
+			SizeType.LARGE:
+				return 50
+			_:
+				return 0
 
-enum PitchType {
-	C,
-	CD,
-	D,
-	DE,
-	E,
-	F,
-	FG,
-	G,
-	GA,
-	A,
-	AB,
-	B
-}
+## The Asteroid's point value awarded on destruction. Determined by its size.
+var points: int:
+	get:
+		match size:
+			SizeType.SMALL:
+				return 25
+			SizeType.MEDIUM:
+				return 50
+			SizeType.LARGE:
+				return 100
+			_:
+				return 0
 
-enum AccidentalType {FLAT, SHARP, NATURAL}
+## Leftmost boundary at which an Asteroid will loop upon crossing.
+var min_bound_x: float
 
-## VARIABLES
-## -------------------
+## Rightmost boundary at which an Asteroid will loop upon crossing.
+var max_bound_x: float
+
+## Upward boundary at which an Asteroid will loop upon crossing.
+var min_bound_y: float
+
+## Downward boundary at which an Asteroid will loop upon crossing.
+var max_bound_y: float
+
+## The angle at which the Asteroid is sent upon spawning.
+var rotate_value: float
+
+## The Asteroid's direction of movement: straight.
+var movement_vector := Vector2(0, -1)
+
+## The angle of the Asteroid's sprite's rotation.
+var rotate_angles: Array[float] = [0, 90, 180, 270]
+
+## The Asteroid's pitch represented by a letter.
+var pitch_letter: String
+
+## Dictionary of Asteroid colors. They match the MIDI key colors.
 var color_dict: Dictionary = {
 	0: Color.html("#004de6"),
 	1: Color.html("#809fff"),
@@ -59,51 +120,20 @@ var color_dict: Dictionary = {
 	11: Color.html("#ff8c19")
 }
 
-var movement_vector := Vector2(0, -1)
-var pitch_letter: String
-var rotate_value: float
-var rotate_angles: Array[float] = [
-	0,
-	90,
-	180,
-	270
-]
-var speed: int:
-	get:
-		match size:
-			SizeType.SMALL:
-				return 100
-			SizeType.MEDIUM:
-				return 75
-			SizeType.LARGE:
-				return 50
-			_:
-				return 0
-var points: int:
-	get:
-		match size:
-			SizeType.SMALL:
-				return 25
-			SizeType.MEDIUM:
-				return 50
-			SizeType.LARGE:
-				return 100
-			_:
-				return 0
-var accidental: AccidentalType
-
-var min_bound_x: float
-var max_bound_x: float
-var min_bound_y: float
-var max_bound_y: float
-
-## GENERAL FUNCTIONS
+## ---FUNCTIONS---
+## Sets variables and sprites.
 func _ready() -> void:
 	
+	# Set pitch letter based on pitch
 	pitch_letter = PitchType.keys()[pitch]
+	
+	# Set asteroid color based on pitch
 	asteroid_sprite_2d.modulate = color_dict[pitch]
+	
+	# Set random rotation value
 	rotate_value = randf_range(0, 2*PI)
 	
+	# Set all boundary values -- retrieved from AsteriodManager
 	min_bound_x = get_parent().min_bound_x
 	max_bound_x = get_parent().max_bound_x
 	min_bound_y = get_parent().min_bound_y
@@ -172,11 +202,13 @@ func _ready() -> void:
 	# Rotate sprite 0, 90, 180, or 270 degrees
 	asteroid_sprite_2d.rotation_degrees = rotate_angles[randi_range(0, 3)]
 	
-	# Assign accidental type
+	# Set accidental type based on symbol
 	accidental = AccidentalType.values()[_symbol_flip]
 
 
+## Processes movement and screen wrapping.
 func _process(_delta: float) -> void:
+	
 	# X/Y Movement
 	global_position += movement_vector.rotated(rotate_value) * speed * _delta
 	
@@ -196,47 +228,60 @@ func _process(_delta: float) -> void:
 		position.y = min_bound_y - _shape_radius
 
 
-## EXPLOSION FUNCTIONS
+## Generates explosion for main gameplay.
 func explode() -> void:
-	# Explosion for gameplay.
+	
+	# Emit split signal, spawn score popup, and spawn explosion effects
 	split_asteroid.emit(position, size)
-	#GameManager.add_score(points)
 	spawn_score_popup()
 	clear_with_explosion_effects()
 
 
+## Generates xplosion for clearing meteors from screen on game over.
 func clear_with_explosion_effects() -> void:
-	# Explosion for clearing meteors from screen.
+	
+	# Spawn effects and delete self
 	spawn_meteor_explosion_effect()
 	spawn_meteor_explosion_particles()
 	queue_free()
 
 
+## Spawns an explosion effect sprite at Asteroid's location.
 func spawn_meteor_explosion_effect() -> void:
-	# Spawn an explosion effect sprite.
+	
+	# Instantiate explosion effect sprite
 	var _explosion_effect = meteor_explosion_effect.instantiate()
 	_explosion_effect.position = position
 	_explosion_effect.rotation = asteroid_sprite_2d.rotation_degrees
 	
+	# Add to particle layer
 	particle_layer.add_child(_explosion_effect)
 
 
+## Spawns a particle explosion effect at Asteroid's location.
 func spawn_meteor_explosion_particles() -> void:
-	# Spawn a particle explosion effect.
+
+	# Instantiate explosion particles
 	var _explosion = particle_explode.instantiate()
 	_explosion.position = position
 	_explosion.color = asteroid_sprite_2d.modulate
 	_explosion.accidental = accidental
 	
+	# Add to particle layer
 	particle_layer.add_child(_explosion)
 
 
+## Spawns a score popup at Asteroid's location.
 func spawn_score_popup() -> void:
-	# Spawn a score popup.
+	
+	# Instantiate score popup
 	var _score_popup = score_popup.instantiate()
 	_score_popup.text = str(points)
-
+	
+	# Add to particle layer
 	particle_layer.add_child(_score_popup)
+	
+	# Position score popup to center of Asteroid
 	_score_popup.position = position - Vector2(
 			_score_popup.size.x / 2,
 			_score_popup.size.y / 2,
