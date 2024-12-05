@@ -10,17 +10,21 @@ extends Node
 func _ready() -> void:
 	GameManager.set_game_state(GameManager.GameState.MAIN_MENU)
 
+
 ## Set the game state to COUNTDOWN.
 func _on_start_game_button_pressed() -> void:
 	GameManager.set_game_state(GameManager.GameState.COUNTDOWN)
+
 
 ## Set the game state to PLAYING.
 func _on_notif_label_start_game() -> void:
 	GameManager.set_game_state(GameManager.GameState.PLAYING)
 
+
 ## Set the game state to GAME_OVER.
 func _on_game_timer_panel_game_over() -> void:
 	GameManager.set_game_state(GameManager.GameState.GAME_OVER)
+
 
 ## Set the game state to MAIN_MENU when a main menu button is pressed,
 ## and unpause the game in case we are coming from the pause menu.
