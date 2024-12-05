@@ -86,16 +86,6 @@ func set_active(_active: bool) -> void:
 			release()
 
 
-func play_sound(_is_neutral: bool) -> void:
-	pass
-	#if is_neutral:
-	#	audio_stream_player.stream = neutral_sound
-	#	audio_stream_player.play()
-	#else:
-	#	audio_stream_player.stream = bad_sound
-	#	audio_stream_player.play()
-
-
 func is_active() -> bool:
 	return true if active else false
 
